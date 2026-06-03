@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Protocolos de Composición Corporal - SportMetric Academic</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#da7823",
+                      "secondary-fixed": "#9ff2e2",
+                      "outline": "#75777d",
+                      "surface-bright": "#f7f9fb",
+                      "primary-fixed": "#d5e3fd",
+                      "secondary-fixed-dim": "#83d5c6",
+                      "secondary-container": "#9cefdf",
+                      "surface-dim": "#d8dadc",
+                      "primary": "#071629",
+                      "teal-accent": "#2dd4bf",
+                      "surface-container": "#eceef0",
+                      "outline-subtle": "#c5c6cd",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#006b5f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#0b6f63",
+                      "inverse-primary": "#b9c7e0",
+                      "on-primary-fixed": "#0d1c2e",
+                      "on-primary-fixed-variant": "#3a485c",
+                      "primary-container": "#1d2b3e",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary-fixed": "#ffdcc5",
+                      "tertiary-fixed-dim": "#ffb783",
+                      "background": "#f7f9fb",
+                      "on-surface": "#191c1e",
+                      "inverse-surface": "#2d3133",
+                      "primary-fixed-dim": "#b9c7e0",
+                      "surface": "#f7f9fb",
+                      "on-secondary-fixed": "#00201c",
+                      "surface-container-high": "#e6e8ea",
+                      "on-surface-variant": "#44474c",
+                      "on-tertiary-fixed-variant": "#713700",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#515f74",
+                      "tertiary": "#280f00",
+                      "on-primary-container": "#8492a9",
+                      "surface-container-highest": "#e0e3e5",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f2f4f6",
+                      "on-background": "#191c1e",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed-variant": "#005047",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e0e3e5",
+                      "outline-variant": "#c5c6cd",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#462000",
+                      "on-tertiary-fixed": "#301400"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "xl": "64px",
+                      "md": "24px",
+                      "gutter": "20px",
+                      "sm": "16px",
+                      "lg": "40px",
+                      "base": "4px",
+                      "xs": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .card-shadow { box-shadow: 0px 4px 20px rgba(51, 65, 85, 0.05); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-bright text-on-surface min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-surface-container-lowest dark:bg-primary-container text-primary dark:text-primary-fixed font-label-md text-label-md docked left-0 h-screen w-64 hidden md:flex border-r border-outline-subtle dark:border-outline shadow-sm fixed left-0 top-0 h-full flex-col pt-4 pb-8 z-50">
+<div class="px-gutter mb-lg">
+<h1 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed">SportMetric Academic</h1>
+<p class="text-on-surface-variant text-label-sm mt-1">Panel de Evaluación</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                        Inicio
+                    </a>
+</li>
+<li>
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl flex items-center gap-3 px-4 py-3 mx-2 translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                        Protocolos
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                        Técnicas
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+                        Ilustraciones
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="model_training">model_training</span>
+                        Preparación
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-gutter">
+<button class="w-full bg-teal-accent text-white font-label-md py-3 rounded-xl hover:shadow-md transition-shadow mb-4">Nuevo Protocolo</button>
+<ul class="space-y-2">
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-2 mx-2 rounded-xl transition-all text-label-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+                        Ayuda
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-2 mx-2 rounded-xl transition-all text-label-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                        Cerrar Sesión
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen pb-24 md:pb-8">
+<!-- TopAppBar -->
+<header class="bg-surface-bright/80 dark:bg-inverse-surface/80 text-primary dark:text-primary-fixed font-headline-sm text-headline-sm font-bold docked full-width top-0 border-b border-outline-subtle dark:border-outline flat no shadows flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-40 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<span class="md:hidden text-headline-sm font-headline-lg tracking-tight text-primary dark:text-primary-fixed">SportMetric</span>
+<div class="hidden md:flex items-center bg-surface-container-lowest border-1.5 border-outline-subtle rounded-lg px-3 py-1 focus-within:border-teal-accent focus-within:ring-1 focus-within:ring-teal-accent transition-all">
+<span class="material-symbols-outlined text-outline mr-2 text-[20px]" data-icon="search">search</span>
+<input class="border-none bg-transparent focus:ring-0 text-body-sm w-64 placeholder-outline" placeholder="Buscar protocolos..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Evaluador Académico" class="w-8 h-8 rounded-full border border-outline-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSMpOPXeLr5gLAxFBLghNrm5zKqVnoYZErxuwPBLgpmy1DDG0O21gDfLNBUQzknbCWPJc3CO9XuR3R3mcViS4ld25EMwL0kvjv7uDkOH9falr3Aa3fc7mVQZ0fJbeO00IYs6cYaFnCeE82BBIJDBgDZcYglKv2ycfq_gVnbUgNT6EwtkfE45-qM-ds2Oo00ZNr3ReLHF-f9qCiky9ojznPHpU51Jwk4rQpKa1N1I9moM4JdQqGJ55_QfGNZt99FRHp002qG-U38K_W"/>
+</div>
+</header>
+<!-- Canvas -->
+<div class="max-w-container-max mx-auto w-full px-gutter pt-lg">
+<div class="mb-lg">
+<p class="text-on-surface-variant text-label-md mb-1 uppercase tracking-wider">Categoría</p>
+<h2 class="text-headline-lg font-headline-lg text-primary">Composición corporal</h2>
+<p class="text-body-md text-on-surface-variant mt-2 max-w-2xl">Protocolos estandarizados para la evaluación antropométrica detallada, diseñados para estudios académicos y seguimiento deportivo de alto rendimiento.</p>
+</div>
+<!-- Bento Grid of Protocols -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle card-shadow overflow-hidden flex flex-col group hover:shadow-lg transition-shadow">
+<div class="h-2 bg-teal-accent"></div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+</div>
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span> 5 min
+                            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Medición de la talla</h3>
+<p class="text-body-sm text-on-surface-variant mb-6 flex-1">Protocolo estándar para la medición de la estatura máxima utilizando estadiómetro de precisión.</p>
+<button class="w-full bg-transparent border-1.5 border-primary text-primary font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors">Ver protocolo</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle card-shadow overflow-hidden flex flex-col group hover:shadow-lg transition-shadow">
+<div class="h-2 bg-teal-accent"></div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="monitor_weight">monitor_weight</span>
+</div>
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span> 3 min
+                            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Medición del peso</h3>
+<p class="text-body-sm text-on-surface-variant mb-6 flex-1">Determinación de la masa corporal total utilizando báscula calibrada con precisión de 0.1 kg.</p>
+<button class="w-full bg-transparent border-1.5 border-primary text-primary font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors">Ver protocolo</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle card-shadow overflow-hidden flex flex-col group hover:shadow-lg transition-shadow">
+<div class="h-2 bg-primary"></div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="accessibility_new">accessibility_new</span>
+</div>
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span> 4 min
+                            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Perímetro de cintura</h3>
+<p class="text-body-sm text-on-surface-variant mb-6 flex-1">Evaluación de la distribución de grasa central y cálculo de índices de riesgo metabólico.</p>
+<button class="w-full bg-transparent border-1.5 border-primary text-primary font-label-md py-2 rounded-lg hover:bg-surface-container-low transition-colors">Ver protocolo</button>
+</div>
+</div>
+<!-- Card 4 -->
+<!-- Card 5 - Featured/Bento Style -->
+<div class="bg-primary-container rounded-xl border border-outline-subtle card-shadow overflow-hidden flex flex-col group hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-2 relative">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=')]"></div>
+<div class="p-6 flex-1 flex flex-col relative z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-teal-accent/20 p-3 rounded-lg text-teal-accent">
+<span class="material-symbols-outlined" data-icon="pinch">pinch</span>
+</div>
+<span class="bg-black/20 text-white text-label-sm px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span> 15 min
+                            </span>
+</div>
+<div class="flex flex-col md:flex-row gap-6 items-start md:items-end">
+<div class="flex-1">
+<h3 class="text-headline-lg font-headline-lg text-white mb-2">Pliegues cutáneos</h3>
+<p class="text-body-md text-inverse-primary mb-6">Técnica avanzada de plicometría de 6 u 8 sitios para la estimación precisa del porcentaje de grasa corporal, requiriendo calibrador de alta sensibilidad.</p>
+</div>
+<button class="w-full md:w-auto bg-teal-accent text-primary font-label-md py-3 px-6 rounded-xl hover:shadow-md transition-shadow shrink-0">Ver protocolo detallado</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<!-- Card 7 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle card-shadow overflow-hidden flex flex-col group hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-2">
+<div class="h-2 bg-on-tertiary-container"></div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="bone">skeleton</span>
+</div>
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span> 10 min
+                            </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Diámetros óseos</h3>
+<p class="text-body-sm text-on-surface-variant mb-6 flex-1">Medición de la robustez esquelética (epicóndilos de húmero y fémur) mediante calibre de ramas pequeñas para la estimación de masa ósea.</p>
+<button class="w-full md:w-auto bg-transparent border-1.5 border-primary text-primary font-label-md py-2 px-6 rounded-lg hover:bg-surface-container-low transition-colors">Ver protocolo</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface text-secondary dark:text-teal-accent font-label-sm text-label-sm docked full-width bottom-0 md:hidden rounded-t-xl border-t border-outline-subtle dark:border-outline bg-surface-container-lowest/95 backdrop-blur-lg shadow-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span>Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-teal-accent font-bold scale-110 transition-transform w-16 h-full relative" href="#">
+<div class="absolute inset-0 bg-secondary/10 rounded-full h-12 w-12 mx-auto top-2 -z-10"></div>
+<span class="material-symbols-outlined mb-1" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span>Protocolos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="psychology">psychology</span>
+<span>Técnicas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+<span>Ilus.</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="model_training">model_training</span>
+<span>Prep.</span>
+</a>
+</nav>
+</body></html>

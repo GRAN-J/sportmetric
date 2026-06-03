@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Descripción del procedimiento - SportMetric</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#da7823",
+                        "secondary-fixed": "#9ff2e2",
+                        "outline": "#75777d",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#d5e3fd",
+                        "secondary-fixed-dim": "#83d5c6",
+                        "secondary-container": "#9cefdf",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#071629",
+                        "teal-accent": "#2dd4bf",
+                        "surface-container": "#eceef0",
+                        "outline-subtle": "#c5c6cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b5f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#0b6f63",
+                        "inverse-primary": "#b9c7e0",
+                        "on-primary-fixed": "#0d1c2e",
+                        "on-primary-fixed-variant": "#3a485c",
+                        "primary-container": "#1d2b3e",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed": "#ffdcc5",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-high": "#e6e8ea",
+                        "on-surface-variant": "#44474c",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#515f74",
+                        "tertiary": "#280f00",
+                        "on-primary-container": "#8492a9",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f4f6",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#c5c6cd",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#462000",
+                        "on-tertiary-fixed": "#301400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "sm": "16px",
+                        "lg": "40px",
+                        "base": "4px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col antialiased">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-primary flex justify-between items-center px-gutter w-full h-16 border-b border-outline-subtle dark:border-outline docked full-width top-0 sticky z-40">
+<div class="flex items-center gap-4">
+<!-- Placeholder for avatar as requested in JSON leading_type -->
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-subtle">
+<img alt="Minimalist academic mascot holding a tablet" class="w-full h-full object-cover" data-alt="A clean, minimalist vector illustration of a young academic mascot character. The character is wearing modern, casual scholarly attire and holding a digital tablet. The background is solid light gray to match a light mode academic UI. The color palette emphasizes teal and navy accents, fitting a modern university or scientific platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe8yj07xJFM2jsXW-ZBpx88QGk7rySL_X0juIJ5blIU19i8bjewEoYlaLDCqdbYIDRsVAG0sqMQtdH_gG61MONkPvCD-n4U1QG8YyVjX-uuWuLI5qGkzN2U_LV0fd1dsR_f87qtek1LxMUyCZbTH333S2cTh0YcnDvo0o1wlhBVMWq3uM9rF6dxvOcQvmjWqTdbHAumyXVFPifY13LUpDaNYtUWpZ_sMI-XppxU7Mnnv0M8X7Ea1xhIErm1vwxxdmOw-KHqb4oP3XI"/>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-teal-accent tracking-tight">SportMetric</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant dark:text-surface-variant active:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">help_outline</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col md:grid md:grid-cols-12 md:gap-gutter max-w-container-max mx-auto w-full px-gutter py-md pb-32 md:pb-md">
+<!-- Navigation Container (Hidden on Mobile) -->
+<aside class="hidden md:flex md:col-span-3 flex-col gap-xs">
+<nav class="flex flex-col gap-1 w-full p-4 bg-surface-container-lowest rounded-xl border border-outline-subtle shadow-[0px_4px_20px_rgba(51,65,85,0.05)]">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">home</span>
+                    Inicio
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+                    Protocolos
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+                    Técnicas
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">draw</span>
+                    Ilustraciones
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">model_training</span>
+                    Preparación
+                </a>
+</nav>
+</aside>
+<!-- Content Area -->
+<div class="flex flex-col gap-md md:col-span-9 w-full">
+<!-- Breadcrumb / Context Header (Optional but good for Academic UX) -->
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Protocolos de Medición</span>
+<span>/</span>
+<span class="text-primary font-bold">Talla</span>
+</div>
+<section class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Descripción del procedimiento</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle shadow-[0px_4px_20px_rgba(51,65,85,0.05)] p-md overflow-hidden relative">
+<!-- Accent Line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Medir el estado nutricional de los estudiantes, quienes deben estar en posición erguida, descalzos y sus puntos anatómicos alineados con el estadiómetro, siguiendo el plano de Frankfurt.
+                    </p>
+</div>
+</section>
+<!-- Visual Block -->
+<section class="mt-sm">
+<div class="w-full aspect-[4/3] md:aspect-[16/9] bg-surface-container-low rounded-xl border border-outline-subtle shadow-[0px_4px_20px_rgba(51,65,85,0.05)] overflow-hidden relative flex flex-col">
+<!-- Illustration / Video Placeholder -->
+<div class="flex-grow relative bg-surface-container flex items-center justify-center"><img alt="Modern flat vector illustration of the human musculoskeletal system" class="absolute inset-0 w-full h-full object-contain p-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIKm_yKIafqIppuOKsj8qfwi5X4oakTJMn8CidZB73OvPxkAdbglGCC5Aq6Utmfo2-v83hcfc8tcaP5SvCyJ-_B9Iy6hg1dYrBEPo1VUiD-uF1G__kYbs7n6Qz9p-cCPqx4yKMecU0qmXgimKhdhhS3WiaNDSAfnrVrB5xNyn4gYJpKdFZR92hHrjKUnG7JuEfTp4-3dJmEelUsmF1XWE1b8G9dyt0XsfM1VycNhjF2DLnD4gEUWVm10qKlHtkZsVsIFQYUMvndCG_"/></div>
+<div class="p-3 bg-surface-container-lowest border-t border-outline-subtle flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alineación del Plano de Frankfurt</span>
+<span class="material-symbols-outlined text-outline text-sm">fullscreen</span>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="mt-lg flex flex-col sm:flex-row gap-4 w-full">
+<button class="flex-1 bg-secondary text-on-secondary font-label-md text-label-md py-4 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                    Iniciar Medición
+                </button>
+<button class="flex-1 bg-transparent border-[1.5px] border-primary-container text-primary-container font-label-md text-label-md py-4 rounded-2xl hover:bg-surface-container-low transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                    Descargar Guía PDF
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-lowest dark:bg-primary-container fixed bottom-0 w-full z-50 h-20 shadow-[0px_-4px_20px_rgba(51,65,85,0.05)] dark:shadow-none flex justify-around items-center px-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<!-- Active State: Protocolos -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-2xl px-4 py-1 hover:bg-surface-container-high transition-colors Active: translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+<span class="font-label-sm text-label-sm">Protocolos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">fitness_center</span>
+<span class="font-label-sm text-label-sm">Técnicas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">draw</span>
+<span class="font-label-sm text-label-sm">Ilustraciones</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">model_training</span>
+<span class="font-label-sm text-label-sm">Preparación</span>
+</a>
+</nav>
+</body></html>

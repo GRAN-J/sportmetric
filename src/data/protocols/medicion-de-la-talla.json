@@ -1,0 +1,85 @@
+{
+  "id": "medicion-de-la-talla",
+  "order": 1,
+  "category": "composicion-corporal",
+  "title": "Medición de la Talla",
+  "objective": "Obtener un indicador antropométrico para medir el estado nutricional de los estudiantes que integran las selecciones representativas de la Pontificia Universidad Javeriana (PUJ).",
+  "materials": [
+    {
+      "name": "Tallímetro",
+      "image": "/assets/placeholders/tallimetro.webp"
+    },
+    {
+      "name": "Escuadra",
+      "image": "/assets/placeholders/escuadra.webp"
+    },
+    {
+      "name": "Superficie plana y rígida",
+      "image": "/assets/placeholders/superficie-plana-y-rigida.webp"
+    },
+    {
+      "name": "Formato de registro de datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "Medir el estado nutricional de los estudiantes, quienes deben estar en posición erguida, descalzos y sus puntos anatómicos alineados con el estadiómetro, siguiendo el plano de Frankfurt.",
+  "checklist": [
+    "Asegurarse que la báscula esté calibrada y en posición estable.",
+    "Conectar el dispositivo a la corriente eléctrica y encenderlo.",
+    "Verificar que la pantalla y los sensores estén funcionando correctamente.",
+    "Confirmar que la báscula esté en modo de espera y con lectura en cero antes de iniciar.",
+    "Báscula calibrada y en buen estado (marca SECA - mBCA 514.)",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "*El estudiante debe retirarse el calzado, accesorios y peinados voluminosos.\n*Usar ropa ligera y mantenerse inmóvil.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "Verificar los cuatro puntos anatómicos alineados con el tallímetro. \nLos tobillos deben estar juntos y las rodillas extendidas.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "La cabeza debe seguir el plano de Frankfurt, con la mirada al frente y los brazos relajados. El Plano de Frankfurt alinea la cabeza paralela al suelo, pasando por la órbita y el Tragión, ubicado en la prominencia cartilaginosa frente al conducto auditivo externo, en la región lateral de la cabeza.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "Se deben realizar dos mediciones, bajando la escuadra suavemente sobre la cabeza y leyendo la estatura en metros con dos decimales.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "La lectura de los datos se debe hacer a la altura de los ojos y, si es necesario, se recomienda el uso de un banco.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "La medición se debe registrar inmediatamente al tomarse la medida.",
+      "video": "/assets/placeholders/medicion-de-la-talla-paso-6.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Se debe interrumpir la medición si el estudiante presenta dolor, fatiga, mareo o dificultad para respirar, no puede adoptar la posición correcta o rechaza el procedimiento. También si el tallímetro está en mal estado, el piso es irregular, hay distracciones o ruido excesivo. Si no se logra una alineación adecuada tras varios intentos, el evaluador debe explicar la interrupción y buscar alternativas si es necesario."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Se deben registrar ambas mediciones en metros con dos decimales en el formato establecido, junto con el nombre del evaluador y observaciones relevantes en caso de ser necesario. Los datos deben escribirse con claridad, sin correcciones visibles, y verificarse antes de registrarlos. En caso de dudas, se puede consultar a otro evaluador y repetir la medición si es necesario.",
+    "unit": "m"
+  }
+}

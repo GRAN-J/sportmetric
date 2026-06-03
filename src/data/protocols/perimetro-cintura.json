@@ -1,0 +1,57 @@
+{
+  "id": "perimetro-cintura",
+  "category": "composicion-corporal",
+  "title": "Perímetro de Cintura",
+  "objective": "Evaluar la distribución de grasa abdominal como factor de riesgo cardiometabólico.",
+  "materials": [
+    {
+      "name": "Cinta métrica antropométrica",
+      "image": "/assets/placeholders/cinta.webp"
+    },
+    {
+      "name": "Marcador demográfico",
+      "image": "/assets/placeholders/marcador.webp"
+    },
+    {
+      "name": "Formato de registro de datos",
+      "image": "/assets/placeholders/formato.webp"
+    }
+  ],
+  "description": "Medición de la circunferencia abdominal en el punto medio entre el último arco costal y la cresta ilíaca.",
+  "checklist": [
+    "Verificar que la cinta métrica sea metálica y flexible (antropométrica).",
+    "Identificar los puntos anatómicos de referencia.",
+    "Asegurar la privacidad del evaluado.",
+    "Formato de registro disponible."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Localización de puntos",
+      "description": "Localizar el borde inferior de la última costilla y el borde superior de la cresta ilíaca.",
+      "video": "/assets/placeholders/cintura-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Colocación de la cinta",
+      "description": "Colocar la cinta métrica en el punto medio entre las dos marcas, paralela al suelo.",
+      "video": "/assets/placeholders/cintura-step2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Medición",
+      "description": "Realizar la lectura al final de una espiración normal, sin comprimir los tejidos blandos.",
+      "video": "/assets/placeholders/cintura-step3.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Dificultad para localizar puntos anatómicos.",
+    "Incomodidad extrema del evaluado.",
+    "Cinta métrica dañada o doblada."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Registrar en centímetros con un decimal (Ej. 85.3 cm).",
+    "unit": "cm"
+  }
+}

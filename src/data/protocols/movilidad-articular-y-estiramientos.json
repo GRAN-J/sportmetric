@@ -1,0 +1,68 @@
+{
+  "id": "movilidad-articular-y-estiramientos",
+  "order": 5,
+  "category": "calentamiento",
+  "title": "Movilidad Articular y Estiramientos",
+  "objective": "Incrementar la movilidad y activar de forma dinámica las articulaciones y y el sistema muscular.",
+  "materials": [],
+  "description": "El calentamiento previo consiste en ejercicios de baja intensidad y movimientos específicos que elevan la temperatura corporal, especialmente en los músculos implicados en las pruebas de potencia, resistencia y flexibilidad. Esto mejora la contracción muscular, la respuesta cardiovascular y la oxigenación, activa el sistema neuromuscular para optimizar la coordinación y reduce el riesgo de lesiones al preparar gradualmente articulaciones y músculos.",
+  "checklist": [],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "Estiramiento glúteo",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "Isquiotibiales",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "Abductores",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "Cadera y abdomen",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "Hombro",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "Tríceps",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-6.mp4"
+    },
+    {
+      "step": 7,
+      "title": "Paso 7",
+      "description": "Movimientos pendulares de brazos.",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-7.mp4"
+    },
+    {
+      "step": 8,
+      "title": "Paso 8",
+      "description": "Movimientos pendulares de piernas.",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-8.mp4"
+    },
+    {
+      "step": 9,
+      "title": "Paso 9",
+      "description": "Ejercicios rotacionales suaves del tronco.",
+      "video": "/assets/placeholders/movilidad-articular-y-estiramientos-paso-9.mp4"
+    }
+  ],
+  "interruptionCriteria": [],
+  "dataRegistry": {}
+}

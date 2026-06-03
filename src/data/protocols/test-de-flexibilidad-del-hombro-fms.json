@@ -1,0 +1,87 @@
+{
+  "id": "test-de-flexibilidad-del-hombro-fms",
+  "order": 9,
+  "category": "flexibilidad-movilidad",
+  "title": "Test de flexibilidad del hombro (FMS)",
+  "objective": "Medir la flexibilidad, estabilidad y simetría de los músculos agonistas, antagonistas y accesorios, lo que permite identificar desequilibrios osteomioarticulares y/o limitación y restricción del movimiento de los miembros superiores.",
+  "materials": [
+    {
+      "name": "Bastón de medición FMS (Ver imagen 12 a)",
+      "image": "/assets/placeholders/baston-de-medicion-fms-ver-imagen-12-a.webp"
+    },
+    {
+      "name": "• Cinta métrica",
+      "image": "/assets/placeholders/cinta-metrica.webp"
+    },
+    {
+      "name": "• Formato de registro de datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "• Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "Este test se denomina Functional Movement Screen (FMS). Es un protocolo de medición funcional que permite identificar deficiencias en la movilidad, estabilidad y patrones de movimiento fundamentales en la articulación y los movimientos de rotación interna y externa de los hombros.",
+  "checklist": [
+    "Verificar que el área esté despejada y segura para la prueba",
+    "Verificar que la iluminación y ventilación estén adecuadas",
+    "Verificar que la superficie sea estable y cómoda para la evaluación",
+    "Verificar que los materiales estén disponibles y en buen estado.",
+    "Bastón de medición FMS",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El evaluador debe explicar y hacer una demostración del test.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "El estudiante debe estar con ropa cómoda y que no limite el recorrido del movimiento.\nEl estudiante debe estar de pie, con los pies juntos.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "El estudiante debe llevar una mano por detrás de la cabeza y la otra por la espalda baja, sujetando el bastón FMS de medición, acercándolas sin alterar la postura de inicio del test.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "El evaluador debe realizar la medición tomando como punto de referencia el borde externo entre el primer y segundo dedo, registrando la distancia de las dos manos en centímetros.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "El estudiante debe repetir el mismo test en ambos brazos para comparar la movilidad de los hombros.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "Se deben realizar dos intentos.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-6.mp4"
+    },
+    {
+      "step": 7,
+      "title": "Paso 7",
+      "description": "El evaluador debe registrar los datos de los dos intentos por cada segmento corporal en el formato de registro de datos.",
+      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-7.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "El test debe interrumpirse si hay dolor agudo, restricción extrema, malestar significativo, compensaciones posturales, pérdida de control o rotación excesiva del torso. También si el estudiante no comprende el movimiento, tiene falta de coordinación, una lesión reciente, fatiga extrema o rigidez severa. Se realizan dos intentos por brazo."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "El evaluador debe registrar los dos intentos en centímetros en el formato oficial, incluyendo observaciones si es necesario. Se anota el nombre del evaluador y los valores deben ser claros, sin correcciones visibles. Antes de registrarlos, se deben verificar y, en caso de dudas, consultar a un segundo evaluador.",
+    "unit": "cm"
+  }
+}

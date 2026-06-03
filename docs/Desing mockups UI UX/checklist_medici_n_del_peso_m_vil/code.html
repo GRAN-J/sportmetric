@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lista de Verificación - SportMetric</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#da7823",
+                        "secondary-fixed": "#9ff2e2",
+                        "outline": "#75777d",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#d5e3fd",
+                        "secondary-fixed-dim": "#83d5c6",
+                        "secondary-container": "#9cefdf",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#071629",
+                        "teal-accent": "#2dd4bf",
+                        "surface-container": "#eceef0",
+                        "outline-subtle": "#c5c6cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b5f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#0b6f63",
+                        "inverse-primary": "#b9c7e0",
+                        "on-primary-fixed": "#0d1c2e",
+                        "on-primary-fixed-variant": "#3a485c",
+                        "primary-container": "#1d2b3e",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed": "#ffdcc5",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-high": "#e6e8ea",
+                        "on-surface-variant": "#44474c",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#515f74",
+                        "tertiary": "#280f00",
+                        "on-primary-container": "#8492a9",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f4f6",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#c5c6cd",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#462000",
+                        "on-tertiary-fixed": "#301400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "sm": "16px",
+                        "lg": "40px",
+                        "base": "4px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom checkbox styles to work around standard form inputs visually */
+        .check-card-input:checked + .check-card-content {
+            border-color: theme('colors.secondary');
+            background-color: theme('colors.surface-bright');
+        }
+        .check-card-input:checked + .check-card-content .check-icon-container {
+            background-color: theme('colors.secondary');
+            border-color: theme('colors.secondary');
+        }
+        .check-card-input:checked + .check-card-content .check-icon {
+            opacity: 1;
+        }
+        
+        /* Simulating mobile view width on desktop for demonstration */
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #e0e3e5; /* darker background outside mobile frame */
+        }
+        #mobile-frame {
+            width: 100%;
+            max-width: 428px; /* Standard large phone width */
+            background-color: theme('colors.background');
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 428px) {
+            body { background-color: theme('colors.background'); }
+            #mobile-frame { box-shadow: none; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface font-body-md antialiased">
+<div class="flex flex-col" id="mobile-frame">
+<!-- TopAppBar -->
+<header class="bg-surface text-primary font-headline-sm text-headline-sm fixed w-full max-w-[428px] top-0 border-b border-outline-subtle flex justify-between items-center px-gutter h-16 z-40" style="box-shadow: none;">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-subtle flex items-center justify-center flex-shrink-0">
+<img alt="Avatar" class="w-full h-full object-cover grayscale opacity-80" data-alt="A minimalist vector illustration of an academic mascot holding a tablet, styled with clean lines, soft corporate lighting, and a predominantly teal and cool gray color palette, serving as a subtle profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIRSMzCNdk4KW68dBG6wlq6061r81lIb0UfMPVO2amN9D4b5V-DHVQABcWzJJMs1wkQdQScYl_BMA5wFb_P-jHMH5Xcq8y9UT3owdlqfSHDS8w-68FFJEmvEG2sca1ATEMRuT7M03fNW7omI4g0NyUwG3M_-4zA69h46xjpPBCZOzvDSk_UriCgNuJxZck-jd3d1XGQqccV2PJHijinVrDFA7BfODsyW8W3mPskMBlJXYTT6SLRVYTK4k5Zq_erPj2I7OVgslRGQax"/>
+</div>
+<span class="font-headline-lg text-[22px] font-bold text-primary tracking-tight">SportMetric</span>
+</div>
+<button class="hover:bg-surface-container-high transition-colors p-2 rounded-full flex items-center justify-center text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined text-[24px]">help_outline</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[88px] pb-[104px] px-gutter flex flex-col relative">
+<!-- Header Section -->
+<div class="mb-6">
+<h1 class="font-display-lg text-[32px] leading-[40px] text-primary mb-2">Lista de verificación</h1>
+<p class="font-body-md text-on-surface-variant">Confirme los preparativos para la báscula SECA - mBCA 514 antes de iniciar la medición.</p>
+</div>
+<!-- Interactive Checklist (Bento Style Cards) -->
+<div class="flex flex-col gap-3 mb-8"><!-- Checklist Item 1 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Asegurarse que la báscula esté calibrada y en posición estable.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">balance</span>
+</div>
+</label>
+<!-- Checklist Item 2 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Conectar el dispositivo a la corriente eléctrica y encenderlo.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">power</span>
+</div>
+</label>
+<!-- Checklist Item 3 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Verificar que la pantalla y los sensores estén funcionando correctamente.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">monitor_heart</span>
+</div>
+</label>
+<!-- Checklist Item 4 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Confirmar que la báscula esté en modo de espera y con lectura en cero antes de iniciar.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">exposure_zero</span>
+</div>
+</label>
+<!-- Checklist Item 5 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Báscula calibrada y en buen estado (marca SECA - mBCA 514).</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">verified</span>
+</div>
+</label>
+<!-- Checklist Item 6 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Formato de registro de datos.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">assignment_add</span>
+</div>
+</label>
+<!-- Checklist Item 7 -->
+<label class="relative cursor-pointer group">
+<input class="check-card-input absolute opacity-0 w-0 h-0" type="checkbox"/>
+<div class="check-card-content flex items-center p-4 bg-surface-container-lowest border border-outline-subtle rounded-xl shadow-[0px_4px_20px_rgba(51,65,85,0.05)] transition-all duration-200 group-active:translate-y-0.5">
+<div class="check-icon-container w-6 h-6 rounded border-2 border-outline-subtle mr-4 flex items-center justify-center transition-colors duration-200">
+<span class="check-icon material-symbols-outlined text-white text-[16px] opacity-0 transition-opacity duration-200" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-on-surface flex-grow text-[15px]">Planillero.</span>
+<span class="material-symbols-outlined text-outline-subtle text-[20px]">content_paste</span>
+</div>
+</label></div>
+<!-- Bottom Prominent Button -->
+<div class="mt-auto pt-4 sticky bottom-[88px] z-30 bg-background/80 backdrop-blur-sm pb-2 -mx-gutter px-gutter">
+<button class="w-full bg-teal-accent text-primary font-label-md text-[16px] py-4 rounded-2xl shadow-[0px_8px_16px_rgba(45,212,191,0.2)] hover:bg-[#20c2ae] active:translate-y-[2px] transition-all flex items-center justify-center gap-2 font-bold">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">flag</span>
+                    Finalizar protocolo
+                </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<!-- Logic: Active tab is 'Protocolos' as the user is concluding a protocol checklist -->
+<nav class="bg-surface-container-lowest text-secondary font-label-sm text-label-sm fixed bottom-0 w-full max-w-[428px] z-50 h-20 shadow-[0px_-4px_20px_rgba(51,65,85,0.05)] flex justify-around items-center px-2 pb-safe md:hidden border-t border-transparent">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-xl flex-1 h-full" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+<span class="text-[10px]">Inicio</span>
+</a>
+<!-- Protocolos (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-1 hover:bg-surface-container-high transition-colors active:translate-y-0.5 min-w-[72px]" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+<span class="text-[10px] font-bold">Protocolos</span>
+</a>
+<!-- Técnicas -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-xl flex-1 h-full" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">fitness_center</span>
+<span class="text-[10px]">Técnicas</span>
+</a>
+<!-- Ilustraciones -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-xl flex-1 h-full" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">draw</span>
+<span class="text-[10px]">Ilustraciones</span>
+</a>
+<!-- Preparación -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-xl flex-1 h-full" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">model_training</span>
+<span class="text-[10px]">Preparación</span>
+</a>
+</nav>
+</div>
+</body></html>

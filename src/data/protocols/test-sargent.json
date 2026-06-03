@@ -1,0 +1,70 @@
+{
+  "id": "test-sargent",
+  "category": "fuerza-potencia",
+  "title": "Test de Detent (Sargent)",
+  "objective": "Medir la fuerza explosiva del tren inferior mediante el salto vertical.",
+  "materials": [
+    {
+      "name": "Pared vertical lisa",
+      "image": "/assets/placeholders/pared.webp"
+    },
+    {
+      "name": "Cinta métrica",
+      "image": "/assets/placeholders/cinta.webp"
+    },
+    {
+      "name": "Tiza",
+      "image": "/assets/placeholders/tiza.webp"
+    },
+    {
+      "name": "Cartulina negra",
+      "image": "/assets/placeholders/cartulina.webp"
+    },
+    {
+      "name": "Formato de registro de datos",
+      "image": "/assets/placeholders/formato.webp"
+    },
+    {
+      "name": "Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "El Test de Sargent mide la potencia de salto vertical. Se compara la altura alcanzada con el brazo extendido vs la altura del salto máximo.",
+  "checklist": [
+    "Verificar que la pared sea plana y sin zócalos.",
+    "Asegurar que el suelo no sea deslizante.",
+    "Calibrar la cinta métrica en la pared.",
+    "Contar con tiza para marcar."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Marca de alcance",
+      "description": "El estudiante se para de lado a la pared y marca su altura máxima con el brazo extendido.",
+      "video": "/assets/placeholders/sargent-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Salto vertical",
+      "description": "Sin impulso previo (pasos), el estudiante salta lo más alto posible y marca la pared en el punto máximo del salto.",
+      "video": "/assets/placeholders/sargent-step2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Registro de intentos",
+      "description": "Se realizan dos intentos y se registra la mejor marca.",
+      "video": "/assets/placeholders/sargent-step3.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Dolor o fatiga extrema.",
+    "Riesgo de caída o lesión.",
+    "Uso de pasos para impulsarse.",
+    "Postura incorrecta durante el salto."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Registrar la diferencia entre las marcas en centímetros con un decimal (Ej. 45.2 cm).",
+    "unit": "cm"
+  }
+}

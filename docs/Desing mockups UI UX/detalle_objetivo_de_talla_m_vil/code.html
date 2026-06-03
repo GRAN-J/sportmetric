@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Protocolo - SportMetric Academic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Ambient shadow utility derived from style guidance */
+        .shadow-ambient {
+            box-shadow: 0px 4px 20px rgba(51, 65, 85, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#da7823",
+                        "secondary-fixed": "#9ff2e2",
+                        "outline": "#75777d",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#d5e3fd",
+                        "secondary-fixed-dim": "#83d5c6",
+                        "secondary-container": "#9cefdf",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#071629",
+                        "teal-accent": "#2dd4bf",
+                        "surface-container": "#eceef0",
+                        "outline-subtle": "#c5c6cd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b5f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#0b6f63",
+                        "inverse-primary": "#b9c7e0",
+                        "on-primary-fixed": "#0d1c2e",
+                        "on-primary-fixed-variant": "#3a485c",
+                        "primary-container": "#1d2b3e",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed": "#ffdcc5",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed-dim": "#b9c7e0",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-high": "#e6e8ea",
+                        "on-surface-variant": "#44474c",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#515f74",
+                        "tertiary": "#280f00",
+                        "on-primary-container": "#8492a9",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f4f6",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#c5c6cd",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#462000",
+                        "on-tertiary-fixed": "#301400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "sm": "16px",
+                        "lg": "40px",
+                        "base": "4px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-teal-accent/30">
+<!-- Shell Container -->
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-surface-container-lowest border-r border-outline-subtle shadow-sm docked left-0 h-screen w-64 hidden md:flex flex flex-col pt-4 pb-8 z-50 fixed left-0 top-0 h-full">
+<!-- Brand -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold">
+                    SM
+                </div>
+<div>
+<h1 class="text-headline-md font-headline-md text-primary">SportMetric</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Investigación Académica</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-teal-accent text-on-primary font-label-md py-3 rounded-2xl shadow-sm hover:-translate-y-[2px] transition-transform duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nuevo Protocolo
+                </button>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto space-y-1">
+<!-- Inactive -->
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                    Inicio
+                </a>
+<!-- Active (Protocolos) -->
+<a class="bg-secondary-container text-on-secondary-container rounded-xl flex items-center gap-3 px-4 py-3 mx-2 font-label-md text-label-md translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Protocolos
+                </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                    Técnicas
+                </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+                    Ilustraciones
+                </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="model_training">model_training</span>
+                    Preparación
+                </a>
+</div>
+<!-- Footer Links -->
+<div class="mt-auto space-y-1 pt-4 border-t border-outline-subtle mx-4">
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Ayuda
+                </a>
+<a class="text-on-surface-variant hover:bg-surface-container flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Cerrar Sesión
+                </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 relative min-w-0 overflow-hidden bg-surface-bright">
+<!-- TopAppBar -->
+<header class="bg-surface-bright border-b border-outline-subtle flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-40 bg-surface-bright/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Search Bar (on_left as per JSON) -->
+<div class="hidden md:flex relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border-1.5 border-outline-subtle rounded-full text-body-sm focus:outline-none focus:border-teal-accent focus:ring-1 focus:ring-teal-accent transition-colors" placeholder="Buscar protocolos..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden border border-outline-subtle ml-2 cursor-pointer">
+<img alt="Evaluador Académico" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiCXKpQN7jRWn-qksAJuD9Y4Ev9LDQp5DQqqHzOD8eQjHv-sXmyIABJtIR440FA7zgHigdFeGq6kjr0IXf_TajltKmi5oi5aUc-b2nFAGP3OwID5d3iBPa4ygF3Nh6AAxr7Tfaoo9PUtLAjNEyL0ddX1885uiI0zzR6FJlJ2mXcn48EXsOwMU00i8tOvAm6rNqUi6ScrTXAW-c6EJxLdatXkEryn51WSON5dwheV91F2fLTP8eT86igY9Q_mzfvCveMA7eQlU6h2rZ"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto pb-24 md:pb-8">
+<div class="max-w-[1200px] mx-auto px-gutter py-md md:py-lg space-y-md">
+<!-- Back Action & Breadcrumbs -->
+<div class="flex items-center gap-2 text-label-md text-on-surface-variant mb-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                            Volver a Protocolos
+                        </a>
+<span class="text-outline-subtle">/</span>
+<span>Antropometría</span>
+</div>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-lg">
+<div>
+<h2 class="font-display-lg text-primary tracking-tight">Medición de la talla</h2>
+<p class="font-body-lg text-on-surface-variant mt-2 max-w-2xl">Procedimiento estandarizado para la obtención de la estatura en bipedestación.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm border border-outline-subtle">ISO 2004</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-sm">ISAK Nivel 1</span>
+</div>
+</div>
+<!-- In-page Navigation (Scrollable Pills) -->
+<div class="overflow-x-auto pb-2 -mx-gutter px-gutter md:mx-0 md:px-0 hide-scrollbar">
+<div class="flex items-center gap-2 min-w-max">
+<!-- Active Pill -->
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md shadow-md transition-transform hover:-translate-y-[1px]">Objetivo</button>
+<!-- Inactive Pills -->
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Materiales</button>
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Descripción</button>
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Paso a paso</button>
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Criterios de interrupción</button>
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Registro de datos</button>
+<button class="bg-surface-container-lowest border border-outline-subtle text-on-surface-variant hover:bg-surface-container hover:text-primary px-5 py-2.5 rounded-full font-label-md transition-colors">Checklist</button>
+</div>
+</div>
+<!-- Bento Grid Layout for Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md mt-sm">
+<!-- Left Column: Main Protocol Data (8 cols) -->
+<div class="lg:col-span-8 space-y-md">
+<!-- Objective Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle shadow-ambient p-md md:p-lg">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-teal-accent">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<h3 class="font-headline-sm text-primary">Objetivo del Protocolo</h3>
+</div>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                                    "Obtener un indicador antropométrico para medir el estado nutricional de los estudiantes que integran las selecciones representativas de la Pontificia Universidad Javeriana (PUJ)".
+                                </p>
+</div>
+<!-- Importance Bento Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-subtle shadow-ambient p-md relative overflow-hidden border-t-4 border-t-teal-accent">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-teal-accent text-3xl mt-1">info</span>
+<div>
+<h4 class="font-headline-sm text-primary mb-2">Importancia de la Medición</h4>
+<p class="font-body-md text-on-surface-variant">
+                                            La talla es una medida fundamental para el cálculo del Índice de Masa Corporal (IMC) y otros índices de composición corporal. Su precisión es crítica para establecer perfiles fisiológicos confiables en atletas de alto rendimiento universitario, permitiendo ajustes nutricionales y de entrenamiento específicos.
+                                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Helper / Context (4 cols) -->
+<div class="lg:col-span-4 space-y-md">
+<!-- Mascot Guide Card (Glassmorphism inspired soft UI) -->
+<div class="bg-gradient-to-br from-surface-container-lowest to-surface-container-low rounded-xl border border-outline-subtle shadow-ambient p-md relative overflow-hidden">
+<!-- Background subtle pattern -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-teal-accent/5 rounded-full blur-2xl"></div>
+<h4 class="font-label-md text-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">tips_and_updates</span>
+                                    Consejo del Guía
+                                </h4>
+<div class="flex flex-col items-center text-center space-y-4">
+<!-- Mascot Image Area -->
+<div class="w-32 h-32 rounded-full bg-surface-container-highest border-4 border-surface-container-lowest shadow-sm overflow-hidden flex items-center justify-center p-2 relative">
+<img alt="Guía Académico" class="w-full h-full object-cover rounded-full opacity-90 mix-blend-multiply" data-alt="A 2D flat vector-style illustration of a friendly, professional male sports science guide character on a clean white background. The character has a light grey and soft teal color palette, wearing a teal polo shirt, track pants, and holding a tablet. He has a warm expression and is waving gently, embodying a helpful academic assistant in a modern minimalist corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_F_vcdi5oeyptBn1QijGY8nYvefmdE78dMyVSY2iJs1Zok5rfumI065U9NFb27HoJMjCR7wzava3EqFNkW-D7sj9j7PV9nRaK28bJUY9hABGIj1MTMA6eOV1NFoRtuI3zOuQDmHdR06F_qvRiulJXi9BVp5jmYj0Njim--rPgs8gjqpaOe0W82ncaro5gJcz56E215-87UJ4ig-MKZhH4QhwDH-7yEnCRUFWXl8R20CM1uy2irA6Yg7CX4pT7i23GV6L8BwEuBdC3"/>
+</div>
+<div class="bg-surface-container-lowest border border-outline-subtle rounded-xl p-4 relative w-full shadow-sm">
+<!-- Speech bubble tick -->
+<div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-container-lowest border-t border-l border-outline-subtle transform rotate-45"></div>
+<p class="font-body-md text-primary-container italic font-medium">
+                                            "Verifique que el sujeto mantenga una postura erguida y alineada antes de iniciar la medición."
+                                        </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="bg-surface-container-lowest/95 backdrop-blur-lg border-t border-outline-subtle shadow-lg docked full-width bottom-0 md:hidden rounded-t-xl fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2">
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-sm text-[10px]">Inicio</span>
+</a>
+<!-- Active (Protocolos) -->
+<a class="flex flex-col items-center justify-center text-teal-accent font-bold scale-110 transition-transform w-16" href="#">
+<div class="w-12 h-8 rounded-full bg-secondary-container flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-secondary-container">Protocolos</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="psychology">psychology</span>
+<span class="font-label-sm text-[10px]">Técnicas</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+<span class="font-label-sm text-[10px]">Ilus.</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="model_training">model_training</span>
+<span class="font-label-sm text-[10px]">Prep.</span>
+</a>
+</nav>
+</div>
+</body></html>

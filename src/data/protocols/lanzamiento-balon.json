@@ -1,0 +1,62 @@
+{
+  "id": "lanzamiento-balon",
+  "category": "fuerza-potencia",
+  "title": "Lanzamiento con Balón Medicinal",
+  "objective": "Medir la fuerza explosiva y potencia de los miembros superiores.",
+  "materials": [
+    {
+      "name": "Balón medicinal (10lb hombres / 8lb mujeres)",
+      "image": "/assets/placeholders/balon.webp"
+    },
+    {
+      "name": "Cinta métrica (20m+)",
+      "image": "/assets/placeholders/cinta.webp"
+    },
+    {
+      "name": "Colchoneta",
+      "image": "/assets/placeholders/colchoneta.webp"
+    },
+    {
+      "name": "Superficie antideslizante",
+      "image": "/assets/placeholders/superficie.webp"
+    }
+  ],
+  "description": "Prueba de potencia del tren superior donde el estudiante lanza el balón medicinal desde una posición de rodillas.",
+  "checklist": [
+    "Verificar peso del balón según el sexo del evaluado.",
+    "Asegurar área de lanzamiento despejada.",
+    "Colocar colchoneta para apoyo de rodillas.",
+    "Confirmar cinta métrica extendida y fija."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Posición inicial",
+      "description": "De rodillas sobre la colchoneta, espalda recta, sujetando el balón con ambas manos frente al pecho.",
+      "video": "/assets/placeholders/balon-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Lanzamiento",
+      "description": "Lanzar el balón hacia adelante con máxima potencia sin despegar las rodillas del suelo.",
+      "video": "/assets/placeholders/balon-step2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Medición",
+      "description": "Medir desde la línea de salida hasta el punto de primer contacto del balón con el suelo.",
+      "video": "/assets/placeholders/balon-step3.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Despegar las rodillas del suelo.",
+    "Pérdida del equilibrio.",
+    "Dolor en hombros o espalda.",
+    "Técnica incorrecta de lanzamiento."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Registrar dos intentos en metros con dos decimales (Ej. 5.45 m).",
+    "unit": "m"
+  }
+}

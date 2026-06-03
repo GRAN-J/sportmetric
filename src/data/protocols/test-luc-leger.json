@@ -1,0 +1,68 @@
+{
+  "id": "test-luc-leger",
+  "category": "resistencia-cardiorrespiratoria",
+  "title": "Test de Luc Léger (Course Navette)",
+  "objective": "Medir la capacidad aeróbica máxima (VO2 máx) y la resistencia cardiorrespiratoria.",
+  "materials": [
+    {
+      "name": "Superficie plana (20m+)",
+      "image": "/assets/placeholders/pista.webp"
+    },
+    {
+      "name": "Conos de delimitación",
+      "image": "/assets/placeholders/conos.webp"
+    },
+    {
+      "name": "Reproductor de audio con el test",
+      "image": "/assets/placeholders/audio.webp"
+    },
+    {
+      "name": "Cinta métrica (20m)",
+      "image": "/assets/placeholders/cinta.webp"
+    },
+    {
+      "name": "Silbato",
+      "image": "/assets/placeholders/silbato.webp"
+    }
+  ],
+  "description": "Prueba progresiva de ida y vuelta en 20 metros al ritmo de señales sonoras que aumentan su frecuencia.",
+  "checklist": [
+    "Marcar distancia exacta de 20 metros.",
+    "Probar equipo de sonido y volumen.",
+    "Realizar calentamiento previo.",
+    "Explicar reglas y criterios de parada.",
+    "Verificar superficie segura (no resbaladiza)."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Preparación",
+      "description": "Estudiante se ubica tras la línea de salida. El evaluador inicia el audio.",
+      "video": "/assets/placeholders/leger-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Ejecución",
+      "description": "Correr hacia el otro extremo y llegar antes del 'beep'. Tocar la línea y esperar al siguiente aviso.",
+      "video": "/assets/placeholders/leger-step2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Progresión",
+      "description": "Mantener el ritmo a medida que los intervalos entre 'beeps' se acortan.",
+      "video": "/assets/placeholders/leger-step3.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "No alcanzar la línea dos veces seguidas.",
+    "Fatiga extrema o mareo.",
+    "Dolor en el pecho o dificultad respiratoria severa.",
+    "Abandono voluntario.",
+    "Riesgo de lesión por superficie mojada."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Registrar el último período y etapa completada (Ej. Período 8, Etapa 4).",
+    "unit": "etapa"
+  }
+}

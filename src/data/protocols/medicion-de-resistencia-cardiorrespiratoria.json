@@ -1,0 +1,116 @@
+{
+  "id": "medicion-de-resistencia-cardiorrespiratoria",
+  "order": 11,
+  "category": "resistencia-cardiorrespiratoria",
+  "title": "MEDICIÓN DE RESISTENCIA CARDIORRESPIRATORIA",
+  "objective": "Medir la capacidad aeróbica máxima y la resistencia cardiorrespiratoria de los estudiantes que integran las selecciones representativas de la PUJ a través de una prueba progresiva de ida y vuelta en una distancia de 20 metros.",
+  "materials": [
+    {
+      "name": "Superficie plana de al menos 20 metros de largo.",
+      "image": "/assets/placeholders/superficie-plana-de-al-menos-20-metros-de-largo.webp"
+    },
+    {
+      "name": "• Cinta métrica para marcar la distancia de 20 metros.",
+      "image": "/assets/placeholders/cinta-metrica-para-marcar-la-distancia-de-20-metros.webp"
+    },
+    {
+      "name": "• Conos para delimitar los extremos de la distancia.",
+      "image": "/assets/placeholders/conos-para-delimitar-los-extremos-de-la-distancia.webp"
+    },
+    {
+      "name": "• Reproductor de sonido MP3 (Ver siguiente página).",
+      "image": "/assets/placeholders/reproductor-de-sonido-mp3-ver-siguiente-pagina.webp"
+    },
+    {
+      "name": "• Silbato.",
+      "image": "/assets/placeholders/silbato.webp"
+    },
+    {
+      "name": "• Formato de recolección de datos.",
+      "image": "/assets/placeholders/formato-de-recoleccion-de-datos.webp"
+    },
+    {
+      "name": "• Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "El Test de Luc Léger consiste en correr ida y vuelta 20 metros, siguiendo señales sonoras que aumentan progresivamente de velocidad. Finaliza cuando el participante no alcanza la línea dos veces seguidas. El nivel alcanzado permite estimar el VO₂ máx. y la resistencia aeróbica.",
+  "checklist": [
+    "Marcar la distancia de 20 metros con conos o líneas.",
+    "Verificar la superficie de la pista (plana y segura).",
+    "Confirmar la funcionalidad del dispositivo de audio y la grabación del test.",
+    "Explicar el protocolo y criterios de interrupción al participante.",
+    "Realizar un calentamiento adecuado.",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El evaluador debe marcar la distancia de 20 metros con conos o líneas.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "El evaluador debe explicar las reglas y realizar un calentamiento previo con ejercicios de movilidad articular.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "El estudiante debe comenzar el test detrás de la línea de salida.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "El estudiante debe llegar al cono antes de la señal sonora.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "Al sonar la señal, el estudiante cambia la dirección.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "El estudiante debe llegar al cono antes de la señal sonora.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-6.mp4"
+    },
+    {
+      "step": 7,
+      "title": "Paso 7",
+      "description": "La velocidad de las señales sonoras aumenta progresivamente.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-7.mp4"
+    },
+    {
+      "step": 8,
+      "title": "Paso 8",
+      "description": "El evaluador debe, durante el test y en voz alta, dar a conocer a los estudiantes en qué etapa se encuentran.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-8.mp4"
+    },
+    {
+      "step": 9,
+      "title": "Paso 9",
+      "description": "El test termina cuando el estudiante no alcanza a cruzar la línea dos veces seguidas o decide detenerse.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-9.mp4"
+    },
+    {
+      "step": 10,
+      "title": "Paso 10",
+      "description": "Se debe anotar el nivel y la etapa alcanzada por el estudiante.",
+      "video": "/assets/placeholders/medicion-de-resistencia-cardiorrespiratoria-paso-10.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "El test se detiene si el estudiante no alcanza la línea dos veces seguidas, presenta fatiga extrema o malestar, manifiesta signos y síntomas anormales como dificultad para respirar, mareo, dolor de cabeza, vértigo, desmayo o visión borrosa, entre otros, sufre una lesión o está en riesgo de sufrirla, decide abandonar la prueba voluntariamente o si recibe una indicación del evaluador por razones de seguridad y salud."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "El evaluador debe registrar en el formato de recolección de datos la etapa alcanzada por el estudiante."
+  }
+}

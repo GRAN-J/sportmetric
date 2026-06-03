@@ -1,0 +1,29 @@
+{
+  "id": "movilidad-estiramiento",
+  "category": "calentamiento",
+  "title": "Movilidad Articular y Estiramiento",
+  "objective": "Aumentar el rango de movimiento articular y preparar los tejidos blandos para la actividad física.",
+  "materials": [],
+  "description": "Secuencia de movimientos dinámicos y estiramientos controlados para optimizar la flexibilidad funcional.",
+  "checklist": [
+    "Área despejada.",
+    "Postura correcta.",
+    "Respiración fluida."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Movilidad Dinámica",
+      "description": "Ejecutar balanceos controlados de piernas y brazos para aumentar el flujo sanguíneo.",
+      "video": "/assets/placeholders/stretch-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Estiramiento Activo",
+      "description": "Realizar estiramientos de los principales grupos musculares sin mantener la posición más de 10 segundos.",
+      "video": "/assets/placeholders/stretch-step2.mp4"
+    }
+  ],
+  "interruptionCriteria": [],
+  "dataRegistry": {}
+}

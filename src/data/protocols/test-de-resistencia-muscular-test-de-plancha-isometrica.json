@@ -1,0 +1,86 @@
+{
+  "id": "test-de-resistencia-muscular-test-de-plancha-isometrica",
+  "order": 8,
+  "category": "fuerza-potencia",
+  "title": "Test de resistencia muscular - Test de Plancha Isométrica",
+  "objective": "Medir la resistencia muscular de la región lumbo-pélvica, que contiene los músculos abdominales, lumbares y estabilizadores del tronco.",
+  "materials": [
+    {
+      "name": "Colchonetas.",
+      "image": "/assets/placeholders/colchonetas.webp"
+    },
+    {
+      "name": "• Cronómetro.",
+      "image": "/assets/placeholders/cronometro.webp"
+    },
+    {
+      "name": "• Superficie plana y antideslizante.",
+      "image": "/assets/placeholders/superficie-plana-y-antideslizante.webp"
+    },
+    {
+      "name": "• Formato de registro de datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "• Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "Es un test para medir la resistencia muscular del core, involucrando principalmente los músculos abdominales, lumbares, glúteos y estabilizadores del tronco. Este test mide la capacidad del individuo para mantener la posición de plancha durante el mayor tiempo posible, sin comprometer la técnica adecuada.",
+  "checklist": [
+    "Verificar que el área esté despejada y segura para la prueba.",
+    "Verificar que la superficie sea adecuada, firme y estable.",
+    "Verificar que la iluminación y ventilación estén adecuadas en el espacio.",
+    "Colchonetas.",
+    "Cronómetro.",
+    "Superficie plana y antideslizante.",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El evaluador debe explicar y hacer una demostración de la técnica de ejecución del test que permita establecer en el estudiante una postura inicial correcta.",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "El estudiante debe apoyar los antebrazos y pies sobre la superficie.\nEl cuerpo del estudiante debe estar alineado y los hombros alineados con los codos.",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "El evaluador debe activar el cronómetro cuando el estudiante inicia el test y mantiene la posición correcta.",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "El evaluador debe finalizar el test cuando el estudiante pierde la alineación inicial del cuerpo con relación a la superficie, presenta fibrilaciones musculares (temblor) o muestra fatiga extrema.",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "Antes de finalizar el test, se deben realizar dos llamados de atención al estudiante. Si recibe el segundo llamado de atención, el test debe interrumpirse.",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "El evaluador debe registrar el tiempo en segundos (Ej. 120 segundos).",
+      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-6.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "El test debe interrumpirse si hay pérdida de la postura, descenso o elevación excesiva de las caderas, desalineación de hombros, falta de apoyo en antebrazos o pies, fatiga extrema, dolor, temblores incontrolables, dificultad respiratoria, mareo, falta de estabilidad o coordinación. También si el estudiante abandona voluntariamente o hay interferencias externas."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "El evaluador debe registrar el tiempo en segundos en el formato oficial, incluir observaciones si es necesario y anotar su nombre para control de calidad. Los valores deben ser claros, sin correcciones visibles y verificados antes de su registro. En caso de dudas, se puede solicitar la revisión de un segundo evaluador.",
+    "unit": "s"
+  }
+}

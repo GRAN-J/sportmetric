@@ -1,0 +1,38 @@
+{
+  "id": "calentamiento-general",
+  "order": 4,
+  "category": "calentamiento",
+  "title": "Calentamiento general",
+  "objective": "Preparar integralmente a los estudiantes previamente a las mediciones de la condición física al elevar la temperatura muscular, el flujo sanguíneo, además mejorar la elasticidad, la contracción muscular y la coordinación reduciendo el riesgo de lesiones osteomioarticulares.",
+  "materials": [],
+  "description": "El calentamiento previo consiste en ejercicios de baja intensidad y movimientos específicos que elevan la temperatura corporal, especialmente en los músculos implicados en las pruebas de potencia, resistencia y flexibilidad. Esto mejora la contracción muscular, la respuesta cardiovascular y la oxigenación, activa el sistema neuromuscular para optimizar la coordinación y reduce el riesgo de lesiones al preparar gradualmente articulaciones y músculos.",
+  "checklist": [],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "Caminata rápida",
+      "video": "/assets/placeholders/calentamiento-general-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "Trote suave en el sitio",
+      "video": "/assets/placeholders/calentamiento-general-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "Trote suave en el sitio y Taloneras (realizar tres series)",
+      "video": "/assets/placeholders/calentamiento-general-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "Trote suave en el sitio y trote en el sitio llevando las rodillas hacia los el abdomen (realizar tres series)",
+      "video": "/assets/placeholders/calentamiento-general-paso-4.mp4"
+    }
+  ],
+  "interruptionCriteria": [],
+  "dataRegistry": {}
+}

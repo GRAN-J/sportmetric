@@ -1,0 +1,63 @@
+{
+  "id": "medicion-peso",
+  "category": "composicion-corporal",
+  "title": "Medición de Peso",
+  "objective": "Obtener el peso corporal total como indicador del estado nutricional y composición corporal de los estudiantes.",
+  "materials": [
+    {
+      "name": "Báscula grado médico",
+      "image": "/assets/placeholders/bascula.webp"
+    },
+    {
+      "name": "Superficie plana y nivelada",
+      "image": "/assets/placeholders/superficie.webp"
+    },
+    {
+      "name": "Formato de registro de datos",
+      "image": "/assets/placeholders/formato.webp"
+    },
+    {
+      "name": "Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "El peso corporal es la medida de la masa corporal total. El estudiante debe estar en ropa ligera, sin calzado y en posición anatómica sobre la báscula.",
+  "checklist": [
+    "Asegurarse que la báscula esté calibrada y en posición estable.",
+    "Verificar que la pantalla marque cero antes de iniciar.",
+    "Confirmar que el estudiante se haya retirado calzado y objetos pesados.",
+    "Báscula en buen estado.",
+    "Formato de registro y planillero listos."
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Preparación del estudiante",
+      "description": "El estudiante debe retirarse el calzado, accesorios y usar ropa ligera.",
+      "video": "/assets/placeholders/peso-step1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Posición en la báscula",
+      "description": "El estudiante debe pararse en el centro de la plataforma, de pie, inmóvil, con los brazos a los lados y la vista al frente.",
+      "video": "/assets/placeholders/peso-step2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Lectura del peso",
+      "description": "El evaluador debe leer el peso cuando la báscula se estabilice.",
+      "video": "/assets/placeholders/peso-step3.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Báscula descalibrada.",
+    "Inestabilidad del estudiante.",
+    "Interrupciones en el área de medición.",
+    "Falta de cooperación del evaluado."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Se debe registrar el peso en kilogramos con un decimal (Ej. 70.5 kg).",
+    "unit": "kg"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "id": "medicion-del-perimetro-de-cintura",
+  "order": 3,
+  "category": "composicion-corporal",
+  "title": "Medición del Perímetro de Cintura",
+  "objective": "Medir la distribución regional de la grasa abdominal y su relación con enfermedades metabólicas y cardiovasculares.",
+  "materials": [
+    {
+      "name": "Cinta Métrica de bloqueo automático o retráctil (Ver imagen 5)",
+      "image": "/assets/placeholders/cinta-metrica-de-bloqueo-automatico-o-retractil-ver-imagen-5.webp"
+    },
+    {
+      "name": "Formato de Registro de Datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "Marcador borrable",
+      "image": "/assets/placeholders/marcador-borrable.webp"
+    },
+    {
+      "name": "Biombo",
+      "image": "/assets/placeholders/biombo.webp"
+    },
+    {
+      "name": "Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "La medición del perímetro de cintura permite medir la grasa abdominal y el riesgo metabólico. Se mide mediante una cinta métrica, tomando como referencia anatómica los eslabones óseos entre la mitad de la última costilla y la cresta ilíaca anterosuperior según el protocolo de medición de la OMS, con el estudiante en posición bípeda y una respiración normal.",
+  "checklist": [
+    "Verificar si la superficie es estable y un espacio adecuado para la medición.",
+    "Uso de una cinta métrica flexible y graduada en centímetros y milímetros.",
+    "Marcador borrable",
+    "Biombo",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El evaluador debe ubicarse de medio lado junto al estudiante y frente a un espejo, permitiendo verificar y corregir la posición de la cinta métrica en los puntos de difícil visualización.",
+      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "El estudiante debe estar de pie y de medio lado con un espejo de fondo para verificar la posición correcta de la cinta métrica con los pies separados y brazos cruzados en el pecho, usando ropa ligera y una respiración normal.",
+      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "El estudiante no debe haber ingerido alimentos en exceso.",
+      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "El evaluador localiza el punto medio entre la última costilla y la cresta ilíaca, coloca la cinta métrica de forma horizontal sin presionar la piel y mide al final de una respiración normal.",
+      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "El evaluador debe registrar dos mediciones en centímetros con un solo decimal (Ej. 85.4 cm).",
+      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-5.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "Se debe interrumpir la medición si el estudiante presenta malestar físico, dificultad para mantenerse de pie, dolor, alteraciones respiratorias o condiciones médicas preexistentes. También si la ropa impide la medición, hay movimientos excesivos, manipulación intencional, errores reiterados o uso de una cinta defectuosa. Además, factores como un ambiente inadecuado, negativa del estudiante o lesiones abdominales justifican la interrupción. En estos casos, se debe reevaluar y, si es posible, reprogramar la medición."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "El evaluador debe registrar los datos en el formato oficial, incluyendo ambas mediciones, nombres del evaluado y evaluador, y observaciones si es necesario. Los valores deben ser claros, sin correcciones visibles y verificados antes de anotarlos. En caso de dudas, se puede solicitar la revisión de un segundo evaluador.",
+    "unit": "cm"
+  }
+}

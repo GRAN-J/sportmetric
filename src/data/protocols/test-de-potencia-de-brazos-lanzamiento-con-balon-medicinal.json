@@ -1,0 +1,94 @@
+{
+  "id": "test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal",
+  "order": 7,
+  "category": "fuerza-potencia",
+  "title": "Test de potencia de brazos: Lanzamiento con balón medicinal",
+  "objective": "Medir fuerza explosiva y la potencia de los miembros superiores, particularmente de los músculos de los hombros, pectoral y brazos.",
+  "materials": [
+    {
+      "name": "Balón medicinal de 10lbs para hombres y 8lbs para mujeres.",
+      "image": "/assets/placeholders/balon-medicinal-de-10lbs-para-hombres-y-8lbs-para-mujeres.webp"
+    },
+    {
+      "name": "• Superficie antideslizante.",
+      "image": "/assets/placeholders/superficie-antideslizante.webp"
+    },
+    {
+      "name": "• Colchoneta",
+      "image": "/assets/placeholders/colchoneta.webp"
+    },
+    {
+      "name": "• Cinta métrica.",
+      "image": "/assets/placeholders/cinta-metrica.webp"
+    },
+    {
+      "name": "• Tiza.",
+      "image": "/assets/placeholders/tiza.webp"
+    },
+    {
+      "name": "• Formato de registro de datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "• Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "Es un test utilizado para evaluar la fuerza explosiva y la potencia del tren superior, específicamente de los músculos de los brazos, hombros, pecho y espalda.",
+  "checklist": [
+    "Verificar que el área esté despejada y segura para la prueba.",
+    "Verificar que la superficie sea adecuada, firme y estable.",
+    "Verificar que la iluminación y ventilación estén adecuadas en el espacio.",
+    "Colchonetas.",
+    "Cronómetro.",
+    "Superficie plana y antideslizante.",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El evaluador debe explicar y demostrar la técnica de medición.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "El estudiante debe estar en posición de rodillas y con los pies alineados al ancho de los hombros.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "El estudiante debe estar en posición de rodillas y con los pies alineados al ancho de los hombros.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "El evaluador debe medir la distancia desde la línea de lanzamiento hasta el primer contacto del balón con el suelo.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "Se deben realizar dos intentos.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "El evaluador debe registrar dos intentos en metros y centímetros en el formato de registro de datos.",
+      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-6.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "El test debe interrumpirse si hay riesgo de lesión, fatiga extrema, dolor, mareo o dificultad respiratoria. También si el estudiante pierde el equilibrio, usa una técnica incorrecta, se desplaza fuera de la zona permitida o no sigue las indicaciones. Factores como una superficie insegura, interferencias externas o falta de cooperación también justifican la suspensión de la prueba."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "El evaluador debe registrar los resultados en el formato oficial, verificando que el lanzamiento se haya realizado correctamente. Se incluyen ambas mediciones con nombres del evaluado y evaluador. Los valores deben ser claros, sin correcciones visibles, y verificados antes de anotarlos. En caso de dudas, se puede consultar a un segundo evaluador.",
+    "unit": "m"
+  }
+}

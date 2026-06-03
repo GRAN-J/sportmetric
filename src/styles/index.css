@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base del sistema visual (SportMetric Academic). */
+@layer base {
+  body {
+    @apply bg-background text-on-background font-manrope antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+/* Componentes utilitarios reutilizables (botones y tarjetas). */
+@layer components {
+  .btn-primary {
+    @apply bg-teal-accent text-white px-6 py-3 rounded-2xl font-bold shadow-md hover:shadow-lg transition-all active:translate-y-[2px] disabled:opacity-50;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-2xl font-bold hover:bg-primary/5 transition-all active:translate-y-[2px];
+  }
+  
+  .btn-inverted {
+    @apply bg-primary text-white px-6 py-3 rounded-2xl font-bold hover:bg-primary/90 transition-all active:translate-y-[2px];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-outline-variant shadow-card p-4;
+  }
+
+  .bento-card {
+    @apply bg-white rounded-2xl border border-outline-variant shadow-card p-4 border-t-4 border-t-teal-accent;
+  }
+}

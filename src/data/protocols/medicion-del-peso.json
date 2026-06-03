@@ -1,0 +1,101 @@
+{
+  "id": "medicion-del-peso",
+  "order": 2,
+  "category": "composicion-corporal",
+  "title": "Medición del peso",
+  "objective": "Realizar una medición precisa y estandarizada del peso en condiciones adecuadas para la evaluación del estado nutricional de los estudiantes que integran las selecciones representativas de la PUJ corporal utilizando la báscula SECA mBCA 514.",
+  "materials": [
+    {
+      "name": "Báscula SECA - mBCA 514.",
+      "image": "/assets/placeholders/bascula-seca-mbca-514.webp"
+    },
+    {
+      "name": "Formato de registro de datos",
+      "image": "/assets/placeholders/formato-de-registro-de-datos.webp"
+    },
+    {
+      "name": "Planillero",
+      "image": "/assets/placeholders/planillero.webp"
+    }
+  ],
+  "description": "Se realiza en la báscula seleccionada y calibrada para el estudio, con el estudiante descalzo, con ropa ligera, en posición bípeda y centrado en los sensores de la báscula, con la mirada al frente y sin moverse.",
+  "checklist": [
+    "Asegurarse que la báscula esté calibrada y en posición estable.",
+    "Conectar el dispositivo a la corriente eléctrica y encenderlo.",
+    "Verificar que la pantalla y los sensores estén funcionando correctamente.",
+    "Confirmar que la báscula esté en modo de espera y con lectura en cero antes de iniciar.",
+    "Báscula calibrada y en buen estado (marca SECA - mBCA 514.)",
+    "Formato de registro de datos",
+    "Planillero"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Paso 1",
+      "description": "El estudiante debe usar ropa ligera, estar descalzo, sin accesorios metálicos y con los pies secos.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-1.mp4"
+    },
+    {
+      "step": 2,
+      "title": "Paso 2",
+      "description": "Evitar consumir alimentos 2 horas antes de la medición.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-2.mp4"
+    },
+    {
+      "step": 3,
+      "title": "Paso 3",
+      "description": "Hacer ejercicio 12 horas antes de la medición.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-3.mp4"
+    },
+    {
+      "step": 4,
+      "title": "Paso 4",
+      "description": "Y consumir alcohol o cafeína 24 horas antes de la medición.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-4.mp4"
+    },
+    {
+      "step": 5,
+      "title": "Paso 5",
+      "description": "El estudiante debe orinar antes de la medición si es posible.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-5.mp4"
+    },
+    {
+      "step": 6,
+      "title": "Paso 6",
+      "description": "El estudiante debe pararse erguido, mirando al frente, con brazos a los lados, relajados.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-6.mp4"
+    },
+    {
+      "step": 7,
+      "title": "Paso 7",
+      "description": "Los pies en contacto con los sensores de la báscula.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-7.mp4"
+    },
+    {
+      "step": 8,
+      "title": "Paso 8",
+      "description": "El evaluador enciende la báscula, verifica su funcionamiento y guía al estudiante a posicionarse correctamente.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-8.mp4"
+    },
+    {
+      "step": 9,
+      "title": "Paso 9",
+      "description": "El evaluador debe esperar la medición y registrar el peso en kilogramos con un solo decimal (Ej. 72.5 kg) en el formato de registro de datos.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-9.mp4"
+    },
+    {
+      "step": 10,
+      "title": "Paso 10",
+      "description": "La medición se debe registrar inmediatamente al tomarse la medida.",
+      "video": "/assets/placeholders/medicion-del-peso-paso-10.mp4"
+    }
+  ],
+  "interruptionCriteria": [
+    "La medición del peso debe interrumpirse si el estudiante presenta mareo, desmayos, dolor, fatiga extrema, lesiones o condiciones médicas que dificulten la medición. También si usa ropa pesada, la báscula está descalibrada, la superficie es irregular o hay distracciones y movimientos bruscos."
+  ],
+  "dataRegistry": {
+    "title": "Registro de datos",
+    "description": "Verificar la validez de la medición antes de registrarla. Anotar el peso en kilogramos con un decimal en el formato oficial, incluyendo ambas mediciones y observaciones si es necesario. Registrar el nombre del evaluador y escribir con claridad sin correcciones visibles. Verificar las cifras antes de anotarlas y, en caso de dudas, consultar a otro evaluador o repetir la medición para garantizar la precisión y confiabilidad de los datos.",
+    "unit": "kg"
+  }
+}
