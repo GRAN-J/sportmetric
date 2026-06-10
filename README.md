@@ -356,8 +356,6 @@ Actualmente:
 
 - `npm run dev`
 - `npm run build`
-- `npm run build:prod` (GitHub Pages raíz `/sportmetric/`)
-- `npm run build:dev` (GitHub Pages subruta `/sportmetric/dev/`)
 - `npm run preview`
 
 Pendiente (no existe aún en este repo):
@@ -464,19 +462,14 @@ Soluciones recomendadas:
 
 ---
 
-## Deploy (GitHub Pages): Producción y Desarrollo
+## Estrategia de ramas
 
-Este repositorio publica 2 versiones en GitHub Pages:
+El proyecto queda organizado así:
 
-- Producción (branch `main`/`master`): `https://gran-j.github.io/sportmetric/`
-- Desarrollo (branch `dev`/`develop`): `https://gran-j.github.io/sportmetric/dev/`
+- `main`: rama principal / producción
+- `dev`: rama de desarrollo
 
-Workflows:
+La recomendación es conectar la plataforma de despliegue (por ejemplo Vercel) directamente a estas ramas:
 
-- `.github/workflows/pages-prod.yml` (deploy a la raíz del branch `gh-pages`)
-- `.github/workflows/pages-dev.yml` (deploy al folder `dev/` dentro de `gh-pages`)
-
-Requisito en GitHub:
-
-- En Settings → Pages, seleccionar “Deploy from a branch” y elegir `gh-pages` (root).
-
+- `main` para producción
+- `dev` para pruebas o entorno de desarrollo
