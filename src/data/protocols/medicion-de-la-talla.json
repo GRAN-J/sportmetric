@@ -40,8 +40,8 @@
     {
       "step": 1,
       "title": "Paso 1",
-      "description": "*El estudiante debe retirarse el calzado, accesorios y peinados voluminosos.\n*Usar ropa ligera y mantenerse inmóvil.",
-      "video": "/assets/placeholders/medicion-de-la-talla-paso-1.mp4"
+      "description": "El estudiante debe retirarse el calzado, accesorios y peinados voluminosos.\n Usar ropa ligera y mantenerse inmóvil.",
+      "video": "/assets/videos/medicion-de-la-talla-paso-1.mp4"
     },
     {
       "step": 2,
