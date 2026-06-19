@@ -16,16 +16,16 @@ const Header = () => {
   ];
   
   return (
-    <header className="bg-white border-b border-outline-variant px-4 py-3 sticky top-0 z-50">
+    <header className="bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 border-b border-outline-variant px-4 py-2 md:py-3 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between max-w-[1200px]">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="bg-primary p-2 rounded-lg text-white">
-              <GraduationCap size={24} />
+        <div className="flex items-center gap-4 md:gap-8 min-w-0">
+          <Link to="/" className="flex items-center gap-2 min-w-0">
+            <div className="bg-primary p-2 rounded-lg text-white shrink-0">
+              <GraduationCap size={22} />
             </div>
-            <div className="flex flex-col">
-              <span className="text-primary font-bold text-lg leading-tight">SportMetric</span>
-              <span className="text-on-primary-container text-xs font-semibold tracking-wider uppercase">Académico</span>
+            <div className="flex flex-col min-w-0">
+              <span className="text-primary font-bold text-base md:text-lg leading-tight truncate">SportMetric</span>
+              <span className="text-on-primary-container text-[10px] md:text-xs font-semibold tracking-wider uppercase truncate">Académico</span>
             </div>
           </Link>
 
@@ -52,11 +52,11 @@ const Header = () => {
           </nav>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <button className="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
-            <Bell size={20} />
+            <Bell size={19} />
           </button>
-          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs border-2 border-white shadow-sm cursor-pointer">
+          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs border-2 border-white shadow-sm cursor-pointer">
             AD
           </div>
         </div>

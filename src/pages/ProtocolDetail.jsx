@@ -183,30 +183,42 @@ const ProtocolDetail = () => {
             </div>
 
             {/* Botones globales de navegación (siempre visibles) */}
-            <div className="flex gap-4 pt-4 border-t border-outline-variant">
-              <button 
-                onClick={goToPrev}
-                className="flex-1 btn-secondary flex items-center justify-center gap-2 py-4"
-              >
-                <ArrowLeft size={20} />
-                {currentIndex === 0 ? 'Volver al inicio' : 'Anterior'}
-              </button>
-              <button 
-                onClick={currentIndex === sections.length - 1 ? handleFinish : goToNext}
-                className="flex-1 btn-primary flex items-center justify-center gap-2 py-4"
-              >
-                {currentIndex === sections.length - 1 ? (
-                  <>
-                    <Check size={20} />
-                    {nextProtocolId ? 'Siguiente Protocolo' : 'Finalizar Categoría'}
-                  </>
-                ) : (
-                  <>
-                    Siguiente
-                    <ArrowRight size={20} />
-                  </>
-                )}
-              </button>
+            <div className="pt-4 border-t border-outline-variant space-y-4">
+              <div className="flex gap-4">
+                <button 
+                  onClick={goToPrev}
+                  className="flex-1 btn-secondary flex items-center justify-center gap-2 py-4"
+                >
+                  <ArrowLeft size={20} />
+                  {currentIndex === 0 ? 'Volver al inicio' : 'Anterior'}
+                </button>
+                <button 
+                  onClick={currentIndex === sections.length - 1 ? handleFinish : goToNext}
+                  className="flex-1 btn-primary flex items-center justify-center gap-2 py-4"
+                >
+                  {currentIndex === sections.length - 1 ? (
+                    <>
+                      <Check size={20} />
+                      {nextProtocolId ? 'Siguiente Protocolo' : 'Finalizar Categoría'}
+                    </>
+                  ) : (
+                    <>
+                      Siguiente
+                      <ArrowRight size={20} />
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  onClick={() => navigate('/categories')}
+                  className="inline-flex items-center gap-2 rounded-full border border-outline-subtle bg-surface-container-low px-4 py-2 text-sm font-semibold text-on-surface-variant transition-all hover:border-teal-accent/40 hover:text-primary hover:bg-white"
+                >
+                  <ArrowLeft size={16} />
+                  Volver a categorías
+                </button>
+              </div>
             </div>
           </>
         ) : (
