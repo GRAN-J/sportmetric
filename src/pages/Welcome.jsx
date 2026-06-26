@@ -40,6 +40,14 @@ const Welcome = () => {
           className="flex-1 flex flex-col items-start gap-10 order-2 md:order-1 text-center md:text-left"
         >
           <div className="space-y-4">
+            <div className="flex justify-center md:justify-start">
+              <img
+                src="/assets/logos/logo-principal.svg"
+                alt="Logo de SportMetric Academic"
+                className="h-14 md:h-16 w-auto"
+              />
+            </div>
+
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm border border-secondary-fixed">
               <GraduationCap size={16} />
               Investigación Académica

@@ -245,6 +245,7 @@ Estructura objetivo (a implementar con assets reales):
 ```text
 public/
 └── assets/
+    ├── logos/
     ├── images/
     ├── videos/
     ├── placeholders/
@@ -256,9 +257,13 @@ Notas:
 - Actualmente los componentes usan placeholders embebidos (data URI) como respaldo si un archivo no existe todavía.
 - Para reemplazar placeholders por assets reales:
   - Crear la carpeta `public/assets/` con la estructura anterior.
+  - Colocar logos en `public/assets/logos/`.
   - Colocar imágenes en `public/assets/images/` y videos en `public/assets/videos/`.
   - Mantener los placeholders locales en `public/assets/placeholders/` para cubrir rutas ya usadas por los JSON.
   - Mascota (si se define como archivo): `public/assets/mascot/`.
+- Convención sugerida para logos:
+  - `public/assets/logos/logo-principal.svg`
+  - `public/assets/logos/logo-secundario.svg`
 - Importante: si un JSON tiene, por ejemplo, `"image": "/assets/placeholders/biombo.webp"`, entonces el archivo real debe existir en `public/assets/placeholders/biombo.webp` para que cargue sin cambiar código.
 
 ---

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { GraduationCap, Bell, Home, Grid, BookOpen } from 'lucide-react';
+import { Bell, Home, Grid, BookOpen } from 'lucide-react';
 import { clsx } from 'clsx';
 
 // Encabezado principal de la aplicación.
@@ -20,13 +20,11 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between max-w-[1200px]">
         <div className="flex items-center gap-4 md:gap-8 min-w-0">
           <Link to="/" className="flex items-center gap-2 min-w-0">
-            <div className="bg-primary p-2 rounded-lg text-white shrink-0">
-              <GraduationCap size={22} />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-primary font-bold text-base md:text-lg leading-tight truncate">SportMetric</span>
-              <span className="text-on-primary-container text-[10px] md:text-xs font-semibold tracking-wider uppercase truncate">Académico</span>
-            </div>
+            <img
+              src="/assets/logos/logo-principal.svg"
+              alt="Logo principal de SportMetric Academic"
+              className="h-10 md:h-11 w-auto shrink-0"
+            />
           </Link>
 
           {/* Navegación de escritorio */}
