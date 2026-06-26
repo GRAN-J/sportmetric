@@ -1,46 +1,50 @@
 ## Flujo oficial de la app (SportMetric Academic)
 
-Esta app es data-driven: el contenido de cada protocolo se renderiza desde JSON en `src/data/protocols/*.json`.
+Esta app está basada en datos: el contenido de cada protocolo se carga desde archivos JSON ubicados en `src/data/protocols/*.json`.
 
 ### Rutas principales
 
 - `/` Bienvenida
 - `/categories` Categorías
-- `/category/:categoryId` Lista de protocolos (filtrada por categoría o `all`)
-- `/protocol/:protocolId/*` Detalle del protocolo (secciones internas)
+- `/category/:categoryId` Lista de protocolos, filtrada por categoría o `all`
+- `/protocol/:protocolId/*` Detalle del protocolo con sus secciones internas
 
-### Diagrama (Mermaid)
+### Diagrama del flujo
 
 ```mermaid
 flowchart TD
-  A["/  Bienvenida"] --> B["/categories  Categorías"]
-  B --> C["/category/:categoryId  Lista de protocolos"]
-  C --> D["/protocol/:protocolId/objective  Objetivo"]
-
-  D --> E["/protocol/:protocolId/materials  Materiales (opcional)"]
-  E --> F["/protocol/:protocolId/description  Descripción"]
-  F --> G["/protocol/:protocolId/checklist  Checklist (opcional)"]
-  G --> H["/protocol/:protocolId/steps  Paso a paso (opcional)"]
-  H --> I["/protocol/:protocolId/interruption  Criterios de interrupción (opcional)"]
-  I --> J["/protocol/:protocolId/data  Registro de datos (opcional)"]
-
-  J --> K{"¿Hay siguiente protocolo\nen la misma categoría?"}
-  K -- "Sí" --> D2["/protocol/:nextId/objective"]
-  K -- "No" --> B
+  A["Bienvenida"] --> B["Categorias"]
+  B --> C["Lista de protocolos"]
+  C --> D["Objetivo"]
+  D --> E["Materiales opcional"]
+  D --> F["Descripcion"]
+  E --> F
+  F --> G["Checklist opcional"]
+  F --> H["Paso a paso opcional"]
+  G --> H
+  H --> I["Criterios de interrupcion opcional"]
+  H --> J["Registro de datos opcional"]
+  I --> J
+  J --> K{"Hay otro protocolo en la misma categoria?"}
+  K -->|Si| L["Siguiente protocolo"]
+  K -->|No| M["Volver a categorias"]
+  L --> D
 ```
 
 ### Reglas de navegación por secciones
 
-- La pantalla de detalle construye dinámicamente el listado de secciones según el JSON:
-  - Siempre: Objetivo y Descripción.
-  - Solo si hay contenido:
-    - `materials.length > 0`
-    - `checklist.length > 0`
-    - `steps.length > 0`
-    - `interruptionCriteria.length > 0`
-    - `dataRegistry` con al menos una clave.
-- El flujo de secciones está definido de forma declarativa en el contenedor del protocolo y se filtra por `enabled(protocol)` para mejorar mantenibilidad.
-- La navegación “Siguiente/Anterior” está en el contenedor del protocolo para evitar pantallas sin salida.
+- La pantalla de detalle construye dinámicamente la lista de secciones según el JSON del protocolo.
+- Siempre se muestran las secciones `Objetivo` y `Descripción`.
+- Solo se muestran si tienen contenido:
+  - `materials.length > 0`
+  - `checklist.length > 0`
+  - `steps.length > 0`
+  - `interruptionCriteria.length > 0`
+  - `dataRegistry` con al menos una clave
+- El flujo de secciones está definido de forma declarativa en el contenedor del protocolo y se filtra con `enabled(protocol)` para facilitar el mantenimiento.
+- La navegación global `Anterior` y `Siguiente` vive en el contenedor del protocolo para evitar pantallas sin salida.
+- Si el usuario está en la primera sección y pulsa `Anterior`, vuelve a la lista de protocolos de la categoría actual.
 - En la última sección:
-  - Si existe un siguiente protocolo dentro de la misma categoría, navega a ese protocolo.
-  - Si no, vuelve a Categorías.
+  - Si existe un siguiente protocolo dentro de la misma categoría, la app navega a ese protocolo.
+  - Si no existe, la app vuelve a `Categorías`.
+- Como apoyo adicional de accesibilidad, también se muestra una acción secundaria para volver directamente a `Categorías`.
