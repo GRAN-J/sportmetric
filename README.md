@@ -80,10 +80,10 @@ Estandarizar la consulta de protocolos de medición y reducir ambigüedades en e
 
 ```mermaid
 flowchart LR
-  UI["UI (React Pages)"] --> Router["React Router"]
-  UI --> Service["protocolService.js"]
-  Service --> Data["src/data/protocols/*.json"]
-  UI --> Styles["Tailwind (index.css + tailwind.config.js)"]
+  A["Pantallas React"] --> B["React Router"]
+  A --> C["protocolService.js"]
+  C --> D["Archivos JSON de protocolos"]
+  A --> E["Estilos Tailwind"]
 ```
 
 ---
@@ -166,20 +166,22 @@ Diagrama del flujo (Mermaid):
 
 ```mermaid
 flowchart TD
-  A["/  Bienvenida"] --> B["/categories  Categorías"]
-  B --> C["/category/:categoryId  Lista de Protocolos"]
-  C --> D["/protocol/:protocolId/objective  Objetivo"]
-
-  D --> E["/protocol/:protocolId/materials  Materiales (opcional)"]
-  E --> F["/protocol/:protocolId/description  Descripción"]
-  F --> G["/protocol/:protocolId/checklist  Lista de verificación (opcional)"]
-  G --> H["/protocol/:protocolId/steps  Paso a paso (opcional)"]
-  H --> I["/protocol/:protocolId/interruption  Criterios (opcional)"]
-  I --> J["/protocol/:protocolId/data  Registro (opcional)"]
-
-  J --> K{"¿Hay siguiente protocolo\nen la misma categoría?"}
-  K -- "Sí" --> D2["/protocol/:nextId/objective"]
-  K -- "No" --> B
+  A["Bienvenida"] --> B["Categorias"]
+  B --> C["Lista de protocolos"]
+  C --> D["Objetivo"]
+  D --> E["Materiales opcional"]
+  D --> F["Descripcion"]
+  E --> F
+  F --> G["Checklist opcional"]
+  F --> H["Paso a paso opcional"]
+  G --> H
+  H --> I["Criterios de interrupcion opcional"]
+  H --> J["Registro de datos opcional"]
+  I --> J
+  J --> K{"Hay otro protocolo en la misma categoria?"}
+  K -->|Si| L["Siguiente protocolo"]
+  K -->|No| M["Volver a categorias"]
+  L --> D
 ```
 
 ---

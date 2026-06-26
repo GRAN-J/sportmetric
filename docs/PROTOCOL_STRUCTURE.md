@@ -4,64 +4,55 @@ Los protocolos viven en `src/data/protocols/*.json`. La app carga automáticamen
 
 ### Campos
 
-- `id` (string): identificador único (slug).
-- `order` (number): orden global de renderizado.
+- `id` (string): identificador único del protocolo en formato slug.
+- `order` (number): orden global de carga y visualización.
 - `category` (string): id de categoría (debe existir en `src/data/categories.js`).
 - `title` (string): nombre visible.
 - `objective` (string): objetivo del protocolo.
 - `materials` (array): lista de materiales.
-  - item: `{ "name": string, "image"?: string }`
+  - elemento: `{ "name": string, "image"?: string }`
 - `description` (string): descripción general.
 - `checklist` (array): lista de chequeo (strings).
 - `steps` (array): pasos.
-  - item: `{ "step": number, "title": string, "description": string, "video"?: string }`
+  - elemento: `{ "step": number, "title": string, "description": string, "video"?: string }`
 - `interruptionCriteria` (array): criterios de interrupción (strings).
 - `dataRegistry` (object): metadatos para el registro de datos.
   - ejemplo: `{ "title": "Registro de datos", "description": "...", "unit"?: "kg|cm|m|s|°|etapa" }`
 
-### Reglas de renderizado
+### Reglas de visualización
 
 - Materiales, checklist, pasos, criterios y registro son opcionales.
 - Si un campo opcional está vacío (array vacío u objeto vacío), su sección no se muestra.
-- Texto se renderiza como texto plano (sin HTML).
+- El texto se muestra como texto plano, sin HTML incrustado.
+- Los valores como `N/A`, `NA` o equivalentes deben limpiarse antes de publicar el JSON final.
+- Si un paso incluye la propiedad `video`, la interfaz intenta reproducir ese recurso desde `public/assets/videos/` o desde la ruta configurada en el JSON.
 
-### Diagrama (Mermaid)
+### Diagrama de la estructura
 
 ```mermaid
-classDiagram
-  class Protocol {
-    +string id
-    +number order
-    +string category
-    +string title
-    +string objective
-    +Material[] materials
-    +string description
-    +string[] checklist
-    +Step[] steps
-    +string[] interruptionCriteria
-    +DataRegistry dataRegistry
-  }
+flowchart TD
+  P["Protocol"]
+  P --> A["id"]
+  P --> B["order"]
+  P --> C["category"]
+  P --> D["title"]
+  P --> E["objective"]
+  P --> F["description"]
+  P --> G["checklist[]"]
+  P --> H["interruptionCriteria[]"]
+  P --> M["materials[]"]
+  P --> S["steps[]"]
+  P --> R["dataRegistry"]
 
-  class Material {
-    +string name
-    +string image
-  }
+  M --> M1["name"]
+  M --> M2["image opcional"]
 
-  class Step {
-    +number step
-    +string title
-    +string description
-    +string video
-  }
+  S --> S1["step"]
+  S --> S2["title"]
+  S --> S3["description"]
+  S --> S4["video opcional"]
 
-  class DataRegistry {
-    +string title
-    +string description
-    +string unit
-  }
-
-  Protocol "1" o-- "0..*" Material
-  Protocol "1" o-- "0..*" Step
-  Protocol "1" o-- "1" DataRegistry
+  R --> R1["title"]
+  R --> R2["description"]
+  R --> R3["unit opcional"]
 ```

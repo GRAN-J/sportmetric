@@ -117,71 +117,75 @@ spacing:
   container-max: 1200px
 ---
 
-## Brand & Style
+## Marca y estilo
 
-SportMetric Academic embodies a "Minimalist-Scholar" aesthetic. It balances the rigorous, data-driven nature of sports science with a modern, approachable educational experience. The brand personality is precise, authoritative, and clean, utilizing ample whitespace to reduce cognitive load during complex data analysis. 
+SportMetric Academic adopta una estetica "academica minimalista". Busca equilibrar el rigor tecnico de las ciencias del deporte con una experiencia educativa moderna, clara y cercana. La personalidad visual de la marca es precisa, confiable y limpia, con suficiente espacio en blanco para reducir la carga cognitiva durante la consulta de informacion tecnica.
 
-The visual style leans into **Modern Corporate** with a "Soft Minimalist" twist—using subtle shadows, thin outlines, and a professional teal-based palette to establish trust and clarity. It is designed for elite athletes, sports scientists, and academic researchers who require high-density information presented with surgical precision.
+El estilo visual se acerca a una linea corporativa moderna con un matiz minimalista suave: sombras sutiles, contornos delgados y una paleta profesional basada en azules y verdes. El objetivo es transmitir confianza, orden y claridad sin que la interfaz se sienta pesada, especialmente en movil.
 
-## Colors
+## Colores
 
-The palette is anchored by **Deep Navy (#1d2b3e)** for high-level hierarchy and **Teal Primario (#006b5f)** for professional stability. The **Teal Secundario (#2dd4bf)** acts as a vibrant action color, used for progress indicators and primary calls to action, providing a high-energy contrast to the academic base.
+La paleta se apoya en **Deep Navy (#1d2b3e)** para la jerarquia principal y en **Teal Primario (#006b5f)** como color de estabilidad visual. El **Teal Secundario (#2dd4bf)** funciona como color de accion y se usa en indicadores de progreso, estados activos y llamadas principales a la accion.
 
-**Academic Orange (#fb923c)** serves as a strategic tertiary accent, reserved for theory-related content, warnings, or high-priority notifications. The background system relies on a very light cool grey (**#f8fafc**) to maintain a clean, "laboratory" feel, with container surfaces utilizing white to pop against the subtle background.
+El **Academic Orange (#fb923c)** se reserva como acento terciario para contenido teorico, alertas o elementos de alta prioridad. El sistema de fondo utiliza un gris frio muy claro (**#f8fafc**) para mantener una sensacion limpia, cercana a un entorno de laboratorio, mientras que las superficies blancas ayudan a destacar las tarjetas y contenedores.
 
-## Typography
+## Tipografia
 
-**Manrope** is the sole typeface, chosen for its geometric clarity and excellent legibility in technical contexts. 
+**Manrope** es la tipografia principal del sistema. Se eligio por su claridad geometrica y su buena legibilidad en contextos tecnicos y academicos.
 
-- **Display & Headlines:** Use heavier weights (Bold/ExtraBold) and tighter letter spacing for a modern, impactful look.
-- **Body Text:** Uses a standard 16px base for optimal readability. 
-- **Labels:** Utilize a SemiBold weight and increased letter-spacing (0.05em) when uppercase to signify technical nomenclature and categories.
-- **Mobile Adjustments:** Headlines above 32px should scale down by 20% on mobile devices to ensure readability without excessive wrapping.
+- **Titulos y encabezados:** usan pesos altos (Bold y ExtraBold) y un espaciado ligeramente mas cerrado para lograr una presencia moderna.
+- **Texto base:** parte de 16px para facilitar la lectura en pantallas pequenas y medianas.
+- **Etiquetas:** usan peso SemiBold y, cuando estan en mayusculas, pueden aumentar el espaciado entre letras para reforzar categorias o nomenclaturas tecnicas.
+- **Ajuste en movil:** los encabezados superiores a 32px deben reducir su escala en dispositivos pequenos para evitar saltos excesivos de linea.
 
-## Layout & Spacing
+## Distribucion y espaciado
 
-The system follows a **Fixed Grid** approach for desktop, centering content within a 1200px maximum width container. 
+El sistema sigue una logica de contenedor centrado en escritorio, con un ancho maximo de `1200px`.
 
-- **Grid:** A 12-column grid is used for the main content area. On desktop, the sidebar typically occupies 3 columns, and the main content 9 columns.
-- **Margins:** 20px (gutter) horizontal padding on all screens. 
-- **Rhythm:** Vertical spacing follows an exponential scale (16, 24, 40, 64) to create distinct grouping levels. 
-- **Mobile:** The layout collapses to a single column. The sidebar transforms into a bottom navigation bar or a hidden drawer to prioritize the main data display.
+- **Cuadricula:** el contenido principal puede organizarse sobre una cuadricula de 12 columnas en escritorio.
+- **Margenes:** se mantiene un relleno horizontal de 20px en todas las pantallas.
+- **Ritmo vertical:** el espaciado sigue una escala progresiva (`16`, `24`, `40`, `64`) para separar bloques de informacion con claridad.
+- **Movil:** la interfaz colapsa a una sola columna. La prioridad es mostrar el contenido central antes que los elementos de navegacion persistentes.
 
-## Elevation & Depth
+## Elevacion y profundidad
 
-Depth is achieved through a combination of **Tonal Layering** and **Ambient Shadows**.
+La sensacion de profundidad se consigue mediante capas tonales y sombras ambientales suaves.
 
-1.  **Canvas:** The background is the lowest level (`#f8fafc`).
-2.  **Cards:** Primary containers use white backgrounds with a custom "Card Shadow": `0px 4px 20px rgba(51, 65, 85, 0.05)`. This shadow is extremely diffused and tinted with the primary navy color to feel integrated.
-3.  **Borders:** Most containers also feature a subtle `1px` solid border (`#c5c6cd`) to define edges clearly, even on high-brightness screens.
-4.  **Interaction:** Active states for buttons use a `translateY(2px)` effect to simulate a physical "press" rather than a shadow change.
+1. **Fondo base:** el fondo general ocupa el nivel mas bajo (`#f8fafc`).
+2. **Tarjetas:** los contenedores principales usan fondo blanco y una sombra suave tipo tarjeta: `0px 4px 20px rgba(51, 65, 85, 0.05)`.
+3. **Bordes:** la mayoria de contenedores incorpora un borde sutil de `1px` en `#c5c6cd` para definir mejor los limites, incluso en pantallas con mucho brillo.
+4. **Interaccion:** los estados activos de botones pueden usar un pequeno `translateY(2px)` para simular una pulsacion fisica.
 
-## Shapes
+## Formas
 
-The shape language is **Rounded**, conveying a modern and user-friendly feel that softens the "coldness" of technical data.
+El lenguaje de formas es redondeado. Esto ayuda a que la interfaz se sienta moderna, amable y menos rigida frente a la naturaleza tecnica del contenido.
 
-- **Standard Elements:** Buttons and small input fields use a `0.5rem` (8px) radius.
-- **Containers:** Content cards and larger sections use a `0.75rem` (12px) radius to create a soft, approachable frame.
-- **Special Elements:** Primary action buttons use a significantly more rounded `1rem` (16px) or "Pill" style to stand out as the main interactive touchpoints.
-- **Icons:** Enclosed in `rounded-lg` backgrounds when used for navigation or categorisation.
+- **Elementos estandar:** botones y campos pequenos usan un radio de `0.5rem` (8px).
+- **Contenedores:** tarjetas y secciones principales usan `0.75rem` (12px) para un marco mas suave.
+- **Elementos destacados:** las acciones principales pueden llegar a `1rem` (16px) o a un estilo tipo pildora para reforzar su importancia.
+- **Iconos:** cuando aparecen dentro de elementos de navegacion o categoria, pueden ir sobre fondos redondeados para mejorar reconocimiento visual.
 
-## Components
+## Componentes
 
-### Buttons
-- **Primary:** Background Teal Secundario (#2dd4bf), white text, rounded-2xl. Shadow on hover.
-- **Secondary:** Transparent background, 1.5px border of Primary Navy (#1d2b3e), navy text.
-- **Inverted:** Primary Navy (#1d2b3e) background, white text.
+### Botones
+- **Primario:** fondo Teal Secundario (`#2dd4bf`), texto blanco y forma redondeada. Puede incluir sombra o realce al pasar el cursor.
+- **Secundario:** fondo transparente, borde visible en azul principal y texto oscuro.
+- **Invertido:** fondo azul principal y texto blanco.
+- **Accesibilidad:** siempre que sea posible, las acciones importantes deben incluir texto explicito y no depender solo del icono.
 
-### Input Fields
-- **Search Bar:** White background, 1.5px border (#c5c6cd), icons placed inside the left padding. Focus state changes border color to Teal Secundario.
+### Campos de entrada
+- **Barra de busqueda:** fondo blanco, borde de `1.5px` en `#c5c6cd` e iconos integrados dentro del area izquierda. En foco, el borde puede cambiar a Teal Secundario.
 
-### Cards
-- **Standard Card:** White background, 12px roundedness, 1px border, subtle ambient shadow.
-- **Bento Card:** Specialized cards with a 4px top-border accent in the secondary or tertiary color to categorize content types (e.g., Science vs. Theory).
+### Tarjetas
+- **Tarjeta estandar:** fondo blanco, radio de 12px, borde de 1px y sombra ambiental suave.
+- **Tarjeta destacada:** puede incorporar una franja superior de 4px en color secundario o terciario para distinguir tipos de contenido.
 
-### Navigation
-- **Sidebar:** Uses high-contrast active states (Teal Secundario container with dark teal text) and subtle hover backgrounds for inactive items.
-- **Bottom Navigation:** Mobile-only, 80px height, centered active state with a circular background pill.
+### Navegacion
+- **Encabezado:** debe mantenerse compacto y claro, especialmente en iPhone y Safari.
+- **Navegacion inferior:** esta pensada para movil. Se oculta automaticamente dentro de los protocolos y al hacer scroll hacia abajo para ganar espacio util.
+- **Estados activos:** deben tener suficiente contraste y ser faciles de reconocer de un vistazo.
+- **Protocolos:** dentro del flujo del protocolo se priorizan botones con texto como `Anterior`, `Siguiente` o `Volver a categorias`.
 
-### Progress Indicators
-- Linear bars with a 10% opacity track of the indicator color and a fully opaque fill, utilizing rounded-full caps.
+### Indicadores de progreso
+- Las barras lineales usan una pista con baja opacidad y un relleno solido en el color de accion.
+- Los extremos redondeados ayudan a que el componente se vea consistente con el resto del sistema.
