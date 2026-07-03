@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { getProtocolById, getNextProtocolId } from '../services/protocolService';
-import ProtocolObjective from './protocol/ProtocolObjective';
-import ProtocolMaterials from './protocol/ProtocolMaterials';
-import ProtocolDescription from './protocol/ProtocolDescription';
-import ProtocolChecklist from './protocol/ProtocolChecklist';
-import ProtocolSteps from './protocol/ProtocolSteps';
-import ProtocolInterruption from './protocol/ProtocolInterruption';
-import ProtocolDataRegistry from './protocol/ProtocolDataRegistry';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+
+// Carga diferida de secciones para reducir el bundle inicial
+const ProtocolObjective = lazy(() => import('./protocol/ProtocolObjective'));
+const ProtocolMaterials = lazy(() => import('./protocol/ProtocolMaterials'));
+const ProtocolDescription = lazy(() => import('./protocol/ProtocolDescription'));
+const ProtocolChecklist = lazy(() => import('./protocol/ProtocolChecklist'));
+const ProtocolSteps = lazy(() => import('./protocol/ProtocolSteps'));
+const ProtocolInterruption = lazy(() => import('./protocol/ProtocolInterruption'));
+const ProtocolDataRegistry = lazy(() => import('./protocol/ProtocolDataRegistry'));
 
 const SECTION_CANDIDATES = [
   { id: 'objective', label: 'Objetivo', path: 'objective', enabled: () => true },
@@ -172,14 +174,21 @@ const ProtocolDetail = () => {
         {sections.length > 0 ? (
           <>
             <div className="flex-1">
-              <AnimatePresence mode="wait">
-                <Routes key={location.pathname}>
-                  {Object.entries(ROUTE_COMPONENTS).map(([path, Component]) => (
-                    <Route key={path} path={path} element={<Component protocol={protocol} />} />
-                  ))}
-                  <Route path="/" element={<Navigate to={sections[0]?.path || 'objective'} replace />} />
-                </Routes>
-              </AnimatePresence>
+              <Suspense fallback={
+                <div className="flex flex-col items-center justify-center py-20 gap-4">
+                  <div className="w-10 h-10 border-4 border-teal-accent border-t-transparent rounded-full animate-spin" />
+                  <p className="text-sm font-semibold text-on-surface-variant">Cargando sección...</p>
+                </div>
+              }>
+                <AnimatePresence mode="wait">
+                  <Routes key={location.pathname}>
+                    {Object.entries(ROUTE_COMPONENTS).map(([path, Component]) => (
+                      <Route key={path} path={path} element={<Component protocol={protocol} />} />
+                    ))}
+                    <Route path="/" element={<Navigate to={sections[0]?.path || 'objective'} replace />} />
+                  </Routes>
+                </AnimatePresence>
+              </Suspense>
             </div>
 
             {/* Botones globales de navegación (siempre visibles) */}

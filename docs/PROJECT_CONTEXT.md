@@ -22,7 +22,7 @@ SportMetric Academic es una app web (Vite + React + React Router) orientada a co
 - `src/data/protocols/*.json`: contenido de protocolos.
 - `src/App.jsx`: definición de rutas principales con carga diferida (`lazy`) para reducir el peso inicial.
 - `public/assets/logos`, `public/assets/images` y `public/assets/videos`: ubicación de logos, imágenes y videos reales.
-- `extract_xlsx.js`: herramienta para extraer/sincronizar JSON desde `OVA_TRACKER.xlsx` (archivo local; no se versiona en Git).
+- `extract_xlsx.js`: herramienta para extraer/sincronizar JSON desde `OVA_TRACKER.xlsx` (archivo local; no se versiona en Git; dependencia `xlsx` eliminada del proyecto).
 
 ### Pipeline de datos (Mermaid)
 
@@ -40,8 +40,9 @@ flowchart LR
 - No se renderiza HTML “crudo” (no se usa `dangerouslySetInnerHTML`).
 - No hay credenciales/keys en el código.
 - Placeholders: se usan recursos embebidos (`data URI`) y assets locales para evitar dependencias externas y bloqueos del navegador.
-- Dependencias:
-  - `xlsx` se usa solo para extracción local como herramienta de apoyo. No participa en la ejecución de producción.
+- CSP (Content Security Policy): implementada en `index.html` para mitigar XSS.
+- Headers de seguridad: configurados en `vite.config.js` para desarrollo y previsualización.
+- Dependencias actualizadas: vulnerabilidades de `vite` corregidas y dependencia `xlsx` eliminada del proyecto.
 
 ### Comportamiento de la interfaz
 

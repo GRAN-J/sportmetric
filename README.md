@@ -28,7 +28,8 @@ Estandarizar la consulta de protocolos de medición y reducir ambigüedades en e
 
 - Funcional (navegación principal y renderizado por JSON).
 - Placeholders usados para recursos multimedia mientras se incorporan assets finales.
-- Extracción Excel → JSON disponible como tooling local.
+- Optimización de rendimiento: carga diferida de secciones y rutas, chunks optimizados.
+- Seguridad mejorada: CSP, headers de seguridad y dependencias actualizadas.
 
 ### Alcance del proyecto
 
@@ -46,7 +47,7 @@ Estandarizar la consulta de protocolos de medición y reducir ambigüedades en e
 - Framework: React `19.2.6`
 - Router: React Router DOM `7.15.1`
 - Lenguaje: JavaScript (ESM)
-- Bundler/Dev Server: Vite `8.0.14`
+- Bundler/Dev Server: Vite `8.1.3`
 - Gestor de paquetes: npm
 - Node.js: recomendado `22.x` (LTS) + npm `11.x` o equivalente
 
@@ -66,6 +67,7 @@ Estandarizar la consulta de protocolos de medición y reducir ambigüedades en e
 - Component Driven Development (componentes por pantalla/sección).
 - Data Driven UI: protocolos renderizados desde JSON.
 - Mobile First Design: navegación inferior en móvil y navegación superior en desktop.
+- Carga diferida (Lazy Loading): rutas y secciones se cargan solo cuando son necesarias para reducir el tamaño del bundle inicial.
 
 ### Principios utilizados
 
@@ -390,12 +392,11 @@ Pendiente (no existe aún en este repo):
 
 | Paquete | Versión | Propósito |
 |---|---:|---|
-| vite | 8.0.14 | Dev server + build |
+| vite | 8.1.3 | Dev server + build |
 | @vitejs/plugin-react-swc | 4.3.1 | Plugin React (SWC) |
 | tailwindcss | 3.4.19 | Framework CSS |
 | postcss | 8.5.15 | Procesamiento CSS |
 | autoprefixer | 10.5.0 | Prefijos CSS |
-| xlsx | 0.18.5 | Lectura de Excel (solo extracción local) |
 
 ---
 
@@ -408,6 +409,11 @@ Pendiente (no existe aún en este repo):
 - Avance al siguiente protocolo dentro de la misma categoría.
 - Limpieza de `NA / N/A` en JSON y en extractor.
 - Placeholders embebidos (data URI) para evitar dependencias externas y bloqueos del navegador.
+- Carga diferida (Lazy Loading) de rutas y secciones para optimizar el rendimiento.
+- Optimización de chunks en Vite con código para reducir el tamaño del bundle.
+- Implementación de CSP y headers de seguridad para mitigar XSS y otros riesgos.
+- Actualización de dependencias para corregir vulnerabilidades conocidas.
+- Eliminación de la dependencia `xlsx` (no se usa más en el proyecto).
 
 ### En desarrollo
 
