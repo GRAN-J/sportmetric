@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const Welcome = lazy(() => import('./pages/Welcome'));
 const Categories = lazy(() => import('./pages/Categories'));
@@ -17,19 +18,25 @@ const AppLoading = () => (
 // Definición de rutas principales.
 // Flujo base:
 // - Bienvenida (/) -> Categorías -> Lista de protocolos -> Detalle del protocolo (secciones internas).
+/**
+ * Componente principal de la aplicación
+ * Configura rutas, carga diferida y manejo de errores
+ */
 function App() {
   return (
-    <Suspense fallback={<AppLoading />}>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route element={<MainLayout />}>
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/category/:categoryId" element={<ProtocolList />} />
-          <Route path="/protocol/:protocolId/*" element={<ProtocolDetail />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<AppLoading />}>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route element={<MainLayout />}>
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/category/:categoryId" element={<ProtocolList />} />
+            <Route path="/protocol/:protocolId/*" element={<ProtocolDetail />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
