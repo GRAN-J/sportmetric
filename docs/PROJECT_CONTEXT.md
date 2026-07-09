@@ -13,16 +13,18 @@ SportMetric Academic es una app web (Vite + React + React Router) orientada a co
 
 ### Estructura (carpetas clave)
 
-- `src/pages/Welcome.jsx`: bienvenida.
-- `src/pages/Categories.jsx`: categorías.
-- `src/pages/ProtocolList.jsx`: listado por categoría.
-- `src/pages/ProtocolDetail.jsx`: contenedor del protocolo (secciones internas + navegación).
-- `src/pages/protocol/*`: secciones del protocolo.
-- `src/services/protocolService.js`: carga/orden de protocolos desde JSON.
-- `src/data/protocols/*.json`: contenido de protocolos.
-- `src/App.jsx`: definición de rutas principales con carga diferida (`lazy`) para reducir el peso inicial.
-- `public/assets/logos`, `public/assets/images` y `public/assets/videos`: ubicación de logos, imágenes y videos reales.
+- `src/pages/Welcome.jsx`: bienvenida con logo principal.
+- `src/pages/Categories.jsx`: categorías de protocolos.
+- `src/pages/ProtocolList.jsx`: listado por categoría con barra de búsqueda.
+- `src/pages/ProtocolDetail.jsx`: contenedor del protocolo (secciones internas + navegación) con carga diferida de secciones.
+- `src/pages/protocol/*`: secciones individuales del protocolo.
+- `src/services/protocolService.js`: carga/orden de protocolos desde JSON con JSDoc completo.
+- `src/data/protocols/*.json`: contenido de protocolos oficiales (solo con `order` numérico).
+- `src/components/ErrorBoundary.jsx`: manejo de errores inesperados.
+- `src/App.jsx`: definición de rutas principales con carga diferida (`lazy`) para reducir el peso inicial y ErrorBoundary.
+- `public/assets/logos`, `public/assets/images`, `public/assets/videos` y `public/assets/placeholders`: ubicación de recursos.
 - `extract_xlsx.js`: herramienta para extraer/sincronizar JSON desde `OVA_TRACKER.xlsx` (archivo local; no se versiona en Git; dependencia `xlsx` eliminada del proyecto).
+- `vitest.config.js` y `src/test/setup.js`: configuración de testing.
 
 ### Pipeline de datos (Mermaid)
 

@@ -119,7 +119,7 @@ spacing:
 
 ## Marca y estilo
 
-SportMetric Academic adopta una estetica "academica minimalista". Busca equilibrar el rigor tecnico de las ciencias del deporte con una experiencia educativa moderna, clara y cercana. La personalidad visual de la marca es precisa, confiable y limpia, con suficiente espacio en blanco para reducir la carga cognitiva durante la consulta de informacion tecnica.
+SportMetric Academic adopta una estética "académica minimalista". Busca equilibrar el rigor técnico de las ciencias del deporte con una experiencia educativa moderna, clara y cercana. La personalidad visual de la marca es precisa, confiable y limpia, con suficiente espacio en blanco para reducir la carga cognitiva durante la consulta de información técnica.
 
 El estilo visual se acerca a una linea corporativa moderna con un matiz minimalista suave: sombras sutiles, contornos delgados y una paleta profesional basada en azules y verdes. El objetivo es transmitir confianza, orden y claridad sin que la interfaz se sienta pesada, especialmente en movil.
 

@@ -102,8 +102,15 @@ Estructura actual del proyecto (carpetas principales):
 │   ├── PROJECT_CONTEXT.md
 │   ├── PROTOCOL_STRUCTURE.md
 │   └── Desing mockups UI UX/
+├── public/
+│   └── assets/
+│       ├── logos/
+│       ├── images/
+│       ├── videos/
+│       └── placeholders/
 ├── src/
 │   ├── components/
+│   │   ├── ErrorBoundary.jsx
 │   │   └── navigation/
 │   │       ├── Header.jsx
 │   │       └── BottomNav.jsx
@@ -130,17 +137,16 @@ Estructura actual del proyecto (carpetas principales):
 │   │   └── protocolService.js
 │   ├── styles/
 │   │   └── index.css
+│   ├── test/
+│   │   └── setup.js
 │   ├── App.jsx
 │   └── main.jsx
 ├── extract_xlsx.js
 ├── OVA_TRACKER.xlsx (local, no se sube al repo)
 ├── package.json
-└── vite.config.js
+├── vite.config.js
+└── vitest.config.js
 ```
-
-Notas:
-
-- El árbol de ejemplo propuesto (`src/hooks`, `src/utils`, `src/types`, `src/assets`) todavía no existe en este repositorio. Si se incorporan, deben documentarse aquí y moverse las responsabilidades correspondientes.
 
 ---
 
@@ -292,20 +298,19 @@ Incluye:
 
 Componentes reutilizables existentes (hoy):
 
-- `Header` (`src/components/navigation/Header.jsx`): navegación superior (desktop) + marca.
-- `BottomNav` (`src/components/navigation/BottomNav.jsx`): navegación inferior (mobile).
+- `ErrorBoundary` (`src/components/ErrorBoundary.jsx`): manejo de errores inesperados en la app.
+- `Header` (`src/components/navigation/Header.jsx`): navegación superior (desktop) + logo principal.
+- `BottomNav` (`src/components/navigation/BottomNav.jsx`): navegación inferior (mobile) que se oculta automáticamente en protocolos y al hacer scroll.
 - `MainLayout` (`src/layout/MainLayout.jsx`): layout común (Header + Outlet + BottomNav).
 
-Componentes “conceptuales” solicitados para estandarizar UI (a crear/refactorizar):
+Componentes “conceptuales” que ya existen internamente:
 
 - CategoryCard (implementado como componente interno dentro de `Categories.jsx`)
 - ProtocolCard (implementado como componente interno dentro de `ProtocolList.jsx`)
 - MaterialCard (hoy se renderiza dentro de `ProtocolMaterials.jsx`)
 - ChecklistCard (hoy se renderiza dentro de `ProtocolChecklist.jsx`)
 - StepViewer + VideoContainer (hoy se renderiza dentro de `ProtocolSteps.jsx`)
-- AcademicAlert (pendiente)
 - DataRecordForm (hoy se renderiza dentro de `ProtocolDataRegistry.jsx`)
-- BottomNavigation (equivalente actual: `BottomNav`)
 - ProgressIndicator (hoy está dentro de `ProtocolDetail.jsx`)
 
 ---
@@ -363,9 +368,11 @@ npm run dev
 
 Actualmente:
 
-- `npm run dev`
-- `npm run build`
-- `npm run preview`
+- `npm run dev`: Inicia el servidor de desarrollo de Vite.
+- `npm run build`: Compila la app para producción en la carpeta `dist`.
+- `npm run preview`: Previsualiza el build de producción en un servidor local.
+- `npm run test`: Inicia el runner de Vitest en modo interactivo.
+- `npm run test:run`: Ejecuta todos los tests de Vitest una sola vez.
 
 Pendiente (no existe aún en este repo):
 
@@ -397,6 +404,10 @@ Pendiente (no existe aún en este repo):
 | tailwindcss | 3.4.19 | Framework CSS |
 | postcss | 8.5.15 | Procesamiento CSS |
 | autoprefixer | 10.5.0 | Prefijos CSS |
+| vitest | ^2.1.8 | Testing framework para Vite |
+| @testing-library/react | ^16.2.0 | Testing utilities para React |
+| @testing-library/jest-dom | ^6.6.3 | Matchers adicionales para testing |
+| jsdom | ^25.0.1 | Entorno de navegador simulado para testing |
 
 ---
 
@@ -409,11 +420,15 @@ Pendiente (no existe aún en este repo):
 - Avance al siguiente protocolo dentro de la misma categoría.
 - Limpieza de `NA / N/A` en JSON y en extractor.
 - Placeholders embebidos (data URI) para evitar dependencias externas y bloqueos del navegador.
-- Carga diferida (Lazy Loading) de rutas y secciones para optimizar el rendimiento.
-- Optimización de chunks en Vite con código para reducir el tamaño del bundle.
+- Carga diferida (Lazy Loading) de rutas para optimizar el rendimiento.
+- Optimización de chunks en Vite para reducir el tamaño del bundle.
 - Implementación de CSP y headers de seguridad para mitigar XSS y otros riesgos.
 - Actualización de dependencias para corregir vulnerabilidades conocidas.
 - Eliminación de la dependencia `xlsx` (no se usa más en el proyecto).
+- Implementación de ErrorBoundary para manejar errores inesperados.
+- Setup de testing con Vitest, React Testing Library y jsdom.
+- Placeholders de logos SVG en `public/assets/logos/`.
+- Búsqueda funcional en lista de protocolos.
 
 ### En desarrollo
 
@@ -424,7 +439,6 @@ Pendiente (no existe aún en este repo):
 
 - Extracción del color asociado por protocolo desde el Excel (p. ej. `accentColor`).
 - Sistema de assets real (`public/assets/...`) y reemplazo progresivo de placeholders.
-- Búsqueda funcional avanzada en lista de protocolos.
 - Scripts de calidad (lint/format) y CI básico.
 
 ---
