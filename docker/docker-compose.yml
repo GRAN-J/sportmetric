@@ -1,0 +1,55 @@
+# Docker Compose para el proyecto (placeholder - se completará en el futuro)
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: sportmetric-postgres
+    environment:
+      POSTGRES_USER: sportmetric
+      POSTGRES_PASSWORD: sportmetric123
+      POSTGRES_DB: sportmetric
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - sportmetric-network
+
+  # Backend (placeholder)
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    container_name: sportmetric-backend
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: postgresql://sportmetric:sportmetric123@postgres:5432/sportmetric?schema=public
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+    networks:
+      - sportmetric-network
+
+  # Frontend (placeholder)
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/frontend.Dockerfile
+    container_name: sportmetric-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - sportmetric-network
+
+volumes:
+  postgres-data:
+
+networks:
+  sportmetric-network:
+    driver: bridge

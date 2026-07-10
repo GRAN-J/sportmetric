@@ -10,7 +10,7 @@ export const categories = [
     id: 'calentamiento',
     title: 'Calentamiento',
     description: 'Procedimientos estandarizados para la preparación física previa.',
-    icon: 'Flame',
+    icon: 'Flame', // Volvemos a Flame, que era el original y se veía bien
     color: 'bg-academic-orange'
   },
   {
@@ -24,7 +24,7 @@ export const categories = [
     id: 'flexibilidad-movilidad',
     title: 'Medición de flexibilidad y movilidad articular',
     description: 'Pruebas de rango de movimiento y elasticidad muscular.',
-    icon: 'StretchHorizontal',
+    icon: 'Stretch', // Icono más cercano a flexibilidad, válido en lucide-react
     color: 'bg-secondary'
   },
   {
