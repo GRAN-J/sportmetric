@@ -1,0 +1,5 @@
+node_modules
+# Mantener variables de entorno fuera del control de versiones
+.env
+
+/src/generated/prisma
