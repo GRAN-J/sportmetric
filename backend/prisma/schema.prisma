@@ -1,0 +1,144 @@
+// =============================================================================
+// Schema de Prisma para la base de datos de SportMetric Academic
+// =============================================================================
+// Este archivo define la estructura de las tablas y relaciones de la BD.
+// Se usa para generar el cliente de Prisma (Prisma Client), que es el ORM
+// que usamos para interactuar con la base de datos desde el backend.
+//
+// Más información: https://pris.ly/d/prisma-schema
+// =============================================================================
+
+// Generador del cliente de Prisma:
+// - provider: El lenguaje del cliente (prisma-client-js para JS/TS)
+// - output: Ruta donde se generará el cliente (dentro de src/generated/prisma)
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+// Conexión a la base de datos:
+// - provider: Tipo de BD (postgresql)
+// - La URL de conexión se configura en prisma.config.ts
+datasource db {
+  provider = "postgresql"
+}
+
+// =============================================================================
+// Enumeraciones
+// =============================================================================
+
+// Roles de usuario disponibles en la aplicación
+enum Role {
+  STUDENT     // Estudiante
+  EVALUATOR   // Evaluador/docente
+  ADMIN       // Administrador del sistema
+  RESEARCHER  // Investigador
+}
+
+// =============================================================================
+// Modelos (tablas de la base de datos)
+// =============================================================================
+
+// Modelo de Usuario: Almacena la información de los usuarios del sistema
+model User {
+  id               String   @id @default(uuid())  // ID único, generado automáticamente (UUID)
+  name             String                         // Nombre completo del usuario
+  email            String   @unique               // Correo electrónico único (para login)
+  passwordHash     String                         // Hash de la contraseña (nunca almacenamos texto plano!)
+  role             Role     @default(STUDENT)    // Rol del usuario
+  refreshTokenHash String?                        // Hash del refresh token (para renovar tokens de acceso)
+  createdAt        DateTime @default(now())       // Fecha de creación del usuario (automática)
+  updatedAt        DateTime @updatedAt            // Fecha de última actualización (automática)
+}
+
+// Modelo de Categoría: Agrupa los protocolos en categorías temáticas
+model Category {
+  id          String     @id                   // ID único de la categoría
+  title       String                           // Título de la categoría (ej: "Medición de la composición corporal")
+  description String                           // Descripción corta de la categoría
+  icon        String                           // Nombre del ícono (para la UI)
+  color       String                           // Color asociado (para la UI, ej: "bg-teal-accent")
+  order       Int                              // Orden de aparición en la UI
+  createdAt   DateTime   @default(now())       // Fecha de creación
+  updatedAt   DateTime   @updatedAt            // Fecha de última actualización
+  protocols   Protocol[]                       // Relación: una categoría tiene muchos protocolos
+}
+
+// Modelo de Protocolo: Almacena la información principal de un protocolo de medición
+model Protocol {
+  id               String                 @id       // ID único del protocolo
+  categoryId       String                           // ID de la categoría a la que pertenece
+  order            Int                              // Orden dentro de la categoría
+  title            String                           // Título del protocolo
+  objective        String                           // Objetivo del protocolo
+  description      String                           // Descripción general
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  category         Category               @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  // Relaciones: un protocolo tiene muchos materiales, checklist items, etc.
+  materials        Material[]
+  checklistItems   ChecklistItem[]
+  steps            Step[]
+  interruptionCrit InterruptionCriterion[]
+  dataRegistry     DataRegistry?                    // Un protocolo tiene 0 o 1 registro de datos
+}
+
+// Modelo de Material: Representa un material necesario para un protocolo
+model Material {
+  id         String   @id @default(uuid())
+  protocolId String                           // ID del protocolo al que pertenece
+  name       String                           // Nombre del material
+  imageUrl   String?                          // URL de la imagen del material (opcional)
+  order      Int                              // Orden de aparición
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// Modelo de ChecklistItem: Representa un elemento de la lista de verificación pre-protocolo
+model ChecklistItem {
+  id         String   @id @default(uuid())
+  protocolId String
+  text       String                           // Texto del item de checklist
+  order      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// Modelo de Step: Representa un paso en la ejecución del protocolo
+model Step {
+  id          String   @id @default(uuid())
+  protocolId  String
+  stepNumber  Int                              // Número del paso (ej: 1, 2, 3...)
+  title       String                           // Título del paso
+  description String                           // Descripción del paso
+  videoUrl    String?                          // URL del video explicativo (opcional)
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  protocol    Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// Modelo de InterruptionCriterion: Criterios para detener la ejecución del protocolo
+model InterruptionCriterion {
+  id         String   @id @default(uuid())
+  protocolId String
+  text       String                           // Texto del criterio de interrupción
+  order      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// Modelo de DataRegistry: Define cómo se deben registrar los datos del protocolo
+model DataRegistry {
+  id          String   @id @default(uuid())
+  protocolId  String   @unique               // ID del protocolo (relación 1 a 1)
+  title       String                           // Título del registro de datos
+  description String                           // Instrucciones para registrar los datos
+  unit        String?                          // Unidad de medida (ej: "kg", "cm") - opcional
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  protocol    Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
