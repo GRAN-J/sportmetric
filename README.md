@@ -1,502 +1,378 @@
 # SportMetric Academic
 
-Repositorio de una app web para consulta guiada de protocolos de medición física y antropométrica. La UI se basa en el sistema de diseño definido en `docs/DESIGN.md` y el contenido de protocolos se consume desde JSON en `src/data/protocols/*.json`.
+SportMetric Academic es una plataforma web académica orientada a la consulta guiada de protocolos de medición física y antropométrica. El proyecto evolucionó desde una SPA apoyada en archivos JSON locales hacia una arquitectura full stack desacoplada, con frontend en React, backend en Express y persistencia en PostgreSQL.
 
----
+Este repositorio concentra la base técnica del sistema, la documentación de ingeniería y la preparación necesaria para una siguiente fase de integración real con formularios y persistencia de datos.
 
-## 1) Información general del proyecto
+## Resumen ejecutivo
 
-### Nombre del proyecto
+Hoy el proyecto ya permite:
 
-SportMetric Academic
+- navegar categorías y protocolos desde el frontend;
+- consultar esos datos desde archivos locales o desde la API;
+- poblar PostgreSQL con un seed controlado;
+- exponer endpoints de lectura estables para categorías y protocolos;
+- desplegar frontend y backend por separado sin acoplar el código a un proveedor específico.
 
-### Descripción general
+Todavía no implementa:
 
-Aplicación web mobile-first orientada a navegar un flujo académico de protocolos (objetivo → materiales → descripción → checklist → pasos → criterios → registro).
+- persistencia de formularios;
+- autenticación completa en frontend;
+- panel administrativo;
+- operaciones CRUD completas para gestión de contenido.
 
-### Objetivo del proyecto
+## Estado actual
 
-Estandarizar la consulta de protocolos de medición y reducir ambigüedades en el procedimiento, mostrando el contenido de forma guiada y consistente.
+| Componente | Estado | Descripción |
+| --- | --- | --- |
+| Frontend | Listo | Navegación, UI y consumo en modo `local` o `api`. |
+| Backend | Listo | API Express + TypeScript + Prisma con endpoints de lectura. |
+| Base de datos | Lista | PostgreSQL con migraciones y seed funcional. |
+| Documentación | Completa | Guías de arquitectura, despliegue, base de datos, API, pruebas y diagramas. |
+| Formularios | Pendiente | La estructura se dejó preparada, pero aún no se implementan. |
 
-### Público objetivo
+## Objetivo de esta etapa
 
-- Investigadores / docentes de ciencias del deporte
-- Estudiantes en prácticas y evaluaciones académicas
-- Personal técnico que consulta protocolos estandarizados
+Esta etapa se cerró con cuatro metas principales:
 
-### Estado actual del proyecto
+1. dejar una base técnica estable;
+2. preparar el proyecto para despliegue desacoplado;
+3. mantener portabilidad entre proveedores;
+4. documentar el funcionamiento y la operación de forma clara.
 
-- Funcional (navegación principal y renderizado por JSON).
-- Placeholders usados para recursos multimedia mientras se incorporan assets finales.
-- Optimización de rendimiento: carga diferida de secciones y rutas, chunks optimizados.
-- Seguridad mejorada: CSP, headers de seguridad y dependencias actualizadas.
-
-### Alcance del proyecto
-
-- Navegación del flujo oficial de protocolos.
-- Renderizado data-driven desde JSON (sin “inventar” contenido).
-- Soporte de categorías y avance automático al siguiente protocolo dentro de la misma categoría.
-- No incluye (por ahora): autenticación, roles, sincronización a backend, persistencia real de registros.
-
----
-
-## 2) Stack tecnológico
-
-### Frontend
-
-- Framework: React `19.2.6`
-- Router: React Router DOM `7.15.1`
-- Lenguaje: JavaScript (ESM)
-- Bundler/Dev Server: Vite `8.1.3`
-- Gestor de paquetes: npm
-- Node.js: recomendado `22.x` (LTS) + npm `11.x` o equivalente
-
-### UI / UX
-
-- Framework CSS: TailwindCSS `3.4.19` (PostCSS `8.5.15` + Autoprefixer `10.5.0`)
-- Animación: framer-motion `12.40.0`
-- Íconos: lucide-react `1.16.0`
-- Utilidades de clases: clsx `2.1.1`, tailwind-merge `3.6.0`
-
----
-
-## 3) Arquitectura del proyecto
-
-### Arquitectura utilizada
-
-- Component Driven Development (componentes por pantalla/sección).
-- Data Driven UI: protocolos renderizados desde JSON.
-- Mobile First Design: navegación inferior en móvil y navegación superior en desktop.
-- Carga diferida (Lazy Loading): rutas y secciones se cargan solo cuando son necesarias para reducir el tamaño del bundle inicial.
-
-### Principios utilizados
-
-- Single Source of Truth para contenido: `src/data/protocols/*.json`.
-- Separación de responsabilidades:
-  - “Pages” orquestan flujo/rutas.
-  - “Services” resuelven carga/orden de datos.
-  - “Data” contiene catálogos y protocolos.
-  - “Styles” define utilidades y componentes visuales base.
-
-### Diagrama de arquitectura (Mermaid)
+## Arquitectura general
 
 ```mermaid
 flowchart LR
-  A["Pantallas React"] --> B["React Router"]
-  A --> C["protocolService.js"]
-  C --> D["Archivos JSON de protocolos"]
-  A --> E["Estilos Tailwind"]
+    Usuario[Usuario] --> Frontend[Frontend React + Vite]
+    Frontend -->|Modo local| Json[JSON locales]
+    Frontend -->|Modo api| Backend[Backend Express]
+    Backend --> Prisma[Prisma ORM]
+    Prisma --> PostgreSQL[(PostgreSQL)]
 ```
 
----
+### Principios aplicados
 
-## 4) Estructura de carpetas
+- separación clara entre frontend, backend y base de datos;
+- arquitectura por capas en backend;
+- frontend desacoplado del origen de datos;
+- configuración por variables de entorno;
+- enfoque cloud agnostic para facilitar cambios futuros de infraestructura.
 
-Estructura actual del proyecto (carpetas principales):
+## Estructura del repositorio
 
 ```text
 /
+├── .github/
+│   └── workflows/ci.yml
+├── backend/
+│   ├── prisma/
+│   ├── src/
+│   ├── .env.example
+│   └── package.json
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── .env.example
+│   └── package.json
+├── shared/
+│   └── constants/
 ├── docs/
-│   ├── DESIGN.md
-│   ├── APP_FLOW.md
-│   ├── PROJECT_CONTEXT.md
-│   ├── PROTOCOL_STRUCTURE.md
-│   └── Desing mockups UI UX/
-├── public/
-│   └── assets/
-│       ├── logos/
-│       ├── images/
-│       ├── videos/
-│       └── placeholders/
-├── src/
-│   ├── components/
-│   │   ├── ErrorBoundary.jsx
-│   │   └── navigation/
-│   │       ├── Header.jsx
-│   │       └── BottomNav.jsx
-│   ├── data/
-│   │   ├── categories.js
-│   │   └── protocols/
-│   │       └── *.json
-│   ├── layout/
-│   │   └── MainLayout.jsx
-│   ├── pages/
-│   │   ├── Welcome.jsx
-│   │   ├── Categories.jsx
-│   │   ├── ProtocolList.jsx
-│   │   ├── ProtocolDetail.jsx
-│   │   └── protocol/
-│   │       ├── ProtocolObjective.jsx
-│   │       ├── ProtocolMaterials.jsx
-│   │       ├── ProtocolDescription.jsx
-│   │       ├── ProtocolChecklist.jsx
-│   │       ├── ProtocolSteps.jsx
-│   │       ├── ProtocolInterruption.jsx
-│   │       └── ProtocolDataRegistry.jsx
-│   ├── services/
-│   │   └── protocolService.js
-│   ├── styles/
-│   │   └── index.css
-│   ├── test/
-│   │   └── setup.js
-│   ├── App.jsx
-│   └── main.jsx
-├── extract_xlsx.js
-├── OVA_TRACKER.xlsx (local, no se sube al repo)
-├── package.json
-├── vite.config.js
-└── vitest.config.js
+├── docs-engineering/
+│   ├── adr/
+│   ├── api/
+│   ├── architecture/
+│   ├── database/
+│   ├── deployment/
+│   ├── testing/
+│   └── diagrams/
+├── docker/
+├── README.md
+├── README-backend.md
+├── README-frontend.md
+└── .gitignore
 ```
 
----
+## Stack tecnológico
 
-## 5) Flujo funcional (vistas)
+### Frontend
 
-El flujo oficial:
+- React 19
+- Vite
+- React Router
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- Vitest
 
-Bienvenida → Categorías → Lista de Protocolos → Objetivo → Materiales → Descripción → Lista de Verificación → Paso a Paso → Criterios de Interrupción → Registro de Datos
+### Backend
 
-Propósito de cada vista:
+- Node.js 22.x
+- Express 5
+- TypeScript
+- Prisma 7
+- PostgreSQL 16
+- Pino
+- Zod
+- Swagger / OpenAPI
+- Vitest + Supertest
 
-- Bienvenida (`/`): entrada al producto; acceso a Categorías o lista global.
-- Categorías (`/categories`): permite elegir el grupo de protocolos.
-- Lista de Protocolos (`/category/:categoryId`): muestra protocolos filtrados (o `all`).
-- Detalle del Protocolo (`/protocol/:protocolId/*`): contenedor que construye secciones y navegación.
-- Objetivo (`objective`): objetivo del protocolo.
-- Materiales (`materials`): lista de recursos necesarios (opcional).
-- Descripción (`description`): explicación general del procedimiento.
-- Lista de Verificación (`checklist`): validaciones previas a ejecutar (opcional).
-- Paso a Paso (`steps`): ejecución secuencial (opcional).
-- Criterios de Interrupción (`interruption`): condiciones para detener el protocolo (opcional).
-- Registro de Datos (`data`): instrumento de registro (opcional).
+## Cómo funciona el sistema hoy
 
-Diagrama del flujo (Mermaid):
+El frontend puede operar de dos maneras:
 
-```mermaid
-flowchart TD
-  A["Bienvenida"] --> B["Categorias"]
-  B --> C["Lista de protocolos"]
-  C --> D["Objetivo"]
-  D --> E["Materiales opcional"]
-  D --> F["Descripcion"]
-  E --> F
-  F --> G["Checklist opcional"]
-  F --> H["Paso a paso opcional"]
-  G --> H
-  H --> I["Criterios de interrupcion opcional"]
-  H --> J["Registro de datos opcional"]
-  I --> J
-  J --> K{"Hay otro protocolo en la misma categoria?"}
-  K -->|Si| L["Siguiente protocolo"]
-  K -->|No| M["Volver a categorias"]
-  L --> D
-```
+### Modo `local`
 
----
+Lee los archivos del propio proyecto:
 
-## 6) Modelo de datos
+- `frontend/src/data/categories.js`
+- `frontend/src/data/protocols/*.json`
 
-### Categorías
+Este modo es útil para:
 
-Viven en `src/data/categories.js` como un arreglo de objetos con `id`, `title`, `description`, `icon` y `color`.
+- revisión visual;
+- validación rápida de contenido;
+- trabajo sin depender del backend.
 
-### Protocolos
+### Modo `api`
 
-Viven en `src/data/protocols/*.json`. La app carga automáticamente solo los JSON “oficiales” que incluyen `order` numérico.
+Consulta el backend mediante HTTP. En este caso, el backend obtiene la información desde PostgreSQL a través de Prisma.
 
-Relación conceptual:
+Este modo es útil para:
 
-```text
-Categoría
-└── Protocolos
-    ├── Objetivo
-    ├── Materiales
-    ├── Descripción
-    ├── Checklist
-    ├── Pasos (con videos)
-    ├── Criterios de interrupción
-    └── Registro de datos
-```
+- validar contratos reales entre frontend y backend;
+- preparar despliegue productivo;
+- avanzar hacia persistencia futura.
 
----
+## Arranque rápido local
 
-## 7) Formato JSON utilizado (estructura oficial)
+### 1. Requisitos
 
-Estructura base:
+- Node.js 22.x
+- npm 10+ u 11+
+- PostgreSQL 16
 
-```json
-{
-  "id": "",
-  "order": 0,
-  "category": "",
-  "title": "",
-  "objective": "",
-  "materials": [],
-  "description": "",
-  "checklist": [],
-  "steps": [],
-  "interruptionCriteria": [],
-  "dataRegistry": {}
-}
-```
+### 2. Levantar el backend
 
-Más detalle (campos y diagramas): `docs/PROTOCOL_STRUCTURE.md`.
-
----
-
-## 8) Sistema de assets
-
-### Convención de rutas
-
-Los JSON referencian recursos en rutas absolutas tipo `/assets/...`. En Vite, esto se sirve desde la carpeta `public/` (todo lo que esté dentro de `public/` se expone tal cual en la raíz del sitio).
-
-Estructura objetivo (a implementar con assets reales):
-
-```text
-public/
-└── assets/
-    ├── logos/
-    ├── images/
-    ├── videos/
-    ├── placeholders/
-    └── mascot/
-```
-
-Notas:
-
-- Actualmente los componentes usan placeholders embebidos (data URI) como respaldo si un archivo no existe todavía.
-- Para reemplazar placeholders por assets reales:
-  - Crear la carpeta `public/assets/` con la estructura anterior.
-  - Colocar logos en `public/assets/logos/`.
-  - Colocar imágenes en `public/assets/images/` y videos en `public/assets/videos/`.
-  - Mantener los placeholders locales en `public/assets/placeholders/` para cubrir rutas ya usadas por los JSON.
-  - Mascota (si se define como archivo): `public/assets/mascot/`.
-- Convención sugerida para logos:
-  - `public/assets/logos/logo-principal.svg`
-  - `public/assets/logos/logo-secundario.svg`
-- Importante: si un JSON tiene, por ejemplo, `"image": "/assets/placeholders/biombo.webp"`, entonces el archivo real debe existir en `public/assets/placeholders/biombo.webp` para que cargue sin cambiar código.
-
----
-
-## 9) Sistema de diseño
-
-Toda la UI se basa en:
-
-- `docs/DESIGN.md`
-- Mockups: `docs/Desing mockups UI UX/`
-
-Incluye:
-
-- Colores, tipografías, spacing
-- Bordes, sombras, radios
-- Componentes base (botones, cards, navegación)
-- Responsive design (mobile-first)
-
----
-
-## 10) Componentes principales
-
-Componentes reutilizables existentes (hoy):
-
-- `ErrorBoundary` (`src/components/ErrorBoundary.jsx`): manejo de errores inesperados en la app.
-- `Header` (`src/components/navigation/Header.jsx`): navegación superior (desktop) + logo principal.
-- `BottomNav` (`src/components/navigation/BottomNav.jsx`): navegación inferior (mobile) que se oculta automáticamente en protocolos y al hacer scroll.
-- `MainLayout` (`src/layout/MainLayout.jsx`): layout común (Header + Outlet + BottomNav).
-
-Componentes “conceptuales” que ya existen internamente:
-
-- CategoryCard (implementado como componente interno dentro de `Categories.jsx`)
-- ProtocolCard (implementado como componente interno dentro de `ProtocolList.jsx`)
-- MaterialCard (hoy se renderiza dentro de `ProtocolMaterials.jsx`)
-- ChecklistCard (hoy se renderiza dentro de `ProtocolChecklist.jsx`)
-- StepViewer + VideoContainer (hoy se renderiza dentro de `ProtocolSteps.jsx`)
-- DataRecordForm (hoy se renderiza dentro de `ProtocolDataRegistry.jsx`)
-- ProgressIndicator (hoy está dentro de `ProtocolDetail.jsx`)
-
----
-
-## 11) Responsive Design
-
-- Mobile: prioridad principal; BottomNav visible (`md:hidden`).
-- Tablet: adaptación intermedia (grids y espacios).
-- Desktop: navegación superior activa; layout centrado con max-width.
-
----
-
-## 12) Gestión de contenido
-
-- Fuente original (no versionada): `OVA_TRACKER.xlsx` (uso local).
-- Transformación: `extract_xlsx.js` genera/sincroniza JSON a `src/data/protocols/`.
-- Regla: el contenido de protocolos debe estar en JSON (data-driven). La UI puede tener copy base (títulos/labels), pero no debe “inventar” contenido académico del protocolo.
-
-Extracción:
+Entrar a `backend/`, configurar el entorno y ejecutar:
 
 ```bash
-node extract_xlsx.js
-node extract_xlsx.js --sync
+npm install
+npm run db:migrate:dev
+npm run db:seed
+npm run dev
 ```
 
----
+Servicios locales del backend:
 
-## 13) Convenciones de desarrollo
+- API: `http://localhost:3001`
+- Health check: `http://localhost:3001/api/health`
+- Swagger: `http://localhost:3001/api/docs`
 
-- Componentes React: PascalCase (`ProtocolDetail.jsx`).
-- Archivos de datos: kebab-case para protocolos (`medicion-del-peso.json`).
-- Rutas:
-  - `/category/:categoryId`
-  - `/protocol/:protocolId/<seccion>`
-- Estado:
-  - Estado local por componente (`useState/useEffect`) para UI.
-  - Datos de protocolos por servicio (`protocolService.js`).
-- Buenas prácticas:
-  - Evitar HTML crudo (no usar `dangerouslySetInnerHTML`).
-  - No hardcodear contenido de protocolos dentro de componentes.
-  - Mantener JSON válidos y consistentes.
+### 3. Levantar el frontend
 
----
-
-## 14) Instalación
+Entrar a `frontend/` y ejecutar:
 
 ```bash
 npm install
 npm run dev
 ```
 
----
+Aplicación local:
 
-## 15) Scripts disponibles
+- Frontend: `http://localhost:5173`
 
-Actualmente:
+### 4. Configuración mínima de variables
 
-- `npm run dev`: Inicia el servidor de desarrollo de Vite.
-- `npm run build`: Compila la app para producción en la carpeta `dist`.
-- `npm run preview`: Previsualiza el build de producción en un servidor local.
-- `npm run test`: Inicia el runner de Vitest en modo interactivo.
-- `npm run test:run`: Ejecuta todos los tests de Vitest una sola vez.
+### Backend
 
-Pendiente (no existe aún en este repo):
+Archivo base: `backend/.env.example`
 
-- `npm run lint`
-- `npm run format`
+Variables clave:
 
----
+- `DATABASE_URL`
+- `BACKEND_PUBLIC_URL`
+- `FRONTEND_URL`
+- `ALLOWED_ORIGINS`
+- `JWT_SECRET`
+- `JWT_REFRESH_SECRET`
 
-## 16) Dependencias principales
+### Frontend
 
-### Runtime (dependencies)
+Archivo base: `frontend/.env.example`
 
-| Paquete | Versión | Propósito |
-|---|---:|---|
-| react | 19.2.6 | UI framework |
-| react-dom | 19.2.6 | Renderizado DOM |
-| react-router-dom | 7.15.1 | Ruteo/navegación |
-| tailwind-merge | 3.6.0 | Merge de clases Tailwind |
-| clsx | 2.1.1 | Condicionales de clases |
-| framer-motion | 12.40.0 | Animaciones |
-| lucide-react | 1.16.0 | Íconos |
+Variables clave:
 
-### Tooling (devDependencies)
+- `VITE_DATA_SOURCE`
+- `VITE_API_BASE_URL`
 
-| Paquete | Versión | Propósito |
-|---|---:|---|
-| vite | 8.1.3 | Dev server + build |
-| @vitejs/plugin-react-swc | 4.3.1 | Plugin React (SWC) |
-| tailwindcss | 3.4.19 | Framework CSS |
-| postcss | 8.5.15 | Procesamiento CSS |
-| autoprefixer | 10.5.0 | Prefijos CSS |
-| vitest | ^2.1.8 | Testing framework para Vite |
-| @testing-library/react | ^16.2.0 | Testing utilities para React |
-| @testing-library/jest-dom | ^6.6.3 | Matchers adicionales para testing |
-| jsdom | ^25.0.1 | Entorno de navegador simulado para testing |
+## Modos de operación del frontend
 
----
+### Opción 1: seguir trabajando con datos locales
 
-## 17) Roadmap del proyecto
+```env
+VITE_DATA_SOURCE=local
+```
 
-### Completado
+### Opción 2: consumir la API local
 
-- Carga de protocolos desde JSON con orden (`order`) y filtro de legacy.
-- Flujo de secciones con navegación global (anterior/siguiente).
-- Avance al siguiente protocolo dentro de la misma categoría.
-- Limpieza de `NA / N/A` en JSON y en extractor.
-- Placeholders embebidos (data URI) para evitar dependencias externas y bloqueos del navegador.
-- Carga diferida (Lazy Loading) de rutas para optimizar el rendimiento.
-- Optimización de chunks en Vite para reducir el tamaño del bundle.
-- Implementación de CSP y headers de seguridad para mitigar XSS y otros riesgos.
-- Actualización de dependencias para corregir vulnerabilidades conocidas.
-- Eliminación de la dependencia `xlsx` (no se usa más en el proyecto).
-- Implementación de ErrorBoundary para manejar errores inesperados.
-- Setup de testing con Vitest, React Testing Library y jsdom.
-- Placeholders de logos SVG en `public/assets/logos/`.
-- Búsqueda funcional en lista de protocolos.
+```env
+VITE_DATA_SOURCE=api
+VITE_API_BASE_URL=http://localhost:3001
+```
 
-### En desarrollo
+## Endpoints disponibles
 
-- Normalización final de unidades de registro y consistencia de contenido.
-- Refinamiento visual según mockups.
+### Salud
 
-### Pendiente
+- `GET /api/health`
 
-- Extracción del color asociado por protocolo desde el Excel (p. ej. `accentColor`).
-- Sistema de assets real (`public/assets/...`) y reemplazo progresivo de placeholders.
-- Scripts de calidad (lint/format) y CI básico.
+### Categorías
 
----
+- `GET /api/categories`
+- `GET /api/categories/:id`
+- `GET /api/categories/:id/protocols`
 
-## 18) Créditos
+### Protocolos
 
-- Desarrollo: por definir
-- Diseño UX/UI: basado en `docs/Desing mockups UI UX/`
-- Producción multimedia: por definir
-- Contenido académico: proviene de `OVA_TRACKER.xlsx` (fuente original local; el runtime usa JSON)
+- `GET /api/protocols`
+- `GET /api/protocols/:id`
 
----
+## Despliegue recomendado
 
-## 19) Licencia
+La estrategia más simple y coherente para este proyecto es:
 
-El repositorio no incluye un archivo `LICENSE`. Antes de distribuir o publicar, definir:
+- frontend en Vercel;
+- backend en Render;
+- PostgreSQL en Render.
 
-- Tipo de licencia (p. ej. institucional/académica).
-- Restricciones de uso (uso interno, no redistribución, atribución, etc.).
+```mermaid
+flowchart LR
+    Usuario[Usuario] --> Frontend[Frontend en Vercel]
+    Frontend --> Backend[Backend en Render]
+    Backend --> DB[(PostgreSQL en Render)]
+```
 
----
+Puntos importantes:
 
-## 20) Documentación relacionada
+- el frontend no debe conectarse directamente a la base de datos;
+- Render crea la instancia de PostgreSQL, pero las tablas las crean las migraciones de Prisma;
+- el seed se ejecuta de forma controlada cuando se necesite poblar contenido base.
 
-- Sistema de diseño: `docs/DESIGN.md`
-- Flujo de la app: `docs/APP_FLOW.md`
-- Contexto técnico: `docs/PROJECT_CONTEXT.md`
-- Estructura de protocolos: `docs/PROTOCOL_STRUCTURE.md`
-- Fuente de datos (local/no versionada): `OVA_TRACKER.xlsx`
+## Portabilidad futura
 
-Pendiente (referencia solicitada):
+El proyecto quedó preparado para mover infraestructura sin reescribir la lógica principal:
 
-- `docs/CONTENT_STRUCTURE.md` (no existe aún en este repositorio)
+- frontend a Vercel, Netlify o Render Static Site;
+- backend a Render, Railway, Fly.io, AWS, Azure o GCP;
+- PostgreSQL a Render, Neon, Supabase, Railway o RDS.
 
----
+Esto es posible porque:
 
-## Troubleshooting
+- la configuración depende de variables de entorno;
+- Prisma centraliza el acceso a datos mediante `DATABASE_URL`;
+- CORS se controla por configuración;
+- el frontend solo necesita `VITE_API_BASE_URL` para cambiar de backend.
 
-### VS Code marca `@tailwind` / `@apply` como “Unknown at rule”
+## Auditoría y pruebas
 
-Es un warning del validador CSS del editor (no del build). Tailwind lo procesa en compilación.
+Antes de preparar commits o despliegues, conviene ejecutar esta validación mínima:
 
-Soluciones recomendadas:
+### Frontend
 
-- Instalar/activar “Tailwind CSS IntelliSense”.
-- Cambiar el Language Mode del archivo a “PostCSS”.
-- (Opcional) configurar `css.lint.unknownAtRules` como `ignore` a nivel de usuario.
+```bash
+cd frontend
+npm install
+npm run test:run
+npm run build
+```
 
----
+### Backend
 
-## Estrategia de ramas
+```bash
+cd backend
+npm install
+npm run test
+npm run build
+```
 
-El proyecto queda organizado así:
+Estas pruebas validan:
 
-- `main`: rama principal / producción
-- `dev`: rama de desarrollo
+- la capa de servicios del frontend;
+- el contrato base del backend;
+- rutas clave de consulta;
+- respuesta estándar y manejo de errores principales.
 
-La recomendación es conectar la plataforma de despliegue (por ejemplo Vercel) directamente a estas ramas:
+## Troubleshooting rápido
 
-- `main` para producción
-- `dev` para pruebas o entorno de desarrollo
+### El backend no levanta
+
+Revisar:
+
+- `backend/.env`
+- `DATABASE_URL`
+- `JWT_SECRET`
+- `JWT_REFRESH_SECRET`
+- `ALLOWED_ORIGINS`
+
+### Prisma no conecta a PostgreSQL
+
+Verificar:
+
+- que PostgreSQL esté activo;
+- que el puerto sea correcto;
+- que el usuario y la contraseña sean correctos;
+- que exista la base `sportmetric`;
+- que la `DATABASE_URL` esté bien formada.
+
+### El frontend no carga datos desde la API
+
+Verificar:
+
+- `VITE_DATA_SOURCE=api`
+- `VITE_API_BASE_URL`
+- que el backend esté corriendo;
+- que `ALLOWED_ORIGINS` incluya el origen del frontend.
+
+### La base existe, pero no hay tablas
+
+Ejecutar:
+
+```bash
+npm run db:migrate:dev
+```
+
+o en producción:
+
+```bash
+npm run db:migrate:deploy
+```
+
+### Hay tablas, pero no hay categorías ni protocolos
+
+Ejecutar:
+
+```bash
+npm run db:seed
+```
+
+## Documentación técnica relacionada
+
+- `README-backend.md`
+- `README-frontend.md`
+- `docs-engineering/architecture/arquitectura-general.md`
+- `docs-engineering/api/estado-api.md`
+- `docs-engineering/database/operacion-postgresql-prisma.md`
+- `docs-engineering/deployment/render-vercel.md`
+- `docs-engineering/testing/auditoria-y-pruebas.md`
+- `docs-engineering/diagrams/indice-diagramas.md`
+- `docs-engineering/adr/`
+
+## Siguiente etapa prevista
+
+La base quedó lista para pasar a una siguiente fase de implementación, pero se decidió posponerla hasta cerrar requerimientos funcionales:
+
+- persistencia de formularios;
+- definición exacta de campos;
+- validaciones de negocio;
+- flujo operativo real que necesite el equipo académico.

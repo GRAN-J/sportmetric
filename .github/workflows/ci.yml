@@ -1,0 +1,76 @@
+# Workflow de CI para SportMetric Academic
+name: CI
+
+# Se ejecuta en pushes a main y dev, y en pull requests a esas ramas
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  # Job para el frontend
+  frontend:
+    name: Frontend - Build y Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: ./frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar tests del frontend
+        run: npm run test:run
+
+      - name: Construir el frontend
+        run: npm run build
+
+  # Job para el backend
+  backend:
+    name: Backend - Build y Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: ./backend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Copiar .env.example a .env
+        run: cp .env.example .env
+
+      - name: Generar cliente de Prisma
+        run: npx prisma generate
+
+      - name: Ejecutar tests del backend
+        run: npm run test
+
+      - name: Construir el backend
+        run: npm run build
