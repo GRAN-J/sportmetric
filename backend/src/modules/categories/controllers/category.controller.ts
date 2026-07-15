@@ -14,7 +14,7 @@ import * as categoryService from '../services/category.service';
  * GET /api/categories
  * Obtiene todas las categorías
  */
-export const getCategories = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+export const getCategories = asyncHandler(async (_req: Request, res: Response, _next: NextFunction) => {
   const categories = await categoryService.getCategories();
 
   res.json(new ApiResponse(categories, 'Categorías obtenidas correctamente'));
@@ -24,7 +24,7 @@ export const getCategories = asyncHandler(async (req: Request, res: Response, ne
  * GET /api/categories/:id
  * Obtiene una categoría por ID
  */
-export const getCategory = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+export const getCategory = asyncHandler(async (req: Request, res: Response, _next: NextFunction) => {
   const categoryId = String(req.params.id);
   const category = await categoryService.getCategory(categoryId);
 

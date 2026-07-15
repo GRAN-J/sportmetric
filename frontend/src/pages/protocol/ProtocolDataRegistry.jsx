@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Database, Save, User, Calculator, ClipboardEdit, CheckCircle2 } from 'lucide-react';
 import { clsx } from 'clsx';
@@ -17,20 +17,19 @@ const ProtocolDataRegistry = ({ protocol }) => {
     observations: ''
   });
   
-  // Promedio calculado (derivado de medida 1 y 2).
-  const [average, setAverage] = useState(0);
   // Estado visual de guardado (simulación).
   const [isSaved, setIsSaved] = useState(false);
 
-  useEffect(() => {
-    // Recalcula el promedio cada vez que cambia una medida.
+  const average = useMemo(() => {
+    // Recalcula el promedio a partir de las medidas sin mantener estado duplicado.
     const m1 = parseFloat(formData.measure1);
     const m2 = parseFloat(formData.measure2);
+
     if (!isNaN(m1) && !isNaN(m2)) {
-      setAverage(((m1 + m2) / 2).toFixed(2));
-    } else {
-      setAverage(0);
+      return ((m1 + m2) / 2).toFixed(2);
     }
+
+    return 0;
   }, [formData.measure1, formData.measure2]);
 
   const handleSave = (e) => {

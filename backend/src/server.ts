@@ -53,7 +53,7 @@ const startServer = async () => {
       try {
         await prisma.$disconnect();
         logger.info('Conexión a la base de datos cerrada.');
-      } catch (e) {
+      } catch (_error) {
         // No hacemos nada si no estábamos conectados
       }
       
@@ -68,7 +68,7 @@ const startServer = async () => {
     logger.error({ error }, 'Error al iniciar el servidor.');
     try {
       await prisma.$disconnect();
-    } catch (e) {
+    } catch (_error) {
       // No hacemos nada
     }
     process.exit(1);

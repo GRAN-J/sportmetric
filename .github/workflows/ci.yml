@@ -15,7 +15,7 @@ on:
 jobs:
   # Job para el frontend
   frontend:
-    name: Frontend - Build y Tests
+    name: Frontend - Lint, Coverage y Build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,15 +35,18 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Ejecutar tests del frontend
-        run: npm run test:run
+      - name: Ejecutar lint del frontend
+        run: npm run lint
+
+      - name: Ejecutar tests con cobertura del frontend
+        run: npm run test:coverage
 
       - name: Construir el frontend
         run: npm run build
 
   # Job para el backend
   backend:
-    name: Backend - Build y Tests
+    name: Backend - Lint, Coverage y Build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -69,8 +72,11 @@ jobs:
       - name: Generar cliente de Prisma
         run: npx prisma generate
 
-      - name: Ejecutar tests del backend
-        run: npm run test
+      - name: Ejecutar lint del backend
+        run: npm run lint
+
+      - name: Ejecutar tests con cobertura del backend
+        run: npm run test:coverage
 
       - name: Construir el backend
         run: npm run build

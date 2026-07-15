@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ListOrdered, ArrowRight, ArrowLeft, Play, Pause, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ListOrdered, Play, Pause, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { clsx } from 'clsx';
 
 // Sección "Paso a paso" de un protocolo.

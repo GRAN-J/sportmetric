@@ -1,11 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
+import {
+  Activity,
+  ArrowRight,
+  Dumbbell,
+  Flame,
+  HeartPulse,
+  StretchHorizontal,
+} from 'lucide-react';
 import { getCategories } from '../services/categoryService';
 
+const CATEGORY_ICONS = {
+  Activity,
+  Flame,
+  Dumbbell,
+  Stretch: StretchHorizontal,
+  HeartPulse,
+};
+
 const CategoryCard = ({ category, index, onClick }) => {
-  const Icon = Icons[category.icon] || Icons.Activity;
+  const Icon = CATEGORY_ICONS[category.icon] || Activity;
   return (
     <motion.div
       key={category.id}
@@ -32,7 +47,7 @@ const CategoryCard = ({ category, index, onClick }) => {
 
       <div className="mt-auto flex items-center text-xs font-bold text-primary uppercase tracking-widest gap-2 group-hover:gap-3 transition-all">
         Explorar Protocolos
-        <Icons.ArrowRight size={14} />
+        <ArrowRight size={14} />
       </div>
     </motion.div>
   );

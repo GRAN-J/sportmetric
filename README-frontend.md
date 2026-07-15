@@ -4,11 +4,11 @@ Frontend SPA de SportMetric Academic construido con React, Vite y Tailwind CSS.
 
 ## Responsabilidades del frontend
 
-- presentar la navegación académica de protocolos;
-- listar categorías y protocolos;
+- presentar la navegacion academica de protocolos;
+- listar categorias y protocolos;
 - renderizar el detalle completo del protocolo;
 - poder trabajar con datos locales o con API;
-- servir como base para futuras pantallas con formularios y autenticación.
+- servir como base para futuras pantallas con formularios y autenticacion.
 
 ## Stack
 
@@ -18,8 +18,10 @@ Frontend SPA de SportMetric Academic construido con React, Vite y Tailwind CSS.
 - Tailwind CSS
 - Framer Motion
 - Lucide React
+- Vitest
+- ESLint
 
-## Instalación y arranque
+## Instalacion y arranque
 
 ```bash
 npm install
@@ -48,16 +50,16 @@ Usa el contenido embebido del proyecto:
 - `src/data/categories.js`
 - `src/data/protocols/*.json`
 
-Configuración:
+Configuracion:
 
 ```env
 VITE_DATA_SOURCE=local
 ```
 
-Este modo es útil para:
+Este modo es util para:
 
-- diseño y revisión visual;
-- validación de contenido;
+- diseno y revision visual;
+- validacion de contenido;
 - trabajo sin depender del backend.
 
 ### 2. Modo API
@@ -69,9 +71,9 @@ VITE_DATA_SOURCE=api
 VITE_API_BASE_URL=http://localhost:3001
 ```
 
-Este modo es útil para:
+Este modo es util para:
 
-- preparar integración real con PostgreSQL;
+- preparar integracion real con PostgreSQL;
 - despliegue con Vercel + Render;
 - validar contratos entre frontend y backend.
 
@@ -80,67 +82,95 @@ Este modo es útil para:
 - `npm run dev`
 - `npm run build`
 - `npm run preview`
+- `npm run lint`
 - `npm run test`
 - `npm run test:run`
+- `npm run test:coverage`
 
-## Auditoría técnica del frontend
+## Estado real validado
+
+Se verifico recientemente que:
+
+- `npm run lint` pasa;
+- `npm run test:coverage` pasa;
+- `npm run build` pasa;
+- la navegacion principal carga correctamente;
+- categorias, lista de protocolos y detalle se renderizan bien;
+- no hay errores reales de consola en las vistas probadas.
+
+Cobertura verificada:
+
+- statements: `91.11%`
+- branches: `75.23%`
+- functions: `83.2%`
+- lines: `94.02%`
+
+## Auditoria tecnica del frontend
 
 Ejecutar:
 
 ```bash
-npm run test:run
+npm run lint
+npm run test:coverage
 npm run build
 ```
 
-La suite actual valida la capa de servicios en modo local para detectar cambios no deseados en:
+La suite actual valida:
 
-- categorías;
-- detalle de protocolos;
-- navegación entre protocolos;
-- estructura mínima del contenido consumido por la UI.
+- `apiClient`, `categoryService` y `protocolService`;
+- bienvenida, layout y navegacion inferior;
+- paginas de categorias, protocolos y detalle;
+- secciones del protocolo;
+- `ErrorBoundary`.
 
 ## Estructura relevante
 
 ```text
 frontend/
-├── public/
-│   └── assets/
-├── src/
-│   ├── components/
-│   ├── data/
-│   ├── layout/
-│   ├── pages/
-│   │   └── protocol/
-│   ├── services/
-│   │   ├── apiClient.js
-│   │   ├── categoryService.js
-│   │   └── protocolService.js
-│   ├── styles/
-│   ├── App.jsx
-│   └── main.jsx
-└── .env.example
+|-- public/
+|   `-- assets/
+|-- src/
+|   |-- components/
+|   |-- data/
+|   |-- layout/
+|   |-- pages/
+|   |   `-- protocol/
+|   |-- services/
+|   |   |-- apiClient.js
+|   |   |-- categoryService.js
+|   |   `-- protocolService.js
+|   |-- styles/
+|   |-- test/
+|   |   |-- components/
+|   |   |-- layout/
+|   |   |-- pages/
+|   |   `-- services/
+|   |-- App.jsx
+|   `-- main.jsx
+`-- .env.example
 ```
 
-## Páginas principales
+## Paginas principales
 
 - Bienvenida
-- Categorías
+- Categorias
 - Lista de protocolos
 - Detalle de protocolo:
   - objetivo;
   - materiales;
-  - descripción;
+  - descripcion;
   - checklist;
   - pasos;
-  - criterios de interrupción;
+  - criterios de interrupcion;
   - registro de datos.
 
-## Cómo funciona la capa de datos
+## Como funciona la capa de datos
 
 El frontend no consulta datos directamente desde componentes complejos. En su lugar usa servicios:
 
 - `categoryService.js`
 - `protocolService.js`
+- `apiClient.js`
 
 Eso permite:
 
@@ -150,12 +180,12 @@ Eso permite:
 
 ## Despliegue en Vercel
 
-Configuración recomendada:
+Configuracion recomendada:
 
-- Root Directory: `frontend`
+- Root Directory: `frontend`, o raiz del repo usando `vercel.json`
 - Framework: Vite
 
-Variables típicas:
+Variables tipicas:
 
 ```env
 VITE_DATA_SOURCE=api
@@ -170,13 +200,13 @@ Revisar:
 
 - `VITE_DATA_SOURCE`
 - `VITE_API_BASE_URL`
-- que el backend esté corriendo si estás en modo `api`
+- que el backend este corriendo si estas en modo `api`
 
-### En local todo se ve bien, pero en producción no carga la API
+### En local todo se ve bien, pero en produccion no carga la API
 
 Revisar:
 
-- que `VITE_API_BASE_URL` apunte al backend público;
+- que `VITE_API_BASE_URL` apunte al backend publico;
 - que el backend permita el origen de Vercel mediante `ALLOWED_ORIGINS`.
 
 ### Aparece error de CORS
@@ -186,15 +216,19 @@ No se arregla en el frontend. Debes corregir el backend:
 - `FRONTEND_URL`
 - `ALLOWED_ORIGINS`
 
-### Cambié contenido en PostgreSQL y no se ve en la app
+### Cambie contenido en PostgreSQL y no se ve en la app
 
 Verificar:
 
-- que el frontend esté en modo `api`;
+- que el frontend este en modo `api`;
 - que el backend consulte la base correcta;
-- que la URL pública del backend sea la misma que usa el frontend.
+- que la URL publica del backend sea la misma que usa el frontend.
 
-## Documentación relacionada
+### El build muestra una recomendacion sobre React SWC
+
+En desarrollo Vite puede sugerir migrar a `@vitejs/plugin-react` si no usas plugins SWC. Hoy esa recomendacion no rompe el proyecto ni bloquea el build.
+
+## Documentacion relacionada
 
 - `README.md`
 - `README-backend.md`

@@ -2,11 +2,27 @@
 
 ## Objetivo
 
-Este documento resume qué expone hoy la API de SportMetric Academic, qué contratos ya están estabilizados y qué parte queda pendiente para fases futuras.
+Este documento resume que expone hoy la API de SportMetric Academic, que contratos ya estan estabilizados y que parte queda pendiente para fases futuras.
 
 ## Base URL local
 
 - `http://localhost:3001`
+
+## Estado real verificado
+
+La API fue validada recientemente con:
+
+- `lint`;
+- pruebas automatizadas con cobertura;
+- build compilado;
+- ejecucion real de `npm start`;
+- consultas HTTP manuales a endpoints principales.
+
+Endpoints comprobados en runtime:
+
+- `GET /api/health`
+- `GET /api/categories`
+- `GET /api/protocols/:id`
 
 ## Vista general de consumo
 
@@ -20,7 +36,7 @@ flowchart LR
     Prisma --> DB[(PostgreSQL)]
 ```
 
-## Convención de respuesta exitosa
+## Convencion de respuesta exitosa
 
 Las respuestas exitosas siguen esta estructura:
 
@@ -32,7 +48,7 @@ Las respuestas exitosas siguen esta estructura:
 }
 ```
 
-## Convención de error
+## Convencion de error
 
 Las respuestas de error siguen esta estructura:
 
@@ -52,15 +68,15 @@ Las respuestas de error siguen esta estructura:
 
 - `GET /api/health`
 
-Sirve para verificar que la API está levantada y respondiendo.
+Sirve para verificar que la API esta levantada y respondiendo.
 
-### Categorías
+### Categorias
 
 - `GET /api/categories`
 - `GET /api/categories/:id`
 - `GET /api/categories/:id/protocols`
 
-Permiten listar categorías, consultar una categoría puntual y listar los protocolos pertenecientes a una categoría.
+Permiten listar categorias, consultar una categoria puntual y listar los protocolos pertenecientes a una categoria.
 
 ### Protocolos
 
@@ -87,34 +103,35 @@ flowchart TD
 
 ## Fuente de datos actual
 
-Hoy la API lee desde PostgreSQL a través de Prisma. La base se alimenta mediante:
+Hoy la API lee desde PostgreSQL a traves de Prisma. La base se alimenta mediante:
 
-- `frontend/src/data/categories.json`
+- `frontend/src/data/categories.js`
 - `frontend/src/data/protocols/*.json`
 - `backend/prisma/seed.ts`
 
-Esto garantiza una transición controlada entre el contenido histórico en JSON y la base relacional.
+Esto garantiza una transicion controlada entre el contenido historico local y la base relacional.
 
 ## Estado de madurez
 
 ### Ya estable
 
 - health check;
-- consulta de categorías;
+- consulta de categorias;
 - consulta de protocolos;
 - detalle completo de protocolos;
 - seed inicial para poblar la base;
-- CORS configurable por variables de entorno.
+- CORS configurable por variables de entorno;
+- runtime compilado funcional mediante copia del cliente Prisma a `dist/generated/prisma`.
 
 ### Preparado para la siguiente fase
 
-- autenticación;
+- autenticacion;
 - persistencia de formularios;
 - endpoints de escritura;
 - panel administrativo;
-- versionado más formal del contrato.
+- versionado mas formal del contrato.
 
-## Códigos de error relevantes
+## Codigos de error relevantes
 
 - `CATEGORY_NOT_FOUND`
 - `PROTOCOL_NOT_FOUND`
@@ -124,13 +141,14 @@ Esto garantiza una transición controlada entre el contenido histórico en JSON 
 - `DATABASE_ERROR`
 - `INTERNAL_ERROR`
 
-## Observaciones de diseño
+## Observaciones de diseno
 
 - El frontend no accede a PostgreSQL directamente.
-- La API es la única responsable de exponer datos al cliente.
-- El contrato de lectura ya quedó suficientemente desacoplado para cambiar de proveedor de hosting sin reescribir la lógica de dominio.
+- La API es la unica responsable de exponer datos al cliente.
+- El contrato de lectura ya quedo suficientemente desacoplado para cambiar de proveedor de hosting sin reescribir la logica de dominio.
+- El build del backend ya no depende de placeholders de Prisma al ejecutar `npm start`.
 
-## Flujo de respuesta estándar
+## Flujo de respuesta estandar
 
 ```mermaid
 sequenceDiagram
@@ -140,11 +158,11 @@ sequenceDiagram
     participant R as Repositorio
 
     F->>A: Solicitud HTTP
-    A->>S: Delegación de lógica
+    A->>S: Delegacion de logica
     S->>R: Consulta de datos
     R-->>S: Resultado
     S-->>A: DTO o null
-    alt éxito
+    alt exito
         A-->>F: ApiResponse
     else error de negocio
         A-->>F: ApiError serializado

@@ -10,6 +10,7 @@ const BottomNav = () => {
   const location = useLocation();
   const isProtocolDetail = location.pathname.startsWith('/protocol/');
   const [isVisible, setIsVisible] = useState(true);
+  const shouldShowNav = !isProtocolDetail && isVisible;
 
   // Ítems de navegación (móvil).
   const navItems = [
@@ -20,12 +21,13 @@ const BottomNav = () => {
 
   useEffect(() => {
     if (isProtocolDetail) {
-      setIsVisible(false);
       return undefined;
     }
 
     let lastScrollY = window.scrollY;
-    setIsVisible(true);
+    const frameId = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -42,7 +44,10 @@ const BottomNav = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [isProtocolDetail, location.pathname]);
 
   return (
@@ -50,7 +55,7 @@ const BottomNav = () => {
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 0.35rem)' }}
       className={clsx(
         "fixed bottom-0 left-0 right-0 border-t border-outline-variant bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 px-3 pt-2 flex items-center justify-around z-50 md:hidden transition-transform duration-300",
-        isVisible ? "translate-y-0" : "translate-y-full"
+        shouldShowNav ? "translate-y-0" : "translate-y-full"
       )}
     >
       {navItems.map((item) => {

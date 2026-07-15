@@ -18,7 +18,7 @@ export const errorHandler = (
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   // 1. Primero logueamos el error usando el logger para depuración
   logger.error(error);
