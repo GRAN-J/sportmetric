@@ -63,20 +63,31 @@ const Categories = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const loadCategories = async () => {
       try {
         setLoading(true);
         setError('');
-        const data = await getCategories();
+        const data = await getCategories({ signal: controller.signal });
         setCategories(data);
       } catch (loadError) {
+        if (controller.signal.aborted) {
+          return;
+        }
         setError(loadError.message || 'No fue posible cargar las categorías.');
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     loadCategories();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   if (loading) {

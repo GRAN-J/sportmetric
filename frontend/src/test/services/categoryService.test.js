@@ -36,7 +36,7 @@ describe('categoryService', () => {
 
     const categories = await getCategories();
 
-    expect(apiGet).toHaveBeenCalledWith('/api/categories');
+    expect(apiGet).toHaveBeenCalledWith('/api/categories', {});
     expect(categories).toEqual([categoryFixture]);
   });
 

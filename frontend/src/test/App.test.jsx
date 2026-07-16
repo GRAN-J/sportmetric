@@ -1,5 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+
+vi.mock('../pages/Welcome', () => ({
+  default: () => <div>Bienvenido a SportMetric</div>,
+}));
+
 import App from '../App';
 
 describe('App', () => {

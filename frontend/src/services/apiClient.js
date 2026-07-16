@@ -11,15 +11,30 @@ export const API_BASE_URL = rawBaseUrl.replace(/\/$/, '');
 
 export const isApiDataSource = () => DATA_SOURCE === 'api';
 
-export const apiGet = async (path) => {
+const parseApiPayload = async (response) => {
+  const contentType = response.headers?.get?.('content-type') || '';
+
+  if (!contentType || contentType.includes('application/json')) {
+    try {
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+};
+
+export const apiGet = async (path, options = {}) => {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
+    signal: options.signal,
   });
 
-  const payload = await response.json();
+  const payload = await parseApiPayload(response);
 
   if (!response.ok) {
     const message = payload?.error?.message || payload?.message || 'No fue posible consultar la API.';

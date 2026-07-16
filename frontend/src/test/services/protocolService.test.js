@@ -1,6 +1,7 @@
 const loadProtocolService = async ({
   apiMode = false,
   listPayload = [],
+  categoryPayload = [],
   detailPayload = null,
 } = {}) => {
   vi.resetModules();
@@ -8,6 +9,10 @@ const loadProtocolService = async ({
   const apiGet = vi.fn(async (path) => {
     if (path === '/api/protocols') {
       return listPayload;
+    }
+
+    if (path.startsWith('/api/categories/')) {
+      return categoryPayload;
     }
 
     if (path.startsWith('/api/protocols/')) {
@@ -55,10 +60,36 @@ describe('protocolService', () => {
     expect(nextProtocolId).toBe('medicion-del-perimetro-de-cintura');
   });
 
+  it('devuelve null si no existe un siguiente protocolo en la categoría actual', async () => {
+    const { getNextProtocolId } = await loadProtocolService();
+
+    const nextProtocolId = await getNextProtocolId('medicion-del-perimetro-de-cintura', 'composicion-corporal');
+
+    expect(nextProtocolId).toBeNull();
+  });
+
   it('mapea correctamente la respuesta del backend en modo API', async () => {
     const { getProtocolById, getProtocolsByCategory, getNextProtocolId, apiGet } = await loadProtocolService({
       apiMode: true,
       listPayload: [
+        {
+          id: 'medicion-del-peso',
+          categoryId: 'composicion-corporal',
+          order: 1,
+          title: 'Medición del peso',
+          objective: 'Objetivo',
+          description: 'Descripción',
+        },
+        {
+          id: 'medicion-del-perimetro-de-cintura',
+          categoryId: 'composicion-corporal',
+          order: 2,
+          title: 'Medición del perímetro de cintura',
+          objective: 'Objetivo 2',
+          description: 'Descripción 2',
+        },
+      ],
+      categoryPayload: [
         {
           id: 'medicion-del-peso',
           categoryId: 'composicion-corporal',
@@ -98,6 +129,7 @@ describe('protocolService', () => {
     expect(protocols).toHaveLength(2);
     expect(nextProtocolId).toBe('medicion-del-perimetro-de-cintura');
     expect(apiGet).toHaveBeenCalledTimes(2);
+    expect(apiGet).toHaveBeenCalledWith('/api/categories/composicion-corporal/protocols', {});
     expect(protocol).toMatchObject({
       id: 'medicion-del-peso',
       category: 'composicion-corporal',
@@ -114,5 +146,34 @@ describe('protocolService', () => {
     const protocol = await getProtocolById('protocolo-inexistente');
 
     expect(protocol).toBeNull();
+  });
+
+  it('usa el listado global solo cuando la categoría es all en modo API', async () => {
+    const { getProtocolsByCategory, apiGet } = await loadProtocolService({
+      apiMode: true,
+      listPayload: [
+        {
+          id: 'medicion-del-peso',
+          categoryId: 'composicion-corporal',
+          order: 1,
+          title: 'Medición del peso',
+          objective: 'Objetivo',
+          description: 'Descripción',
+        },
+      ],
+    });
+
+    const protocols = await getProtocolsByCategory('all');
+
+    expect(protocols).toHaveLength(1);
+    expect(apiGet).toHaveBeenCalledWith('/api/protocols', {});
+  });
+
+  it('devuelve todos los protocolos locales cuando la categoría es all', async () => {
+    const { getProtocolsByCategory } = await loadProtocolService();
+
+    const protocols = await getProtocolsByCategory('all');
+
+    expect(protocols.length).toBeGreaterThan(1);
   });
 });

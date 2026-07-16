@@ -14,6 +14,17 @@ const logger = pino({
   // - debug: En desarrollo (mostramos todos los logs)
   // - info: En producción (solo logs importantes)
   level: env.NODE_ENV === 'development' ? 'debug' : 'info',
+
+  // Evita que credenciales o cookies terminen expuestas en logs.
+  redact: {
+    paths: [
+      'req.headers.authorization',
+      'req.headers.cookie',
+      'req.headers["set-cookie"]',
+      'res.headers["set-cookie"]',
+    ],
+    censor: '[REDACTED]',
+  },
   
   // Transporte (solo en desarrollo): pino-pretty para logs legibles
   transport: env.NODE_ENV === 'development' ? {

@@ -48,25 +48,36 @@ const ProtocolList = () => {
   const [error, setError] = useState('');
   
   useEffect(() => {
+    const controller = new AbortController();
+
     const loadData = async () => {
       try {
         setLoading(true);
         setError('');
         const [categoriesData, protocolsData] = await Promise.all([
-          getCategories(),
-          getProtocolsByCategory(categoryId),
+          getCategories({ signal: controller.signal }),
+          getProtocolsByCategory(categoryId, { signal: controller.signal }),
         ]);
 
         setCategories(categoriesData);
         setProtocols(protocolsData);
       } catch (loadError) {
+        if (controller.signal.aborted) {
+          return;
+        }
         setError(loadError.message || 'No fue posible cargar los protocolos.');
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     loadData();
+
+    return () => {
+      controller.abort();
+    };
   }, [categoryId]);
 
   // Datos de la categoría (para título/encabezado).

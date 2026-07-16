@@ -85,12 +85,14 @@ const ProtocolDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchProtocol = async () => {
       try {
         // Reinicia el estado de carga cada vez que cambia el protocolo.
         setLoading(true);
         setError('');
-        const data = await getProtocolById(protocolId);
+        const data = await getProtocolById(protocolId, { signal: controller.signal });
 
         if (!data) {
           setProtocol(null);
@@ -99,18 +101,27 @@ const ProtocolDetail = () => {
         }
 
         setProtocol(data);
-        const nextId = await getNextProtocolId(protocolId, data.category);
+        const nextId = await getNextProtocolId(protocolId, data.category, { signal: controller.signal });
         setNextProtocolId(nextId);
       } catch (loadError) {
+        if (controller.signal.aborted) {
+          return;
+        }
         setError(loadError.message || 'No fue posible cargar el protocolo.');
         setProtocol(null);
         setNextProtocolId(null);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchProtocol();
+
+    return () => {
+      controller.abort();
+    };
   }, [protocolId]);
 
   useEffect(() => {

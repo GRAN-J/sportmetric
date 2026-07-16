@@ -39,6 +39,10 @@ const envSchema = z.object({
 
   // Lista de orígenes permitidos para CORS separados por coma
   ALLOWED_ORIGINS: z.string().optional(),
+
+  // Cantidad de proxies de confianza delante de Express.
+  // 0 = no confiar en X-Forwarded-* (local / topología simple).
+  TRUST_PROXY_HOPS: z.coerce.number().int().min(0).default(0),
 });
 
 // =============================================================================

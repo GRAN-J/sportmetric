@@ -25,5 +25,8 @@ RUN npm run build
 # Exponemos el puerto
 EXPOSE 3001
 
+# Reducimos privilegios del proceso en runtime.
+USER node
+
 # Iniciamos la aplicación
 CMD ["node", "dist/server.js"]

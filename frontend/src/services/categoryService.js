@@ -12,18 +12,18 @@ import { apiGet, isApiDataSource } from './apiClient';
  * - En modo local usa el archivo categories.js.
  * - En modo api consulta el backend.
  */
-export const getCategories = async () => {
+export const getCategories = async (options = {}) => {
   if (!isApiDataSource()) {
     return localCategories;
   }
 
-  return apiGet('/api/categories');
+  return apiGet('/api/categories', options);
 };
 
 /**
  * Obtiene una categoría por ID usando la misma fuente de datos activa.
  */
-export const getCategoryById = async (categoryId) => {
-  const categories = await getCategories();
+export const getCategoryById = async (categoryId, options = {}) => {
+  const categories = await getCategories(options);
   return categories.find((category) => category.id === categoryId) || null;
 };

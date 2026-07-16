@@ -28,8 +28,8 @@ import protocolRoutes from './modules/protocols/protocol.routes';
 // Creamos la instancia de la aplicación Express
 const app = express();
 
-// Render y otros proxies reversos envían cabeceras X-Forwarded-*.
-app.set('trust proxy', 1);
+// Se configura por entorno para evitar confiar en proxies inexistentes.
+app.set('trust proxy', env.TRUST_PROXY_HOPS);
 
 // =============================================================================
 // 1. Aplicamos middlewares globales

@@ -21,6 +21,7 @@ const protocolListSorted = allProtocolObjects
 const protocolById = new Map(protocolListSorted.map((protocol) => [protocol.id, protocol]));
 
 let protocolMetaCache = null;
+const protocolMetaByCategoryCache = new Map();
 
 const localListToMeta = (protocol) => ({
   id: protocol.id,
@@ -62,7 +63,10 @@ const mapApiProtocolDetail = (protocol) => ({
   dataRegistry: protocol.dataRegistry || {},
 });
 
-const getAllProtocolsMeta = async () => {
+const sortProtocolsMeta = (protocols) =>
+  protocols.sort((a, b) => a.category.localeCompare(b.category) || a.order - b.order);
+
+const getAllProtocolsMeta = async (options = {}) => {
   if (protocolMetaCache) {
     return protocolMetaCache;
   }
@@ -72,10 +76,8 @@ const getAllProtocolsMeta = async () => {
     return protocolMetaCache;
   }
 
-  const protocols = await apiGet('/api/protocols');
-  protocolMetaCache = protocols
-    .map(mapApiProtocolListItem)
-    .sort((a, b) => a.category.localeCompare(b.category) || a.order - b.order);
+  const protocols = await apiGet('/api/protocols', options);
+  protocolMetaCache = sortProtocolsMeta(protocols.map(mapApiProtocolListItem));
 
   return protocolMetaCache;
 };
@@ -84,21 +86,35 @@ const getAllProtocolsMeta = async () => {
  * Obtiene la lista de protocolos para una categoría específica.
  * Si la categoría es `all`, devuelve todos.
  */
-export const getProtocolsByCategory = async (categoryId) => {
-  const protocols = await getAllProtocolsMeta();
+export const getProtocolsByCategory = async (categoryId, options = {}) => {
+  if (!isApiDataSource()) {
+    const protocols = await getAllProtocolsMeta();
+    if (categoryId === 'all') {
+      return protocols;
+    }
 
-  if (categoryId === 'all') {
-    return protocols;
+    return protocols.filter((protocol) => protocol.category === categoryId);
   }
 
-  return protocols.filter((protocol) => protocol.category === categoryId);
+  if (categoryId === 'all') {
+    return getAllProtocolsMeta(options);
+  }
+
+  if (protocolMetaByCategoryCache.has(categoryId)) {
+    return protocolMetaByCategoryCache.get(categoryId);
+  }
+
+  const protocols = await apiGet(`/api/categories/${categoryId}/protocols`, options);
+  const mappedProtocols = sortProtocolsMeta(protocols.map(mapApiProtocolListItem));
+  protocolMetaByCategoryCache.set(categoryId, mappedProtocols);
+  return mappedProtocols;
 };
 
 /**
  * Obtiene el ID del siguiente protocolo dentro de la misma categoría.
  */
-export const getNextProtocolId = async (currentProtocolId, categoryId) => {
-  const protocols = await getProtocolsByCategory(categoryId);
+export const getNextProtocolId = async (currentProtocolId, categoryId, options = {}) => {
+  const protocols = await getProtocolsByCategory(categoryId, options);
   const currentIndex = protocols.findIndex((protocol) => protocol.id === currentProtocolId);
 
   if (currentIndex !== -1 && currentIndex < protocols.length - 1) {
@@ -111,11 +127,11 @@ export const getNextProtocolId = async (currentProtocolId, categoryId) => {
 /**
  * Obtiene el detalle completo de un protocolo por su ID.
  */
-export const getProtocolById = async (protocolId) => {
+export const getProtocolById = async (protocolId, options = {}) => {
   if (!isApiDataSource()) {
     return protocolById.get(protocolId) || null;
   }
 
-  const protocol = await apiGet(`/api/protocols/${protocolId}`);
+  const protocol = await apiGet(`/api/protocols/${protocolId}`, options);
   return mapApiProtocolDetail(protocol);
 };

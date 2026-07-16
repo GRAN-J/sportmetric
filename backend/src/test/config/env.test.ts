@@ -25,6 +25,7 @@ describe('env config', () => {
     expect(env.PORT).toBe(3001);
     expect(env.JWT_ACCESS_EXPIRES_IN).toBe('15m');
     expect(env.JWT_REFRESH_EXPIRES_IN).toBe('7d');
+    expect(env.TRUST_PROXY_HOPS).toBe(0);
   });
 
   it('detiene la aplicación cuando faltan variables obligatorias', async () => {
