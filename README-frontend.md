@@ -76,6 +76,7 @@ Este modo es util para:
 - preparar integracion real con PostgreSQL;
 - despliegue con Vercel + Render;
 - validar contratos entre frontend y backend.
+- aprovechar el endpoint filtrado por categoria para reducir carga innecesaria.
 
 ## Scripts disponibles
 
@@ -184,6 +185,7 @@ Configuracion recomendada:
 
 - Root Directory: `frontend`, o raiz del repo usando `vercel.json`
 - Framework: Vite
+- mantener fallback SPA a `index.html` para soportar refresh en rutas profundas
 
 Variables tipicas:
 
@@ -191,6 +193,13 @@ Variables tipicas:
 VITE_DATA_SOURCE=api
 VITE_API_BASE_URL=https://tu-backend.onrender.com
 ```
+
+Si cambias Vercel por otro proveedor, la regla sigue siendo la misma:
+
+- construir `frontend/dist`;
+- servir archivos estaticos;
+- redirigir rutas desconocidas de la SPA a `index.html`;
+- apuntar `VITE_API_BASE_URL` al backend publico correcto.
 
 ## Problemas comunes
 
@@ -208,6 +217,13 @@ Revisar:
 
 - que `VITE_API_BASE_URL` apunte al backend publico;
 - que el backend permita el origen de Vercel mediante `ALLOWED_ORIGINS`.
+
+### El frontend funciona al entrar por `/`, pero al refrescar una ruta profunda devuelve 404
+
+Revisar el fallback SPA del proveedor:
+
+- en Vercel ya se cubre con `vercel.json`;
+- en otros hosts debes reenviar rutas de la SPA a `index.html`.
 
 ### Aparece error de CORS
 

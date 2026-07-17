@@ -1,73 +1,101 @@
 # SportMetric Academic
 
-SportMetric Academic es una plataforma web academica orientada a la consulta guiada de protocolos de medicion fisica y antropometrica. El proyecto evoluciono desde una SPA apoyada en archivos JSON locales hacia una arquitectura full stack desacoplada, con frontend en React, backend en Express y persistencia en PostgreSQL.
+Plataforma web academica para consulta guiada de protocolos de medicion fisica y antropometrica.
 
-Este repositorio concentra la base tecnica del sistema, la documentacion de ingenieria y la preparacion necesaria para una siguiente fase de integracion real con formularios y persistencia de datos.
+El proyecto evoluciono desde una SPA basada en archivos JSON hacia una arquitectura full stack desacoplada, con `frontend` en React, `backend` en Express y persistencia en PostgreSQL. La meta de esta etapa fue dejar una base tecnica estable, portable y bien documentada, lista para seguir creciendo sin acoplarla a un proveedor especifico.
 
-## Resumen ejecutivo
+## Vista rapida
 
-Hoy el proyecto ya permite:
-
-- navegar categorias y protocolos desde el frontend;
-- consultar esos datos desde archivos locales o desde la API;
-- poblar PostgreSQL con un seed controlado;
-- exponer endpoints de lectura estables para categorias y protocolos;
-- desplegar frontend y backend por separado sin acoplar el codigo a un proveedor especifico.
-
-Todavia no implementa:
-
-- persistencia de formularios;
-- autenticacion completa en frontend;
-- panel administrativo;
-- operaciones CRUD completas para gestion de contenido.
-
-## Estado actual
-
-| Componente | Estado | Descripcion |
+| Area | Estado | Nota |
 | --- | --- | --- |
-| Frontend | Listo | Navegacion, UI y consumo en modo `local` o `api`, validado con lint, cobertura y build. |
-| Backend | Listo | API Express + TypeScript + Prisma con endpoints de lectura, validada con lint, cobertura, build y smoke tests reales. |
-| Base de datos | Lista | PostgreSQL con migraciones y seed funcional. |
-| Documentacion | Completa | Guias de arquitectura, despliegue, base de datos, API, pruebas y diagramas. |
-| Formularios | Pendiente | La estructura se dejo preparada, pero aun no se implementan. |
+| Frontend | Listo | Navegacion, UI y consumo en modo `local` o `api`. |
+| Backend | Listo | API de lectura con Express, Prisma y PostgreSQL. |
+| Base de datos | Lista | Migraciones y seed funcionales. |
+| Calidad | Validada | `lint`, `test:coverage` y `build` en frontend y backend. |
+| CI | Activa | GitHub Actions valida instalacion, calidad, cobertura y build. |
+| Formularios persistentes | Pendiente | La base esta preparada, pero aun no se implementan. |
 
-## Estado verificado recientemente
+## Que resuelve hoy
 
-En la validacion mas reciente se comprobo que:
+- navegacion guiada de categorias y protocolos;
+- lectura de datos desde archivos locales o desde la API;
+- detalle de protocolo por secciones academicas;
+- seed inicial de PostgreSQL con el contenido base del proyecto;
+- despliegue desacoplado de frontend y backend;
+- validacion tecnica real con cobertura minima y checks en CI.
 
-- frontend y backend levantan correctamente en local;
-- `GET /api/health`, `GET /api/categories` y `GET /api/protocols/:id` responden bien en runtime;
-- la navegacion principal de la SPA funciona en navegador y no arroja errores reales de consola;
-- GitHub Actions ya exige `lint`, `test:coverage` y `build` en frontend y backend;
-- el build del backend copia el cliente Prisma generado a `dist/` para que `npm start` use un runtime funcional.
+## Lo que todavia no incluye
 
-## Objetivo de esta etapa
-
-Esta etapa se cerro con cuatro metas principales:
-
-1. dejar una base tecnica estable;
-2. preparar el proyecto para despliegue desacoplado;
-3. mantener portabilidad entre proveedores;
-4. documentar el funcionamiento y la operacion de forma clara.
+- persistencia de formularios en produccion;
+- autenticacion y autorizacion completas;
+- panel administrativo;
+- CRUD de contenido desde interfaz web.
 
 ## Arquitectura general
 
 ```mermaid
 flowchart LR
-    Usuario[Usuario] --> Frontend[Frontend React + Vite]
-    Frontend -->|Modo local| Json[JSON locales]
-    Frontend -->|Modo api| Backend[Backend Express]
-    Backend --> Prisma[Prisma ORM]
-    Prisma --> PostgreSQL[(PostgreSQL)]
+    U[Usuario] --> F[Frontend React + Vite]
+    F -->|Modo local| J[JSON locales]
+    F -->|Modo api| B[Backend Express]
+    B --> P[Prisma ORM]
+    P --> D[(PostgreSQL)]
 ```
 
 ### Principios aplicados
 
 - separacion clara entre frontend, backend y base de datos;
-- arquitectura por capas en backend;
-- frontend desacoplado del origen de datos;
 - configuracion por variables de entorno;
-- enfoque cloud agnostic para facilitar cambios futuros de infraestructura.
+- frontend desacoplado del origen de datos;
+- arquitectura por capas en backend;
+- enfoque cloud agnostic para despliegue futuro.
+
+## Flujo funcional
+
+La experiencia principal disponible hoy es:
+
+`Bienvenida -> Categorias -> Lista de protocolos -> Objetivo -> Materiales -> Descripcion -> Checklist -> Pasos -> Interrupcion -> Registro de datos`
+
+```mermaid
+flowchart TD
+    A[Bienvenida] --> B[Categorias]
+    B --> C[Lista de protocolos]
+    C --> D[Objetivo]
+    D --> E[Materiales]
+    E --> F[Descripcion]
+    F --> G[Checklist]
+    G --> H[Pasos]
+    H --> I[Criterios de interrupcion]
+    I --> J[Registro de datos]
+```
+
+Cada protocolo puede mostrar solo las secciones que realmente tenga definidas, manteniendo una navegacion consistente sin hardcodear contenido academico en componentes.
+
+## Stack tecnologico
+
+### Frontend
+
+- React 19
+- Vite
+- React Router
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- Vitest
+- ESLint
+
+### Backend
+
+- Node.js 22.x
+- Express 5
+- TypeScript
+- Prisma 7
+- PostgreSQL 16
+- Pino
+- Zod
+- Swagger / OpenAPI
+- Vitest + Supertest
+- ESLint
 
 ## Estructura del repositorio
 
@@ -102,70 +130,63 @@ flowchart LR
 `-- .gitignore
 ```
 
-## Stack tecnologico
-
-### Frontend
-
-- React 19
-- Vite
-- React Router
-- Tailwind CSS
-- Framer Motion
-- Lucide React
-- Vitest
-- ESLint
-
-### Backend
-
-- Node.js 22.x
-- Express 5
-- TypeScript
-- Prisma 7
-- PostgreSQL 16
-- Pino
-- Zod
-- Swagger / OpenAPI
-- Vitest + Supertest
-- ESLint
-
-## Como funciona el sistema hoy
-
-El frontend puede operar de dos maneras.
+## Como funciona el sistema
 
 ### Modo `local`
 
-Lee los archivos del propio proyecto:
+El frontend lee directamente:
 
 - `frontend/src/data/categories.js`
 - `frontend/src/data/protocols/*.json`
 
-Este modo es util para:
-
-- revision visual;
-- validacion rapida de contenido;
-- trabajo sin depender del backend.
+Este modo sirve para trabajo visual, revision de contenido y pruebas rapidas sin depender del backend.
 
 ### Modo `api`
 
-Consulta el backend mediante HTTP. En este caso, el backend obtiene la informacion desde PostgreSQL a traves de Prisma.
+El frontend consulta el backend por HTTP y este obtiene la informacion desde PostgreSQL a traves de Prisma.
 
-Este modo es util para:
+Este modo sirve para:
 
 - validar contratos reales entre frontend y backend;
 - preparar despliegue productivo;
 - avanzar hacia persistencia futura.
 
+## Modelo de contenido
+
+La fuente funcional del contenido parte de:
+
+- `frontend/src/data/categories.js`
+- `frontend/src/data/protocols/*.json`
+- `backend/prisma/seed.ts`
+
+El flujo actual es:
+
+1. el frontend puede usar contenido local;
+2. el seed toma ese contenido base y lo lleva a PostgreSQL;
+3. el backend expone categorias y protocolos desde la base;
+4. el frontend puede cambiar de origen usando solo variables de entorno.
+
+Los protocolos siguen una estructura academica estable con campos como:
+
+- `objective`
+- `materials`
+- `description`
+- `checklist`
+- `steps`
+- `interruptionCriteria`
+- `dataRegistry`
+
 ## Arranque rapido local
 
-### 1. Requisitos
+### Requisitos
 
 - Node.js 22.x
-- npm 10+ u 11+
+- npm 10+ o 11+
 - PostgreSQL 16
 
-### 2. Levantar el backend
+### 1. Levantar backend
 
-Entrar a `backend/`, configurar el entorno y ejecutar:
+Desde `backend/`:
 
 ```bash
 npm install
@@ -174,15 +195,15 @@ npm run db:seed
 npm run dev
 ```
 
-Servicios locales del backend:
+Servicios disponibles:
 
 - API: `http://localhost:3001`
-- Health check: `http://localhost:3001/api/health`
+- Health: `http://localhost:3001/api/health`
 - Swagger: `http://localhost:3001/api/docs`
 
-### 3. Levantar el frontend
+### 2. Levantar frontend
 
-Entrar a `frontend/` y ejecutar:
+Desde `frontend/`:
 
 ```bash
 npm install
@@ -193,7 +214,7 @@ Aplicacion local:
 
 - Frontend: `http://localhost:5173`
 
-### 4. Configuracion minima de variables
+## Configuracion minima
 
 ### Backend
 
@@ -207,6 +228,7 @@ Variables clave:
 - `ALLOWED_ORIGINS`
 - `JWT_SECRET`
 - `JWT_REFRESH_SECRET`
+- `TRUST_PROXY_HOPS`
 
 ### Frontend
 
@@ -219,13 +241,13 @@ Variables clave:
 
 ## Modos de operacion del frontend
 
-### Opcion 1: seguir trabajando con datos locales
+### Opcion 1: datos locales
 
 ```env
 VITE_DATA_SOURCE=local
 ```
 
-### Opcion 2: consumir la API local
+### Opcion 2: consumo de API
 
 ```env
 VITE_DATA_SOURCE=api
@@ -249,48 +271,20 @@ VITE_API_BASE_URL=http://localhost:3001
 - `GET /api/protocols`
 - `GET /api/protocols/:id`
 
-## Despliegue recomendado
+## Calidad, auditoria y estado verificado
 
-La estrategia mas simple y coherente para este proyecto es:
+En la validacion mas reciente se comprobo que:
 
-- frontend en Vercel;
-- backend en Render;
-- PostgreSQL en Render.
+- frontend y backend levantan correctamente en local;
+- `GET /api/health`, `GET /api/categories` y `GET /api/protocols/:id` responden correctamente en runtime;
+- la navegacion principal del frontend funciona sin errores reales de consola en las vistas revisadas;
+- GitHub Actions valida `lint`, `test:coverage` y `build` en ambos paquetes;
+- el build del backend deja Prisma listo para que `npm start` funcione sobre `dist/`;
+- Vercel ya tiene fallback SPA para rutas profundas mediante `rewrites` en `vercel.json`.
 
-```mermaid
-flowchart LR
-    Usuario[Usuario] --> Frontend[Frontend en Vercel]
-    Frontend --> Backend[Backend en Render]
-    Backend --> DB[(PostgreSQL en Render)]
-```
+### Comandos de validacion
 
-Puntos importantes:
-
-- el frontend no debe conectarse directamente a la base de datos;
-- Render crea la instancia de PostgreSQL, pero las tablas las crean las migraciones de Prisma;
-- el build del backend ya deja el cliente Prisma copiado en `dist/generated/prisma`;
-- el seed se ejecuta de forma controlada cuando se necesite poblar contenido base.
-
-## Portabilidad futura
-
-El proyecto quedo preparado para mover infraestructura sin reescribir la logica principal:
-
-- frontend a Vercel, Netlify o Render Static Site;
-- backend a Render, Railway, Fly.io, AWS, Azure o GCP;
-- PostgreSQL a Render, Neon, Supabase, Railway o RDS.
-
-Esto es posible porque:
-
-- la configuracion depende de variables de entorno;
-- Prisma centraliza el acceso a datos mediante `DATABASE_URL`;
-- CORS se controla por configuracion;
-- el frontend solo necesita `VITE_API_BASE_URL` para cambiar de backend.
-
-## Auditoria y pruebas
-
-Antes de preparar commits o despliegues, conviene ejecutar esta validacion minima:
-
-### Frontend
+#### Frontend
 
 ```bash
 cd frontend
@@ -300,7 +294,7 @@ npm run test:coverage
 npm run build
 ```
 
-### Backend
+#### Backend
 
 ```bash
 cd backend
@@ -310,20 +304,108 @@ npm run test:coverage
 npm run build
 ```
 
-Estas pruebas validan:
+### Cobertura verificada
 
-- contratos, servicios y componentes principales del frontend;
-- configuracion, servicios, repositorios y contrato HTTP del backend;
-- cobertura minima exigida en Vitest;
-- builds reales utilizables en despliegue y en `npm start`;
-- compatibilidad con el pipeline de GitHub Actions.
+| Paquete | Statements | Branches | Functions | Lines |
+| --- | ---: | ---: | ---: | ---: |
+| Frontend | 91.11% | 75.23% | 83.2% | 94.02% |
+| Backend | 96.35% | 79.62% | 96.66% | 96.21% |
 
-Cobertura verificada:
+## Scripts principales
 
-- Frontend: `91.11%` statements, `75.23%` branches, `83.2%` functions, `94.02%` lines.
-- Backend: `96.35%` statements, `79.62%` branches, `96.66%` functions, `96.21%` lines.
+### Frontend
 
-## Troubleshooting rapido
+- `npm run dev`
+- `npm run lint`
+- `npm run test`
+- `npm run test:run`
+- `npm run test:coverage`
+- `npm run build`
+
+### Backend
+
+- `npm run dev`
+- `npm run lint`
+- `npm run test`
+- `npm run test:coverage`
+- `npm run build`
+- `npm run db:migrate:dev`
+- `npm run db:migrate:deploy`
+- `npm run db:seed`
+
+## Despliegue recomendado
+
+La estrategia mas simple y coherente hoy es:
+
+- frontend en Vercel;
+- backend en Render;
+- PostgreSQL en Render.
+
+```mermaid
+flowchart LR
+    U[Usuario] --> V[Frontend en Vercel]
+    V --> R[Backend en Render]
+    R --> DB[(PostgreSQL en Render)]
+```
+
+### Consideraciones importantes
+
+- el frontend no debe conectarse directamente a la base de datos;
+- Prisma crea y consume el modelo de datos a traves de migraciones;
+- el backend ya compila Prisma Client y lo copia a `dist/generated/prisma`;
+- el proyecto puede moverse a otros proveedores cambiando variables de entorno, sin reescribir la logica principal;
+- el frontend depende de `VITE_API_BASE_URL` y de un rewrite SPA a `index.html`;
+- el backend depende de `DATABASE_URL`, CORS y `TRUST_PROXY_HOPS`, no del proveedor.
+
+## Portabilidad
+
+La base actual permite cambiar infraestructura con bajo impacto:
+
+- frontend a Vercel, Netlify o Render Static Site;
+- backend a Render, Railway, Fly.io, AWS, Azure o GCP;
+- PostgreSQL a Render, Neon, Supabase, Railway o RDS.
+
+## Migrar de proveedor
+
+La migracion no deberia requerir cambios de codigo si se respeta esta lista:
+
+### Mover frontend a otro host
+
+1. configurar build con `npm ci` y `npm run build` dentro de `frontend`;
+2. publicar `frontend/dist`;
+3. definir `VITE_DATA_SOURCE=api`;
+4. definir `VITE_API_BASE_URL` con la URL publica del backend;
+5. configurar fallback SPA para enviar rutas profundas a `index.html`;
+6. validar rutas como `/categories`, `/category/:id` y `/protocol/:id/objective`.
+
+### Mover backend a otro host
+
+1. configurar build con `npm ci` y `npm run build` dentro de `backend`;
+2. arrancar con `npm run start`;
+3. definir `DATABASE_URL`, `BACKEND_PUBLIC_URL`, `FRONTEND_URL`, `ALLOWED_ORIGINS`, `JWT_SECRET`, `JWT_REFRESH_SECRET`;
+4. ajustar `TRUST_PROXY_HOPS` segun la cantidad real de proxies delante del servicio;
+5. ejecutar migraciones con `npm run db:migrate:deploy`;
+6. validar `GET /api/health`, `GET /api/categories` y `GET /api/protocols/:id`.
+
+### Checklist post-migracion
+
+- confirmar que el frontend carga datos reales desde la API;
+- confirmar que CORS permite el nuevo dominio del frontend;
+- confirmar que el backend responde con la URL publica nueva;
+- confirmar que las rutas profundas del frontend no devuelven 404;
+- volver a ejecutar `lint`, `test:coverage` y `build`.
+
+## Sistema de assets y referencias funcionales
+
+Fuentes utiles para continuar trabajo visual y academico:
+
+- assets publicos: `frontend/public/assets/`
+- mockups: `docs/Desing mockups UI UX/`
+- sistema de diseno: `docs/DESIGN.md`
+- flujo funcional: `docs/APP_FLOW.md`
+- estructura de protocolos: `docs/PROTOCOL_STRUCTURE.md`
+
+## Troubleshooting
 
 ### El backend no levanta
 
@@ -345,15 +427,15 @@ Verificar:
 - que exista la base `sportmetric`;
 - que la `DATABASE_URL` este bien formada.
 
-### El backend levanta en desarrollo, pero `npm start` falla
+### `npm start` del backend falla despues de compilar
 
-Revisar que el ultimo build se haya ejecutado con:
+Ejecutar:
 
 ```bash
 npm run build
 ```
 
-Ese proceso ahora genera Prisma Client y lo copia a `dist/generated/prisma`, que es lo que consume el runtime compilado.
+Ese proceso genera Prisma Client y lo copia a `dist/generated/prisma`, que es lo que consume el runtime compilado.
 
 ### El frontend no carga datos desde la API
 
@@ -363,6 +445,10 @@ Verificar:
 - `VITE_API_BASE_URL`
 - que el backend este corriendo;
 - que `ALLOWED_ORIGINS` incluya el origen del frontend.
+
+### El frontend carga en `/`, pero falla al refrescar una ruta interna
+
+Verificar que el host del frontend tenga configurado el fallback SPA hacia `index.html`.
 
 ### La base existe, pero no hay tablas
 
@@ -386,10 +472,14 @@ Ejecutar:
 npm run db:seed
 ```
 
-## Documentacion tecnica relacionada
+## Documentacion relacionada
 
 - `README-backend.md`
 - `README-frontend.md`
+- `docs/DESIGN.md`
+- `docs/APP_FLOW.md`
+- `docs/PROJECT_CONTEXT.md`
+- `docs/PROTOCOL_STRUCTURE.md`
 - `docs-engineering/architecture/arquitectura-general.md`
 - `docs-engineering/api/estado-api.md`
 - `docs-engineering/database/operacion-postgresql-prisma.md`
@@ -398,11 +488,18 @@ npm run db:seed
 - `docs-engineering/diagrams/indice-diagramas.md`
 - `docs-engineering/adr/`
 
-## Siguiente etapa prevista
+## Proxima etapa
 
-La base quedo lista para pasar a una siguiente fase de implementacion, pero se decidio posponerla hasta cerrar requerimientos funcionales:
+La base ya esta lista para continuar con una siguiente fase funcional:
 
 - persistencia de formularios;
 - definicion exacta de campos;
 - validaciones de negocio;
-- flujo operativo real que necesite el equipo academico.
+- flujo operativo real del equipo academico.
+
+## Estrategia de ramas
+
+- `main`: referencia principal y rama estable.
+- `dev`: integracion y evolucion del trabajo tecnico.
+
+La recomendacion es validar cambios en `dev` y promover a `main` solo cuando los checks y la revision funcional esten en verde.

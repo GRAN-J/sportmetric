@@ -47,6 +47,7 @@ Variables principales:
 - `JWT_REFRESH_EXPIRES_IN`
 - `FRONTEND_URL`
 - `ALLOWED_ORIGINS`
+- `TRUST_PROXY_HOPS`
 
 ### Ejemplo local
 
@@ -61,6 +62,7 @@ JWT_ACCESS_EXPIRES_IN="15m"
 JWT_REFRESH_EXPIRES_IN="7d"
 FRONTEND_URL=http://localhost:5173
 ALLOWED_ORIGINS=http://localhost:5173
+TRUST_PROXY_HOPS=0
 ```
 
 ## Instalacion y arranque
@@ -171,7 +173,14 @@ Variables minimas:
 - `JWT_REFRESH_SECRET`
 - `FRONTEND_URL`
 - `ALLOWED_ORIGINS`
+- `TRUST_PROXY_HOPS=1`
 - `NODE_ENV=production`
+
+Notas de portabilidad:
+
+- si cambias Render por otro proveedor, la aplicacion sigue usando los mismos comandos;
+- el ajuste mas delicado suele ser `TRUST_PROXY_HOPS`, porque depende de cuantos proxies confiables haya delante;
+- si el frontend cambia de dominio, toca actualizar `FRONTEND_URL` y `ALLOWED_ORIGINS`, no el codigo.
 
 ## Problemas comunes
 
@@ -223,6 +232,15 @@ Revisar:
 - `ALLOWED_ORIGINS`
 
 Si usas Vercel, asegurate de incluir la URL publica del frontend.
+
+### El rate limit o la IP real no se comportan como esperas
+
+Revisar:
+
+- `TRUST_PROXY_HOPS`
+- cuántos proxies confiables hay delante del backend
+
+En local normalmente debe ser `0`. En plataformas como Render suele ser `1`.
 
 ### El backend compila pero no conecta a Render Postgres
 

@@ -22,6 +22,7 @@ flowchart LR
 La configuracion del monorepo ya quedo alineada con el estado real del proyecto:
 
 - Vercel construye el frontend desde la raiz usando `vercel.json`;
+- `vercel.json` ya agrega rewrite SPA hacia `index.html` para evitar 404 en rutas profundas;
 - el backend ya pasa `npm ci`, `lint`, `test:coverage` y `build`;
 - el build del backend copia el cliente Prisma generado a `dist/generated/prisma`, necesario para que `npm start` funcione en runtime;
 - GitHub Actions valida frontend y backend antes de despliegues posteriores.
@@ -57,13 +58,15 @@ Variables de entorno:
 - `JWT_REFRESH_SECRET=...`
 - `FRONTEND_URL=https://tu-frontend.vercel.app`
 - `ALLOWED_ORIGINS=https://tu-frontend.vercel.app`
+- `TRUST_PROXY_HOPS=1`
 
 Notas:
 
 - `deploy:render` compila y aplica migraciones;
 - el seed no tiene por que correr en cada deploy;
 - si necesitas poblar datos iniciales, ejecutalo una vez de forma controlada;
-- `npm run build` ya incluye la copia del cliente Prisma a `dist/`, asi que no hace falta un paso extra manual.
+- `npm run build` ya incluye la copia del cliente Prisma a `dist/`, asi que no hace falta un paso extra manual;
+- si el backend deja de estar detras de un proxy confiable, `TRUST_PROXY_HOPS` debe volver a `0`.
 
 ## 3. Crear el frontend en Vercel
 
@@ -80,6 +83,7 @@ Variables:
 Nota:
 
 - si despliegas desde la raiz del monorepo, mantener `vercel.json` evita que Vercel intente construir el proyecto equivocado.
+- si cambias a Netlify, Render Static Site u otro host, debes replicar el fallback SPA hacia `index.html`.
 
 ## 4. Flujo de cambios normales
 
@@ -126,7 +130,44 @@ La clave es mantener:
 - `DATABASE_URL`;
 - `BACKEND_PUBLIC_URL`;
 - `ALLOWED_ORIGINS`;
-- `VITE_API_BASE_URL`.
+- `VITE_API_BASE_URL`;
+- `TRUST_PROXY_HOPS`.
+
+## 7. Procedimiento de migracion
+
+### Migrar solo el frontend
+
+1. desplegar `frontend/` con `npm ci` y `npm run build`;
+2. publicar `frontend/dist`;
+3. configurar `VITE_DATA_SOURCE=api`;
+4. configurar `VITE_API_BASE_URL` con la URL publica del backend;
+5. activar fallback SPA a `index.html`;
+6. validar navegacion profunda y carga de categorias/protocolos.
+
+### Migrar solo el backend
+
+1. desplegar `backend/` con `npm ci`, `npm run build` y `npm run start`;
+2. configurar `DATABASE_URL`, `BACKEND_PUBLIC_URL`, `FRONTEND_URL`, `ALLOWED_ORIGINS`, `JWT_SECRET`, `JWT_REFRESH_SECRET`;
+3. ajustar `TRUST_PROXY_HOPS` segun la topologia real del host;
+4. ejecutar `npm run db:migrate:deploy`;
+5. validar `GET /api/health`, `GET /api/categories` y `GET /api/protocols/:id`.
+
+### Migrar frontend y backend al mismo tiempo
+
+1. desplegar primero backend y base de datos;
+2. validar API publica;
+3. desplegar frontend apuntando a la nueva `VITE_API_BASE_URL`;
+4. actualizar `FRONTEND_URL` y `ALLOWED_ORIGINS` en backend con el dominio final del frontend;
+5. volver a validar CORS, rutas profundas y endpoints principales.
+
+## 8. Checklist post-migracion
+
+- `npm ci`, `lint`, `test:coverage` y `build` siguen pasando en CI;
+- el frontend no devuelve 404 en rutas internas al refrescar;
+- el backend responde con la IP real correcta tras el proxy;
+- CORS permite el nuevo dominio del frontend;
+- la app carga categorias y protocolos reales desde la API;
+- Swagger y health check responden en el backend publico.
 
 ## Diagrama de portabilidad
 
