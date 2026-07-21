@@ -40,55 +40,55 @@
       "step": 1,
       "title": "Paso 1",
       "description": "Flexión de Rodilla: El paciente debe estar en decúbito prono (acostado boca abajo) sobre una superficie firme, con la pierna relajada. El inclinómetro se coloca sobre la tibia, alineado con la pierna. Se solicita al paciente flexionar la rodilla hasta el máximo rango sin dolor",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-1.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "El inclinómetro mide la inclinación a través del líquido estabilizador azul.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-2.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "Se registra el valor en grados según la lectura en el dial de medición.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-3.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "Extensión de Rodilla: El estudiante debe estar en decúbito supino (acostado boca arriba) con la pierna relajada y extendida sobre una superficie firme. El inclinómetro se coloca sobre la tibia, alineado con la pierna. Se solicita al paciente extender completamente la rodilla, asegurando la alineación correcta sin compensaciones.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-4.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "El inclinómetro mide la inclinación a través del líquido estabilizador azul.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-5.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "Se registra el valor en grados según la lectura en el dial de medición.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-6.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-6.mp4"
     },
     {
       "step": 7,
       "title": "Paso 7",
       "description": "Dorsiflexión: Un pie debe estar delante del otro. El estudiante debe poner las palmas de las manos en el muslo del miembro inferior que está adelante con la rodilla flexionada aproximadamente a 90°. La rodilla del miembro inferior que está atrás debe estar totalmente extendida con el talón apoyado en su totalidad en el piso. El inclinómetro debe estar en el tercio medio de la tibia de la pierna que se encuentra atrás.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-7.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-7.mp4"
     },
     {
       "step": 8,
       "title": "Paso 8",
       "description": "El inclinómetro mide la inclinación a través del líquido estabilizador azul.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-8.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-8.mp4"
     },
     {
       "step": 9,
       "title": "Paso 9",
       "description": "Se registra el valor en grados según la lectura en el dial de medición.",
-      "video": "/assets/placeholders/test-de-movilidad-articular-con-inclinometro-paso-9.mp4"
+      "video": "/assets/videos/test-de-movilidad-articular-con-inclinometro-paso-9.mp4"
     }
   ],
   "interruptionCriteria": [],

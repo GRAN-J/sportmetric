@@ -50,37 +50,37 @@
       "step": 1,
       "title": "Paso 1",
       "description": "El estudiante se debe ubicar de pie junto a unos centímetros de la pared con los pies en el suelo a lo ancho de los hombros y el brazo dominante extendido para marcar su altura de alcance.",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-1.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "El estudiante pone tiza en sus dedos.",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-2.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "Debe tomar impulso con los brazos y desplazamiento de sus miembros inferiores de abajo hacia arriba.",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-3.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "Debe saltar lo mas alto que pueda dejando la marca de sus dedos sobre una cartulina negra pegada con una cinta métrica, al realiza el salto vertical debe ser desde posición estática, sin desplazamientos laterales o hacia adelante, tocando la pared en el punto más alto.",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-4.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "Se deben realizar dos intentos.",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-5.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "El evaluador debe registrar dos mediciones en centímetros con un solo decimal (Ej. 85.4 cm).",
-      "video": "/assets/placeholders/test-de-detent-sargent-paso-6.mp4"
+      "video": "/assets/videos/test-de-detent-sargent-paso-6.mp4"
     }
   ],
   "interruptionCriteria": [

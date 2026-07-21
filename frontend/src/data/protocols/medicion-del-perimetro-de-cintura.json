@@ -40,31 +40,31 @@
       "step": 1,
       "title": "Paso 1",
       "description": "El evaluador debe ubicarse de medio lado junto al estudiante y frente a un espejo, permitiendo verificar y corregir la posición de la cinta métrica en los puntos de difícil visualización.",
-      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-1.mp4"
+      "video": "/assets/videos/medicion-del-perimetro-de-cintura-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "El estudiante debe estar de pie y de medio lado con un espejo de fondo para verificar la posición correcta de la cinta métrica con los pies separados y brazos cruzados en el pecho, usando ropa ligera y una respiración normal.",
-      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-2.mp4"
+      "video": "/assets/videos/medicion-del-perimetro-de-cintura-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "El estudiante no debe haber ingerido alimentos en exceso.",
-      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-3.mp4"
+      "video": "/assets/videos/medicion-del-perimetro-de-cintura-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "El evaluador localiza el punto medio entre la última costilla y la cresta ilíaca, coloca la cinta métrica de forma horizontal sin presionar la piel y mide al final de una respiración normal.",
-      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-4.mp4"
+      "video": "/assets/videos/medicion-del-perimetro-de-cintura-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "El evaluador debe registrar dos mediciones en centímetros con un solo decimal (Ej. 85.4 cm).",
-      "video": "/assets/placeholders/medicion-del-perimetro-de-cintura-paso-5.mp4"
+      "video": "/assets/videos/medicion-del-perimetro-de-cintura-paso-5.mp4"
     }
   ],
   "interruptionCriteria": [

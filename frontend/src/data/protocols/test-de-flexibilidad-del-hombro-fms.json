@@ -43,37 +43,37 @@
       "step": 2,
       "title": "Paso 2",
       "description": "El estudiante debe estar con ropa cómoda y que no limite el recorrido del movimiento.\nEl estudiante debe estar de pie, con los pies juntos.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-2.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "El estudiante debe llevar una mano por detrás de la cabeza y la otra por la espalda baja, sujetando el bastón FMS de medición, acercándolas sin alterar la postura de inicio del test.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-3.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "El evaluador debe realizar la medición tomando como punto de referencia el borde externo entre el primer y segundo dedo, registrando la distancia de las dos manos en centímetros.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-4.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "El estudiante debe repetir el mismo test en ambos brazos para comparar la movilidad de los hombros.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-5.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "Se deben realizar dos intentos.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-6.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-6.mp4"
     },
     {
       "step": 7,
       "title": "Paso 7",
       "description": "El evaluador debe registrar los datos de los dos intentos por cada segmento corporal en el formato de registro de datos.",
-      "video": "/assets/placeholders/test-de-flexibilidad-del-hombro-fms-paso-7.mp4"
+      "video": "/assets/videos/test-de-flexibilidad-del-hombro-fms-paso-7.mp4"
     }
   ],
   "interruptionCriteria": [

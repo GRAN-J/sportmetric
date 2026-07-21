@@ -53,25 +53,25 @@
       "step": 3,
       "title": "Paso 3",
       "description": "La cabeza debe seguir el plano de Frankfurt, con la mirada al frente y los brazos relajados. El Plano de Frankfurt alinea la cabeza paralela al suelo, pasando por la órbita y el Tragión, ubicado en la prominencia cartilaginosa frente al conducto auditivo externo, en la región lateral de la cabeza.",
-      "video": "/assets/placeholders/medicion-de-la-talla-paso-3.mp4"
+      "video": "/assets/videos/medicion-de-la-talla-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "Se deben realizar dos mediciones, bajando la escuadra suavemente sobre la cabeza y leyendo la estatura en metros con dos decimales.",
-      "video": "/assets/placeholders/medicion-de-la-talla-paso-4.mp4"
+      "video": "/assets/videos/medicion-de-la-talla-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "La lectura de los datos se debe hacer a la altura de los ojos y, si es necesario, se recomienda el uso de un banco.",
-      "video": "/assets/placeholders/medicion-de-la-talla-paso-5.mp4"
+      "video": "/assets/videos/medicion-de-la-talla-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "La medición se debe registrar inmediatamente al tomarse la medida.",
-      "video": "/assets/placeholders/medicion-de-la-talla-paso-6.mp4"
+      "video": "/assets/videos/medicion-de-la-talla-paso-6.mp4"
     }
   ],
   "interruptionCriteria": [

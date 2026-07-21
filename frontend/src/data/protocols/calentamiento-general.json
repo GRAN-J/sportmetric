@@ -12,25 +12,25 @@
       "step": 1,
       "title": "Paso 1",
       "description": "Caminata rápida",
-      "video": "/assets/placeholders/calentamiento-general-paso-1.mp4"
+      "video": "/assets/videos/calentamiento-general-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "Trote suave en el sitio",
-      "video": "/assets/placeholders/calentamiento-general-paso-2.mp4"
+      "video": "/assets/videos/calentamiento-general-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "Trote suave en el sitio y Taloneras (realizar tres series)",
-      "video": "/assets/placeholders/calentamiento-general-paso-3.mp4"
+      "video": "/assets/videos/calentamiento-general-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "Trote suave en el sitio y trote en el sitio llevando las rodillas hacia los el abdomen (realizar tres series)",
-      "video": "/assets/placeholders/calentamiento-general-paso-4.mp4"
+      "video": "/assets/videos/calentamiento-general-paso-4.mp4"
     }
   ],
   "interruptionCriteria": [],

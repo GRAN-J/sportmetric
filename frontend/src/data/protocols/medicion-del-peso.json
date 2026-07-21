@@ -33,61 +33,61 @@
       "step": 1,
       "title": "Paso 1",
       "description": "El estudiante debe usar ropa ligera, estar descalzo, sin accesorios metálicos y con los pies secos.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-1.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "Evitar consumir alimentos 2 horas antes de la medición.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-2.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "Hacer ejercicio 12 horas antes de la medición.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-3.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "Y consumir alcohol o cafeína 24 horas antes de la medición.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-4.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "El estudiante debe orinar antes de la medición si es posible.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-5.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "El estudiante debe pararse erguido, mirando al frente, con brazos a los lados, relajados.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-6.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-6.mp4"
     },
     {
       "step": 7,
       "title": "Paso 7",
       "description": "Los pies en contacto con los sensores de la báscula.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-7.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-7.mp4"
     },
     {
       "step": 8,
       "title": "Paso 8",
       "description": "El evaluador enciende la báscula, verifica su funcionamiento y guía al estudiante a posicionarse correctamente.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-8.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-8.mp4"
     },
     {
       "step": 9,
       "title": "Paso 9",
       "description": "El evaluador debe esperar la medición y registrar el peso en kilogramos con un solo decimal (Ej. 72.5 kg) en el formato de registro de datos.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-9.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-9.mp4"
     },
     {
       "step": 10,
       "title": "Paso 10",
       "description": "La medición se debe registrar inmediatamente al tomarse la medida.",
-      "video": "/assets/placeholders/medicion-del-peso-paso-10.mp4"
+      "video": "/assets/videos/medicion-del-peso-paso-10.mp4"
     }
   ],
   "interruptionCriteria": [

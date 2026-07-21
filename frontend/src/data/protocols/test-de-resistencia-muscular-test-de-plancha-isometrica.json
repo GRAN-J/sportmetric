@@ -42,37 +42,37 @@
       "step": 1,
       "title": "Paso 1",
       "description": "El evaluador debe explicar y hacer una demostración de la técnica de ejecución del test que permita establecer en el estudiante una postura inicial correcta.",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-1.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "El estudiante debe apoyar los antebrazos y pies sobre la superficie.\nEl cuerpo del estudiante debe estar alineado y los hombros alineados con los codos.",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-2.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "El evaluador debe activar el cronómetro cuando el estudiante inicia el test y mantiene la posición correcta.",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-3.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "El evaluador debe finalizar el test cuando el estudiante pierde la alineación inicial del cuerpo con relación a la superficie, presenta fibrilaciones musculares (temblor) o muestra fatiga extrema.",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-4.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "Antes de finalizar el test, se deben realizar dos llamados de atención al estudiante. Si recibe el segundo llamado de atención, el test debe interrumpirse.",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-5.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "El evaluador debe registrar el tiempo en segundos (Ej. 120 segundos).",
-      "video": "/assets/placeholders/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-6.mp4"
+      "video": "/assets/videos/test-de-resistencia-muscular-test-de-plancha-isometrica-paso-6.mp4"
     }
   ],
   "interruptionCriteria": [

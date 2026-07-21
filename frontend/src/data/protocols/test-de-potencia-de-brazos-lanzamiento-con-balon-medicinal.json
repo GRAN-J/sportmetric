@@ -50,37 +50,37 @@
       "step": 1,
       "title": "Paso 1",
       "description": "El evaluador debe explicar y demostrar la técnica de medición.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-1.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-1.mp4"
     },
     {
       "step": 2,
       "title": "Paso 2",
       "description": "El estudiante debe estar en posición de rodillas y con los pies alineados al ancho de los hombros.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-2.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-2.mp4"
     },
     {
       "step": 3,
       "title": "Paso 3",
       "description": "El estudiante debe estar en posición de rodillas y con los pies alineados al ancho de los hombros.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-3.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-3.mp4"
     },
     {
       "step": 4,
       "title": "Paso 4",
       "description": "El evaluador debe medir la distancia desde la línea de lanzamiento hasta el primer contacto del balón con el suelo.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-4.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-4.mp4"
     },
     {
       "step": 5,
       "title": "Paso 5",
       "description": "Se deben realizar dos intentos.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-5.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-5.mp4"
     },
     {
       "step": 6,
       "title": "Paso 6",
       "description": "El evaluador debe registrar dos intentos en metros y centímetros en el formato de registro de datos.",
-      "video": "/assets/placeholders/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-6.mp4"
+      "video": "/assets/videos/test-de-potencia-de-brazos-lanzamiento-con-balon-medicinal-paso-6.mp4"
     }
   ],
   "interruptionCriteria": [
