@@ -69,6 +69,12 @@ export const errorHandler = (
         message = 'El registro ya existe';
         details = env.NODE_ENV === 'development' ? (error as any).meta : undefined;
         break;
+      case 'P2003': // Violación de foreign key constraint
+        statusCode = 400;
+        code = 'FK_CONSTRAINT';
+        message = 'Una referencia del registro no existe en el sistema';
+        details = env.NODE_ENV === 'development' ? (error as any).meta : undefined;
+        break;
       case 'P2025': // Registro no encontrado
         statusCode = 404;
         code = 'NOT_FOUND';
@@ -76,6 +82,10 @@ export const errorHandler = (
         details = env.NODE_ENV === 'development' ? (error as any).meta : undefined;
         break;
       default:
+        // Otros errores de Prisma: no exponemos los detalles del motor de base
+        // de datos, ni siquiera en desarrollo, para evitar filtrar información
+        // sensible. El `code` genérico y el `message` opaco son suficientes
+        // para que el cliente sepa que el problema fue de base de datos.
         break;
     }
 
