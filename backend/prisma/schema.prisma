@@ -29,10 +29,10 @@ datasource db {
 
 // Roles de usuario disponibles en la aplicación
 enum Role {
-  STUDENT     // Estudiante
-  EVALUATOR   // Evaluador/docente
-  ADMIN       // Administrador del sistema
-  RESEARCHER  // Investigador
+  STUDENT // Estudiante
+  EVALUATOR // Evaluador/docente
+  ADMIN // Administrador del sistema
+  RESEARCHER // Investigador
 }
 
 // =============================================================================
@@ -41,55 +41,67 @@ enum Role {
 
 // Modelo de Usuario: Almacena la información de los usuarios del sistema
 model User {
-  id               String   @id @default(uuid())  // ID único, generado automáticamente (UUID)
-  name             String                         // Nombre completo del usuario
-  email            String   @unique               // Correo electrónico único (para login)
-  passwordHash     String                         // Hash de la contraseña (nunca almacenamos texto plano!)
-  role             Role     @default(STUDENT)    // Rol del usuario
-  refreshTokenHash String?                        // Hash del refresh token (para renovar tokens de acceso)
-  createdAt        DateTime @default(now())       // Fecha de creación del usuario (automática)
-  updatedAt        DateTime @updatedAt            // Fecha de última actualización (automática)
+  id               String   @id @default(uuid()) // ID único, generado automáticamente (UUID)
+  name             String // Nombre completo del usuario
+  email            String   @unique // Correo electrónico único (para login)
+  passwordHash     String // Hash de la contraseña (nunca almacenamos texto plano!)
+  role             Role     @default(STUDENT) // Rol del usuario
+  refreshTokenHash String? // Hash del refresh token (para renovar tokens de acceso)
+  
+  // Recuperación de contraseña
+  passwordResetTokenHash String? // Hash del token de recuperación
+  passwordResetExpires   DateTime? // Fecha de expiración del token
+
+  createdAt        DateTime     @default(now()) // Fecha de creación del usuario (automática)
+  updatedAt        DateTime @updatedAt // Fecha de última actualización (automática)
+
+  // NOTA: las evaluaciones se desacoplaron del modelo User (Fase 2, post-ajuste).
+  // La captura es pública y los nombres se almacenan en `Evaluation.results.{id_estudiante, evaluado, evaluador}`.
+  // Esto evita foreign keys rotas y refleja el modelo de Ficha Técnica base.
 }
 
 // Modelo de Categoría: Agrupa los protocolos en categorías temáticas
 model Category {
-  id          String     @id                   // ID único de la categoría
-  title       String                           // Título de la categoría (ej: "Medición de la composición corporal")
-  description String                           // Descripción corta de la categoría
-  icon        String                           // Nombre del ícono (para la UI)
-  color       String                           // Color asociado (para la UI, ej: "bg-teal-accent")
-  order       Int                              // Orden de aparición en la UI
-  createdAt   DateTime   @default(now())       // Fecha de creación
-  updatedAt   DateTime   @updatedAt            // Fecha de última actualización
-  protocols   Protocol[]                       // Relación: una categoría tiene muchos protocolos
+  id          String     @id // ID único de la categoría
+  title       String // Título de la categoría (ej: "Medición de la composición corporal")
+  description String // Descripción corta de la categoría
+  icon        String // Nombre del ícono (para la UI)
+  color       String // Color asociado (para la UI, ej: "bg-teal-accent")
+  order       Int // Orden de aparición en la UI
+  createdAt   DateTime   @default(now()) // Fecha de creación
+  updatedAt   DateTime   @updatedAt // Fecha de última actualización
+  protocols   Protocol[] // Relación: una categoría tiene muchos protocolos
 }
 
 // Modelo de Protocolo: Almacena la información principal de un protocolo de medición
 model Protocol {
-  id               String                 @id       // ID único del protocolo
-  categoryId       String                           // ID de la categoría a la que pertenece
-  order            Int                              // Orden dentro de la categoría
-  title            String                           // Título del protocolo
-  objective        String                           // Objetivo del protocolo
-  description      String                           // Descripción general
-  createdAt        DateTime               @default(now())
-  updatedAt        DateTime               @updatedAt
-  category         Category               @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  id               String                  @id // ID único del protocolo
+  categoryId       String // ID de la categoría a la que pertenece
+  order            Int // Orden dentro de la categoría
+  title            String // Título del protocolo
+  objective        String // Objetivo del protocolo
+  description      String // Descripción general
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  category         Category                @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
   // Relaciones: un protocolo tiene muchos materiales, checklist items, etc.
   materials        Material[]
   checklistItems   ChecklistItem[]
   steps            Step[]
   interruptionCrit InterruptionCriterion[]
-  dataRegistry     DataRegistry?                    // Un protocolo tiene 0 o 1 registro de datos
+  dataRegistry     DataRegistry? // Un protocolo tiene 0 o 1 registro de datos
+  formSchema       FormSchema? // Estructura dinámica del formulario
+  evaluations      Evaluation[] // Historial de evaluaciones
 }
 
 // Modelo de Material: Representa un material necesario para un protocolo
 model Material {
   id         String   @id @default(uuid())
-  protocolId String                           // ID del protocolo al que pertenece
-  name       String                           // Nombre del material
-  imageUrl   String?                          // URL de la imagen del material (opcional)
-  order      Int                              // Orden de aparición
+  protocolId String // ID del protocolo al que pertenece
+  name       String // Nombre del material
+  imageUrl   String? // URL de la imagen del material (opcional)
+  order      Int // Orden de aparición
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
@@ -99,7 +111,7 @@ model Material {
 model ChecklistItem {
   id         String   @id @default(uuid())
   protocolId String
-  text       String                           // Texto del item de checklist
+  text       String // Texto del item de checklist
   order      Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -110,10 +122,10 @@ model ChecklistItem {
 model Step {
   id          String   @id @default(uuid())
   protocolId  String
-  stepNumber  Int                              // Número del paso (ej: 1, 2, 3...)
-  title       String                           // Título del paso
-  description String                           // Descripción del paso
-  videoUrl    String?                          // URL del video explicativo (opcional)
+  stepNumber  Int // Número del paso (ej: 1, 2, 3...)
+  title       String // Título del paso
+  description String // Descripción del paso
+  videoUrl    String? // URL del video explicativo (opcional)
   order       Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -124,7 +136,7 @@ model Step {
 model InterruptionCriterion {
   id         String   @id @default(uuid())
   protocolId String
-  text       String                           // Texto del criterio de interrupción
+  text       String // Texto del criterio de interrupción
   order      Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -134,11 +146,49 @@ model InterruptionCriterion {
 // Modelo de DataRegistry: Define cómo se deben registrar los datos del protocolo
 model DataRegistry {
   id          String   @id @default(uuid())
-  protocolId  String   @unique               // ID del protocolo (relación 1 a 1)
-  title       String                           // Título del registro de datos
-  description String                           // Instrucciones para registrar los datos
-  unit        String?                          // Unidad de medida (ej: "kg", "cm") - opcional
+  protocolId  String   @unique // ID del protocolo (relación 1 a 1)
+  title       String // Título del registro de datos
+  description String // Instrucciones para registrar los datos
+  unit        String? // Unidad de medida (ej: "kg", "cm") - opcional
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   protocol    Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// =============================================================================
+// Modelos de la Fase 2: Formularios Dinámicos y Evaluaciones
+// =============================================================================
+
+// Modelo para definir la estructura dinámica de los formularios de cada protocolo.
+// Esto permite que cada protocolo tenga campos diferentes sin cambiar el esquema de la BD.
+model FormSchema {
+  id         String   @id @default(uuid())
+  protocolId String   @unique // Relación 1:1 con Protocol
+  fields     Json // Definición de campos (JSON) - ej: [{name, label, type, required}]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  protocol   Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+}
+
+// Modelo para registrar las evaluaciones y mediciones reales.
+// Usa JSONB (Json) para almacenar los resultados, permitiendo flexibilidad total.
+//
+// Importante: este modelo se desacopló del modelo User. La captura de
+// evaluaciones es PÚBLICA (no requiere login) y la Ficha Técnica base
+// guarda los identificadores en `results.{id_estudiante, evaluado, evaluador}`
+// como strings planos. Por eso no hay foreign keys a User aquí.
+model Evaluation {
+  id          String   @id @default(uuid())
+  protocolId  String
+  date        DateTime @default(now())
+  results     Json     // Datos recolectados (JSON) - ej: { id_estudiante, evaluado, evaluador, ...custom }
+  notes       String?  // Observaciones opcionales
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  protocol  Protocol @relation(fields: [protocolId], references: [id], onDelete: Cascade)
+
+  // Índices para acelerar filtros por protocolo y por fecha (dashboard y listados).
+  @@index([protocolId])
+  @@index([date])
 }
