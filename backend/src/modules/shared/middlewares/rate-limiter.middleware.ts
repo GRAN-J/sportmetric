@@ -10,9 +10,12 @@ import rateLimit from 'express-rate-limit';
 // =============================================================================
 // 1. Rate Limiting general (para todas las rutas)
 // =============================================================================
+// 1000 requests / 15 min: holgado para desarrollo local y herramientas de testing
+// (curl, scripts de seed, peticiones concurrentes del frontend, etc.).
+// En producción, ajustar según la carga esperada del tráfico real.
 export const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,                   // Ventana de tiempo: 15 minutos
-  max: 100,                                   // Máximo de 100 solicitudes por IP en la ventana
+  max: 1000,                                  // Máximo de 1000 solicitudes por IP en la ventana
   message: 'Demasiadas solicitudes desde esta IP, por favor inténtalo de nuevo más tarde.',
   standardHeaders: true,                      // Devuelve info del rate limit en los encabezados RateLimit-*
   legacyHeaders: false,                       // Desactiva los encabezados X-RateLimit-*

@@ -13,6 +13,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import fs from 'fs';
 import path from 'path';
+import * as argon2 from 'argon2';
 
 // Creamos la conexión a PostgreSQL y el adaptador para Prisma
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
@@ -42,7 +43,23 @@ async function main() {
   await prisma.dataRegistry.deleteMany();
   await prisma.protocol.deleteMany();
   await prisma.category.deleteMany();
+  await prisma.user.deleteMany();
   console.log('Base de datos limpiada.');
+
+  // ===========================================================================
+  // 1.1. Creamos el usuario administrador inicial
+  // ===========================================================================
+  console.log('Cargando usuario administrador...');
+  const adminPasswordHash = await argon2.hash('admin1234');
+  await prisma.user.create({
+    data: {
+      name: 'Administrador',
+      email: 'admin@sportmetric.com',
+      passwordHash: adminPasswordHash,
+      role: 'ADMIN'
+    }
+  });
+  console.log('Usuario administrador creado: admin@sportmetric.com / admin1234');
 
   // ===========================================================================
   // 2. Cargamos las categorías en la BD
@@ -177,6 +194,45 @@ async function main() {
     protocolsCount++;
   }
 
+  // ===========================================================================
+  // 4. Cargamos esquemas de formulario iniciales (Fase 2)
+  // ===========================================================================
+  console.log('Cargando esquemas de formulario...');
+
+  const formSchemas = [
+    {
+      protocolId: 'medicion-del-peso',
+      fields: [
+        { name: 'peso', label: 'Peso (kg)', type: 'number', required: true, unit: 'kg' }
+      ]
+    },
+    {
+      protocolId: 'medicion-de-la-talla',
+      fields: [
+        { name: 'talla', label: 'Talla (cm)', type: 'number', required: true, unit: 'cm' }
+      ]
+    },
+    {
+      protocolId: 'medicion-del-perimetro-de-cintura',
+      fields: [
+        { name: 'medicion1', label: 'Medición 1 (cm)', type: 'number', required: true, unit: 'cm' },
+        { name: 'medicion2', label: 'Medición 2 (cm)', type: 'number', required: true, unit: 'cm' }
+      ]
+    }
+  ];
+
+  for (const schema of formSchemas) {
+    await prisma.formSchema.upsert({
+      where: { protocolId: schema.protocolId },
+      update: { fields: schema.fields },
+      create: {
+        protocolId: schema.protocolId,
+        fields: schema.fields
+      }
+    });
+  }
+
+  console.log(`Cargados ${formSchemas.length} esquemas de formulario.`);
   console.log(`Cargados ${protocolsCount} protocolos.`);
   console.log('Seed completado exitosamente!');
 }

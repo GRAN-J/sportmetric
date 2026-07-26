@@ -18,6 +18,8 @@ const allowedOrigins = (env.ALLOWED_ORIGINS ?? env.FRONTEND_URL)
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+console.log('Orígenes permitidos por CORS:', allowedOrigins);
+
 export const corsConfig: CorsOptions = {
   origin: (origin, callback) => {
     // Permitimos herramientas sin origin (Swagger, health checks, Postman local).
@@ -29,9 +31,10 @@ export const corsConfig: CorsOptions = {
       return callback(null, true);
     }
 
+    console.log(`CORS RECHAZADO: El origen "${origin}" no está en la lista permitida:`, allowedOrigins);
     return callback(new Error(`Origen no permitido por CORS: ${origin}`));
   },
-  credentials: true,                                      // Permite credenciales (cookies, tokens)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'],      // Encabezados permitidos
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };

@@ -24,9 +24,19 @@ import { generalLimiter } from './modules/shared/middlewares/rate-limiter.middle
 import { errorHandler } from './modules/shared/filters/error.filter';
 import categoryRoutes from './modules/categories/category.routes';
 import protocolRoutes from './modules/protocols/protocol.routes';
+import authRoutes from './modules/auth/auth.routes';
+import formRoutes from './modules/forms/form.routes';
+import evaluationRoutes from './modules/evaluations/evaluation.routes';
+import userRoutes from './modules/users/user.routes';
+import analyticsRoutes from './modules/analytics/analytics.routes';
 
 // Creamos la instancia de la aplicación Express
 const app = express();
+
+// =============================================================================
+// 0. CORS debe ser lo primero para evitar bloqueos de preflight
+// =============================================================================
+app.use(cors(corsConfig));
 
 // Se configura por entorno para evitar confiar en proxies inexistentes.
 app.set('trust proxy', env.TRUST_PROXY_HOPS);
@@ -36,7 +46,6 @@ app.set('trust proxy', env.TRUST_PROXY_HOPS);
 // =============================================================================
 app.use(pinoHttp({ logger }));                                      // Logging de todas las solicitudes HTTP
 app.use(helmet(helmetConfig));                                      // Seguridad de encabezados HTTP (Helmet)
-app.use(cors(corsConfig));                                          // Configuración de CORS
 app.use(express.json({ limit: '10mb' }));                           // Parsear cuerpos JSON (max 10 MB)
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));     // Parsear cuerpos URL-encoded
 app.use(cookieParser());                                            // Parsear cookies en las solicitudes
@@ -57,6 +66,11 @@ app.get('/api/health', (req, res) => {
 // =============================================================================
 // 3. Rutas principales del dominio
 // =============================================================================
+app.use('/api/auth', authRoutes);
+app.use('/api/forms', formRoutes);
+app.use('/api/evaluations', evaluationRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/analytics', analyticsRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/protocols', protocolRoutes);
 

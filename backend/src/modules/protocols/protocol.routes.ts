@@ -5,11 +5,18 @@
 // =============================================================================
 
 import { Router } from 'express';
-import { getProtocol, getProtocols } from './controllers/protocol.controller';
+import * as protocolController from './controllers/protocol.controller';
+import { authenticate, authorize } from '../../shared/middlewares/auth.middleware';
 
 const router = Router();
 
-router.get('/', getProtocols);
-router.get('/:id', getProtocol);
+// Rutas públicas
+router.get('/', protocolController.getProtocols);
+router.get('/:id', protocolController.getProtocol);
+
+// Rutas administrativas
+router.post('/', authenticate, authorize('ADMIN'), protocolController.create);
+router.patch('/:id', authenticate, authorize('ADMIN'), protocolController.update);
+router.delete('/:id', authenticate, authorize('ADMIN'), protocolController.remove);
 
 export default router;

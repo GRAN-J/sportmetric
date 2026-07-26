@@ -44,3 +44,32 @@ export const getProtocol = asyncHandler(async (req: Request, res: Response) => {
 
   res.json(new ApiResponse(protocol, 'Protocolo obtenido correctamente'));
 });
+
+/**
+ * POST /api/protocols
+ * Crea un protocolo (Admin)
+ */
+export const create = asyncHandler(async (req: Request, res: Response) => {
+  const protocol = await protocolService.createProtocol(req.body);
+  res.status(201).json(new ApiResponse(protocol, 'Protocolo creado correctamente'));
+});
+
+/**
+ * PATCH /api/protocols/:id
+ * Actualiza un protocolo (Admin)
+ */
+export const update = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const protocol = await protocolService.updateProtocol(id as string, req.body);
+  res.json(new ApiResponse(protocol, 'Protocolo actualizado correctamente'));
+});
+
+/**
+ * DELETE /api/protocols/:id
+ * Elimina un protocolo (Admin)
+ */
+export const remove = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await protocolService.deleteProtocol(id as string);
+  res.json(new ApiResponse(null, 'Protocolo eliminado correctamente'));
+});

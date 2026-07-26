@@ -34,3 +34,32 @@ export const getCategory = asyncHandler(async (req: Request, res: Response, _nex
 
   res.json(new ApiResponse(category, 'Categoría obtenida correctamente'));
 });
+
+/**
+ * POST /api/categories
+ * Crea una categoría (Admin)
+ */
+export const create = asyncHandler(async (req: Request, res: Response) => {
+  const category = await categoryService.createCategory(req.body);
+  res.status(201).json(new ApiResponse(category, 'Categoría creada correctamente'));
+});
+
+/**
+ * PATCH /api/categories/:id
+ * Actualiza una categoría (Admin)
+ */
+export const update = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const category = await categoryService.updateCategory(id as string, req.body);
+  res.json(new ApiResponse(category, 'Categoría actualizada correctamente'));
+});
+
+/**
+ * DELETE /api/categories/:id
+ * Elimina una categoría (Admin)
+ */
+export const remove = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await categoryService.deleteCategory(id as string);
+  res.json(new ApiResponse(null, 'Categoría eliminada correctamente'));
+});

@@ -46,3 +46,31 @@ export async function getCategoryById(id: string): Promise<CategoryDTO | null> {
     order: category.order,
   };
 }
+
+/**
+ * Crea una nueva categoría
+ */
+export async function create(data: CategoryDTO) {
+  return prisma.category.create({
+    data,
+  });
+}
+
+/**
+ * Actualiza una categoría
+ */
+export async function update(id: string, data: Partial<Omit<CategoryDTO, 'id'>>) {
+  return prisma.category.update({
+    where: { id },
+    data,
+  });
+}
+
+/**
+ * Elimina una categoría
+ */
+export async function remove(id: string) {
+  return prisma.category.delete({
+    where: { id },
+  });
+}

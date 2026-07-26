@@ -39,6 +39,22 @@ export interface DataRegistryDTO {
   unit?: string | null;
 }
 
+export interface FormFieldDTO {
+  name: string;
+  label: string;
+  type: string;
+  required?: boolean;
+  placeholder?: string;
+  unit?: string;
+  options?: string[];
+  checkboxLabel?: string;
+}
+
+export interface FormSchemaDTO {
+  id?: string;
+  fields: FormFieldDTO[];
+}
+
 export interface ProtocolDTO {
   id: string;
   categoryId: string;
@@ -51,6 +67,7 @@ export interface ProtocolDTO {
   steps: StepDTO[];
   interruptionCrit: InterruptionCriterionDTO[];
   dataRegistry?: DataRegistryDTO | null;
+  formSchema?: FormSchemaDTO | null;
 }
 
 // DTO para la lista de protocolos (solo datos básicos
