@@ -1,3 +1,5 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
 const { prismaMock } = vi.hoisted(() => ({
   prismaMock: {
     protocol: {
@@ -91,6 +93,7 @@ describe('protocol repository', () => {
         steps: { orderBy: { order: 'asc' } },
         interruptionCrit: { orderBy: { order: 'asc' } },
         dataRegistry: true,
+        formSchema: true,
       },
     });
     expect(protocol).toMatchObject({
