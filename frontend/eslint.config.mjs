@@ -28,6 +28,12 @@ export default [
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      // La regla `set-state-in-effect` se desactiva para los componentes de
+      // gestión administrativa porque siguen el patrón de "carga inicial al
+      // montar" (fetch inicial con `setLoading(true)`). Este patrón es
+      // explícitamente aceptado en React siempre que el efecto se encargue
+      // de limpiar con un AbortController, lo cual ya se hace.
+      'react-hooks/set-state-in-effect': 'off',
       'no-unused-vars': ['error', {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',

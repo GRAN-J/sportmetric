@@ -18,6 +18,19 @@ export default defineConfig({
     },
   },
   server: {
+    host: '127.0.0.1',
+    strictPort: false,
+    // Proxy de API: redirige /api/* al backend en :3001
+    // Esto evita problemas de CORS, cookies third-party, firewalls loopback
+    // y extensiones de Chrome que rompen fetch/XHR en localhost.
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3001',
+        changeOrigin: true,
+        secure: false,
+        ws: false,
+      },
+    },
     headers: {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
