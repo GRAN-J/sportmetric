@@ -1,3 +1,5 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
 describe('jwt config', () => {
   beforeEach(() => {
     vi.resetModules();

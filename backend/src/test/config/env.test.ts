@@ -1,3 +1,5 @@
+import { describe, it, expect, beforeEach, afterAll, vi } from 'vitest';
+
 describe('env config', () => {
   const originalEnv = { ...process.env };
 

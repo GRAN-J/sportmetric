@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as categoryRepository from '../../../modules/categories/repositories/category.repository';
 import { getCategories, getCategory } from '../../../modules/categories/services/category.service';
 

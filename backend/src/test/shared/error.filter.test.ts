@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
 import { ApiError } from '../../modules/shared/utils/ApiError';
 import { errorHandler } from '../../modules/shared/filters/error.filter';

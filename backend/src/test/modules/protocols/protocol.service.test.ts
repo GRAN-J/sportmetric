@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as protocolRepository from '../../../modules/protocols/repositories/protocol.repository';
 import {
   getProtocol,

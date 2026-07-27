@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { ApiResponse } from '../../modules/shared/utils/ApiResponse';
 
 describe('ApiResponse', () => {

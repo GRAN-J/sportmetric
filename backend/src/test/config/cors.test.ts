@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { corsConfig } from '../../config/cors';
 
 const resolveOrigin = (origin?: string) =>
