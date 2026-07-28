@@ -6,8 +6,11 @@ frontend/.vite/
 # Backend
 backend/node_modules/
 backend/dist/
-backend/prisma/migrations/
 backend/src/generated/
+
+# Nota: las migraciones de Prisma SI se versionan.
+# Prisma necesita los archivos .sql en el repo para que
+# `prisma migrate deploy` funcione en CI y en Render.
 
 # Variables de entorno
 .env
