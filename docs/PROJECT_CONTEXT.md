@@ -1,59 +1,135 @@
-## Contexto del proyecto
+# Contexto del proyecto
 
-SportMetric Academic es una app web (Vite + React + React Router) orientada a consulta guiada de protocolos de medición física/antropométrica.
+SportMetric Academic es una plataforma web full stack orientada a la consulta guiada, captura y administracion de protocolos de medicion fisica y antropometrica. Combina una vista publica para visitantes y evaluadores, un sistema de autenticacion con recuperacion de contrasena, y un panel administrativo completo para CRUDs y analiticas.
 
-### Stack
+## Stack
 
-- Vite (compilación y servidor de desarrollo)
-- React + React Router (navegación por rutas)
-- Tailwind CSS (sistema visual)
-- JSON como fuente principal de datos para protocolos
-- Framer Motion para transiciones y retroalimentación visual
-- Lucide React para iconografía
+### Frontend
 
-### Estructura (carpetas clave)
+- React 19 + React Router 6 (rutas anidadas, `<Outlet />`, `ProtectedRoute`).
+- Vite como bundler y servidor de desarrollo.
+- Tailwind CSS para el sistema visual.
+- Framer Motion para transiciones.
+- Lucide React para iconografia.
+- Recharts para los graficos del panel admin.
+- Vitest + Testing Library + jsdom para pruebas.
+- ESLint con plugin `react-hooks`.
 
-- `src/pages/Welcome.jsx`: bienvenida con logo principal.
-- `src/pages/Categories.jsx`: categorías de protocolos.
-- `src/pages/ProtocolList.jsx`: listado por categoría con barra de búsqueda.
-- `src/pages/ProtocolDetail.jsx`: contenedor del protocolo (secciones internas + navegación) con carga diferida de secciones.
-- `src/pages/protocol/*`: secciones individuales del protocolo.
-- `src/services/protocolService.js`: carga/orden de protocolos desde JSON con JSDoc completo.
-- `src/data/protocols/*.json`: contenido de protocolos oficiales (solo con `order` numérico).
-- `src/components/ErrorBoundary.jsx`: manejo de errores inesperados.
-- `src/App.jsx`: definición de rutas principales con carga diferida (`lazy`) para reducir el peso inicial y ErrorBoundary.
-- `public/assets/logos`, `public/assets/images`, `public/assets/videos` y `public/assets/placeholders`: ubicación de recursos.
-- `extract_xlsx.js`: herramienta para extraer/sincronizar JSON desde `OVA_TRACKER.xlsx` (archivo local; no se versiona en Git; dependencia `xlsx` eliminada del proyecto).
-- `vitest.config.js` y `src/test/setup.js`: configuración de testing.
+### Backend
 
-### Pipeline de datos (Mermaid)
+- Node.js 22.x con Express 5.
+- TypeScript estricto en todo el codigo de aplicacion.
+- Prisma 7 como ORM con PostgreSQL 16.
+- Argon2 para hashing de contrasenas.
+- `jsonwebtoken` para access y refresh tokens.
+- Helmet con CSP estricta y CORS configurable.
+- Pino para logging.
+- Zod para validacion.
+- Swagger / OpenAPI para documentacion interactiva.
+- Vitest + Supertest para pruebas.
+
+## Capas del backend
+
+```
+src/
+  config/         (env, helmet, cors, rate-limit)
+  modules/
+    auth/         (login, refresh, logout, forgot/reset password)
+    users/        (CRUD de usuarios)
+    categories/   (CRUD de categorias)
+    protocols/    (CRUD de protocolos con relaciones 1:N)
+    forms/        (esquemas de formulario)
+    evaluations/  (CRUD de evaluaciones)
+    analytics/    (resumenes para el dashboard)
+  shared/
+    middlewares/  (authenticate, authorize, rate-limit)
+    filters/      (error filter global)
+    utils/        (ApiResponse, ApiError, logger, etc.)
+```
+
+Cada modulo sigue el patron:
+
+```
+controllers/  -> reciben request, formatean response
+services/     -> logica de negocio, validaciones, transformaciones
+repositories/ -> acceso a datos via Prisma
+routes.ts     -> declaracion de endpoints
+dtos/         -> tipos y esquemas de peticion/respuesta
+utils/        -> helpers especificos del modulo
+```
+
+## Estructura del frontend
+
+```
+src/
+  components/    (DynamicForm, ErrorBoundary, ProtectedRoute, etc.)
+  layout/        (AdminLayout, AuthLayout, MainLayout)
+  pages/
+    Welcome.jsx
+    Categories.jsx
+    ProtocolList.jsx
+    ProtocolDetail.jsx
+    protocol/    (secciones individuales del detalle)
+    auth/        (Login, ForgotPassword, ResetPassword)
+    admin/       (Dashboard, Users, Categories, Protocols, Evaluations, Analytics)
+  services/      (apiClient, xhrFactory, authService, evaluationService, formService, etc.)
+  data/          (modo local: JSON de categorias y protocolos)
+  test/          (suites de Vitest con fixtures)
+```
+
+## Pipeline de datos
+
+### Modo `api` (produccion y desarrollo recomendado)
 
 ```mermaid
 flowchart LR
-  A["OVA_TRACKER.xlsx (local)"] --> B["extract_xlsx.js"]
-  B --> C["Archivos JSON de protocolos"]
-  C --> D["protocolService.js"]
-  D --> E["Pantallas React"]
-  E --> F["Interfaz de usuario"]
+  A[Frontend React] -->|HTTP /api| B[Backend Express]
+  B -->|Prisma| C[(PostgreSQL)]
+  C -->|seed inicial| D[JSON historicos]
 ```
 
-### Seguridad (resumen)
+- El seed inicial (`backend/prisma/seed.ts`) toma los JSON de `frontend/src/data/` y los persiste en PostgreSQL.
+- A partir de ahi, todas las operaciones CRUD se hacen contra la API.
+- El frontend puede seguir mostrando datos locales si `VITE_DATA_SOURCE=local`.
 
-- No se renderiza HTML “crudo” (no se usa `dangerouslySetInnerHTML`).
-- No hay credenciales/keys en el código.
-- Placeholders: se usan recursos embebidos (`data URI`) y assets locales para evitar dependencias externas y bloqueos del navegador.
-- CSP (Content Security Policy): implementada en `index.html` para mitigar XSS.
-- Headers de seguridad: configurados en `vite.config.js` para desarrollo y previsualización.
-- Dependencias actualizadas: vulnerabilidades de `vite` corregidas y dependencia `xlsx` eliminada del proyecto.
+### Modo `local` (desarrollo visual sin backend)
 
-### Comportamiento de la interfaz
+```mermaid
+flowchart LR
+  A[Frontend React] -->|import| B[JSON locales]
+  B --> C[Pantallas]
+```
 
-- La aplicación está pensada con enfoque mobile-first.
-- La navegación inferior se oculta automáticamente al entrar a un protocolo y también al hacer scroll hacia abajo, para liberar espacio útil en pantallas pequeñas.
-- Los protocolos incluyen acciones explícitas de navegación para mejorar la accesibilidad, especialmente en usuarios que no dependen bien de iconos.
+## Seguridad
 
-### Repositorio y despliegue
+- Contrasenas hasheadas con Argon2 (parametrizado para workstation).
+- JWT firmados con `JWT_SECRET` y `JWT_REFRESH_SECRET` separados.
+- Refresh tokens persistidos como hash en BD y rotacion automatica.
+- Tokens de recuperacion: 32 bytes aleatorios, SHA-256 en BD, expiracion 1h, un solo uso.
+- Helmet con CSP estricta, no se permiten `unsafe-inline` ni origines externos.
+- CORS restringido a `ALLOWED_ORIGINS`.
+- Rate limit por IP configurable.
+- Middleware `authenticate` y `authorize('ROLE')` en todas las rutas protegidas.
+- Cliente HTTP con `XMLHttpRequest` (inyectable via `xhrFactory.js`) para evitar bloqueos de extensiones del navegador que sobrescriben `fetch`.
+- Headers anti-cache en endpoints que devuelven esquemas dinamicos.
+- No se renderiza HTML crudo (sin `dangerouslySetInnerHTML`).
+- No hay credenciales ni claves en el repositorio.
 
-- La rama `main` se reserva para producción.
-- La rama `dev` se usa para desarrollo e integración de cambios.
-- `OVA_TRACKER.xlsx` no se incluye en Git; solo se conserva el resultado final en JSON dentro de `src/data/protocols/`.
+## Comportamiento de la interfaz
+
+- Diseno mobile-first.
+- La navegacion inferior se oculta automaticamente al entrar a un protocolo y al hacer scroll hacia abajo.
+- El `DynamicForm` se remonta con un `key` derivado del esquema, lo que reinicia su estado al cambiar la configuracion.
+- Separador visual "Campos personalizados" en el formulario cuando hay campos custom.
+- Asterisco rojo (`*`) indica campos obligatorios.
+- Banner informativo en la pestana "Registro" del editor de Protocolos.
+
+## Repositorio y despliegue
+
+- `main`: rama estable y de referencia.
+- `dev`: integracion y evolucion del trabajo tecnico.
+- `frontend/public/assets/`: logos, imagenes, videos y placeholders.
+- `extract_xlsx.js` (opcional): herramienta local para sincronizar JSON desde `OVA_TRACKER.xlsx` (no se versiona).
+- Recomendacion: frontend en Vercel, backend en Render, PostgreSQL en Render.
+- Estrategia cloud-agnostic: cambiar de proveedor solo requiere modificar variables de entorno.
+- `TRUST_PROXY_HOPS` debe ajustarse segun la cantidad de proxies reales delante del backend.
