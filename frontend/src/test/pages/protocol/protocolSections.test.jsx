@@ -1,4 +1,19 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+// Se define el mock en `vi.hoisted` para que esté disponible ANTES de que
+// Vitest procese los `import` estáticos. Esto evita el race condition típico
+// entre `vi.mock` y los imports.
+const { getFormSchema, saveEvaluation } = vi.hoisted(() => ({
+  getFormSchema: vi.fn(),
+  saveEvaluation: vi.fn(),
+}));
+
+vi.mock('../../../services/formService', () => ({
+  getFormSchema,
+  saveEvaluation,
+}));
+
 import ProtocolObjective from '../../../pages/protocol/ProtocolObjective';
 import ProtocolMaterials from '../../../pages/protocol/ProtocolMaterials';
 import ProtocolDescription from '../../../pages/protocol/ProtocolDescription';
@@ -56,8 +71,19 @@ describe('protocol sections', () => {
     expect(screen.getByText('Paso 2 de 2')).toBeInTheDocument();
   });
 
-  it('renderiza criterios de interrupción y calcula el promedio del registro', () => {
-    render(
+  it('renderiza criterios de interrupción y muestra el DynamicForm con los campos base', async () => {
+    // El backend siempre devuelve los 3 campos base + personalizados.
+    getFormSchema.mockResolvedValue({
+      isGeneric: true,
+      fields: [
+        { name: 'id_estudiante', label: 'ID del estudiante', type: 'text', required: true },
+        { name: 'evaluado', label: 'Nombre del evaluado', type: 'text', required: true },
+        { name: 'evaluador', label: 'Nombre del evaluador', type: 'text', required: true },
+      ],
+    });
+    saveEvaluation.mockResolvedValue({ id: 'eval-1' });
+
+    const { container } = render(
       <>
         <ProtocolInterruption protocol={protocolDetailFixture} />
         <ProtocolDataRegistry protocol={protocolDetailFixture} />
@@ -66,23 +92,40 @@ describe('protocol sections', () => {
 
     expect(screen.getByText('Suspender si el estudiante presenta mareo.')).toBeInTheDocument();
 
-    fireEvent.change(screen.getByPlaceholderText('Ej: Juan Pérez'), {
+    await waitFor(() => {
+      expect(getFormSchema).toHaveBeenCalled();
+    });
+
+    // Buscamos los inputs por atributo `name` para evitar ambigüedades.
+    await waitFor(() => {
+      expect(container.querySelector('input[name="id_estudiante"]')).not.toBeNull();
+    });
+    expect(container.querySelector('input[name="evaluado"]')).not.toBeNull();
+    expect(container.querySelector('input[name="evaluador"]')).not.toBeNull();
+    expect(screen.getByText(/formulario base/i)).toBeInTheDocument();
+
+    fireEvent.change(container.querySelector('input[name="id_estudiante"]'), {
+      target: { value: 'EST-2024-001' },
+    });
+    fireEvent.change(container.querySelector('input[name="evaluado"]'), {
       target: { value: 'Juan Pérez' },
     });
-    fireEvent.change(screen.getByPlaceholderText('Nombre del docente o técnico'), {
+    fireEvent.change(container.querySelector('input[name="evaluador"]'), {
       target: { value: 'Ana Docente' },
     });
-    fireEvent.change(screen.getAllByPlaceholderText('0.00')[0], {
-      target: { value: '10' },
+
+    fireEvent.click(screen.getByRole('button', { name: /Guardar Evaluación/i }));
+
+    await waitFor(() => {
+      expect(saveEvaluation).toHaveBeenCalledWith(
+        expect.objectContaining({
+          results: expect.objectContaining({
+            id_estudiante: 'EST-2024-001',
+            evaluado: 'Juan Pérez',
+            evaluador: 'Ana Docente',
+          }),
+        })
+      );
     });
-    fireEvent.change(screen.getAllByPlaceholderText('0.00')[1], {
-      target: { value: '12' },
-    });
-
-    expect(screen.getByText('11.00')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: /Guardar Datos Localmente/i }));
-
-    expect(screen.getByText('Registro Guardado')).toBeInTheDocument();
   });
 });
