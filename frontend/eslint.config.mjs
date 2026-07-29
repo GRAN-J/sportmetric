@@ -67,4 +67,28 @@ export default [
       },
     },
   },
+  // El proxy reverso vive en api/ (raiz del proyecto) porque Vercel lo
+  // espera ahi. Lo cubrimos desde este config con los globals de Edge
+  // Runtime (Web Standards + process) para que ESLint no reporte falsos
+  // positivos de no-undef.
+  {
+    files: ['../api/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        Request: 'readonly',
+        Response: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Headers: 'readonly',
+        fetch: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    },
+  },
 ];

@@ -1,15 +1,24 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import { cspPlugin } from './vite/csp.js';
 
+// =============================================================================
 // Configuración de Vite:
 // - Plugin de React (SWC).
+// - Plugin CSP para inyectar Content-Security-Policy en el HTML.
+//   La cadena CSP se construye en frontend/vite/csp.js a partir de
+//   variables de entorno, sin URLs hardcodeadas por proveedor.
 // - Alias "@" para importar desde /src sin rutas relativas largas.
 // - Headers de seguridad para desarrollo y previsualización.
-// - Optimización de chunks para reducir tamaño inicial del bundle.
+// - Proxy de /api/* hacia el backend en :3001 durante el dev.
+// - Optimización de chunks para reducir el tamano inicial del bundle.
 // Referencia: https://vitejs.dev/config/
+// =============================================================================
+
 export default defineConfig({
   plugins: [
+    cspPlugin(),
     react(),
   ],
   resolve: {
@@ -20,7 +29,7 @@ export default defineConfig({
   server: {
     host: '127.0.0.1',
     strictPort: false,
-    // Proxy de API: redirige /api/* al backend en :3001
+    // Proxy de API: redirige /api/* al backend en :3001.
     // Esto evita problemas de CORS, cookies third-party, firewalls loopback
     // y extensiones de Chrome que rompen fetch/XHR en localhost.
     proxy: {
