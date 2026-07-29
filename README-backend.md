@@ -65,6 +65,31 @@ ALLOWED_ORIGINS=http://localhost:5173
 TRUST_PROXY_HOPS=0
 ```
 
+### Sintaxis de `ALLOWED_ORIGINS`
+
+Lista separada por comas. Se admiten tres formas:
+
+| Forma              | Ejemplo                                | Descripcion                                                                 |
+|--------------------|----------------------------------------|-----------------------------------------------------------------------------|
+| Origen exacto      | `https://app.ejemplo.com`              | Solo ese origen. Comparacion estricta.                                     |
+| Wildcard dominio   | `*.vercel.app`                         | Cualquier subdominio de `vercel.app` (util para previews de Vercel).        |
+| Wildcard total     | `*`                                    | Permite CUALQUIER origen. Solo para desarrollo local.                      |
+
+Reglas de matching del wildcard de dominio:
+
+- `https://sportmetric.vercel.app` -> permitido con `*.vercel.app`.
+- `https://malicious-vercel.app`   -> bloqueado (no tiene punto antes del sufijo).
+- `https://sportmetric.vercel.app.evil.com` -> bloqueado (sufijo no es el TLD final).
+- `https://vercel.app`             -> bloqueado (apex sin subdominio).
+
+Ejemplo para produccion con Vercel + Render:
+
+```env
+ALLOWED_ORIGINS=https://sportmetric.vercel.app,*.vercel.app
+```
+
+Esto cubre tanto el dominio de produccion como cualquier preview de cualquier rama sin tener que actualizar la variable en cada push.
+
 ## Instalacion y arranque
 
 ```bash
