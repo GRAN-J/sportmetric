@@ -1,9 +1,13 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
+// Importamos el sujeto bajo prueba. vi.mock de '../../config/env' se eleva
+// antes de resolver este import, por lo que corsConfig leera el env mockeado.
+import { corsConfig } from '../../config/cors';
+
 // -----------------------------------------------------------------------------
 // Mock del módulo de env ANTES de importar cors.
 // vi.hoisted ejecuta la fábrica antes que los `import`, lo cual es necesario
-// porque parseOriginRules() lee env.ALLOWED_ORIGINS al cargar el módulo.
+// porque getOriginRules() lee env.ALLOWED_ORIGINS al resolver cada request.
 // -----------------------------------------------------------------------------
 const { mockEnv } = vi.hoisted(() => ({
   mockEnv: { ALLOWED_ORIGINS: undefined as string | undefined, FRONTEND_URL: 'http://localhost:5173' },
@@ -12,9 +16,6 @@ const { mockEnv } = vi.hoisted(() => ({
 vi.mock('../../config/env', () => ({
   env: mockEnv,
 }));
-
-// Importamos después del mock.
-const { corsConfig } = await import('../../config/cors');
 
 const resolveOrigin = (origin?: string) =>
   new Promise<{ error: Error | null; allowed: unknown }>((resolve) => {
