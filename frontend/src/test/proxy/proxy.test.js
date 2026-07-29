@@ -4,9 +4,7 @@ import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
 // Importamos la logica del proxy reverso (serverless function de Vercel)
 // desde la raiz del proyecto, donde Vercel lo deploya automaticamente.
-import proxyModule from '../../../../api/proxy.js';
-
-const { buildTarget, default: handler, config } = proxyModule;
+import handler, { buildTarget, config } from '../../../../api/proxy.js';
 
 describe('buildTarget (logica pura del proxy)', () => {
   it('construye la URL destino reemplazando /api por la URL del backend', () => {
@@ -125,18 +123,23 @@ describe('handler (integracion con fetch mockeado)', () => {
       new Response(JSON.stringify({ created: true }), { status: 201 })
     );
 
+    const bodyJson = JSON.stringify({ name: 'Ana' });
     const request = new Request('https://app.vercel.app/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: 'Ana' }),
+      body: bodyJson,
     });
 
     const response = await handler(request);
 
     expect(fetchSpy).toHaveBeenCalledOnce();
-    const [, calledInit] = fetchSpy.mock.calls[0];
+    const [calledUrl, calledInit] = fetchSpy.mock.calls[0];
+    expect(calledUrl).toBe('https://api.mi-dominio.com/users');
     expect(calledInit.method).toBe('POST');
-    expect(calledInit.body).toBe(JSON.stringify({ name: 'Ana' }));
+    // new Request() convierte el body string en un ReadableStream. Lo
+    // envolvemos en una Response para poder leerlo de vuelta como texto.
+    const sentBody = await new Response(calledInit.body).text();
+    expect(sentBody).toBe(bodyJson);
     expect(response.status).toBe(201);
   });
 
