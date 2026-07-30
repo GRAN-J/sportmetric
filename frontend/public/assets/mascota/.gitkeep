@@ -1,0 +1,6 @@
+Esta carpeta guarda los archivos de la mascota de SportMetric.
+
+Cuando llegue el asset real, subirlo con el nombre `mascota-principal`
+en cualquiera de las extensiones soportadas (ver README raiz de /assets).
+El componente Welcome lo detecta automaticamente y hace fallback al
+placeholder SVG si el archivo aun no esta.

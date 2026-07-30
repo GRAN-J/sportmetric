@@ -1,0 +1,10 @@
+Esta carpeta guarda los placeholders de imagenes de materiales.
+
+Los nombres de archivo esperados (en formato kebab-case) coinciden
+con los declarados en los JSON de cada protocolo bajo
+`materials[].image`. Para que un material se muestre, basta con subir
+el archivo correspondiente a esta carpeta con el nombre y extension
+exactos declarados en el JSON.
+
+Para la convencion completa de nombres, extensiones soportadas y
+procedimiento de alta, consulta el README en la raiz de /assets.

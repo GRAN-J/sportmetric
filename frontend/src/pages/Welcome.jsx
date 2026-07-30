@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowRight, Library, Verified, BarChart3 } from 'lucide-react';
@@ -5,8 +6,13 @@ import { GraduationCap, ArrowRight, Library, Verified, BarChart3 } from 'lucide-
 // Pantalla de bienvenida (entrada al flujo oficial).
 // - Presenta la identidad de SportMetric Academic.
 // - Dirige a Categorías o a la lista global de Protocolos.
+const MASCOT_PATH = '/assets/mascota/mascota-principal.png';
+
 const Welcome = () => {
   const navigate = useNavigate();
+
+  // Marcador de posicion SVG que se muestra mientras no exista el archivo
+  // real de la mascota. Esta es la fuente de verdad visual del fallback.
   const mascotPlaceholder = `data:image/svg+xml;utf8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
       <defs>
@@ -22,6 +28,20 @@ const Welcome = () => {
       <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">SportMetric</text>
     </svg>
   `)}`;
+
+  // Si el archivo de la mascota existe en /public/assets/mascota/, se
+  // muestra ese. Si no, se muestra el placeholder SVG. Asi, cuando alguien
+  // suba el archivo real a la ruta esperada, se ve sin tocar codigo.
+  const [mascotSrc, setMascotSrc] = useState(mascotPlaceholder);
+
+  useEffect(() => {
+    const probe = new Image();
+    probe.onload = () => setMascotSrc(MASCOT_PATH);
+    probe.onerror = () => {
+      // El archivo aun no existe. Mantenemos el placeholder.
+    };
+    probe.src = MASCOT_PATH;
+  }, []);
 
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
@@ -104,11 +124,12 @@ const Welcome = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-teal-accent/10 to-primary-fixed/20 rounded-full blur-3xl -z-10 transform scale-110" />
           <div className="relative w-full aspect-square max-w-[500px] flex items-center justify-center">
-            {/* Marcador de posición de mascota basado en el estilo del mockup */}
+            {/* Mascota: usa el archivo real si existe en /public/assets/mascota/,
+                si no, mantiene el placeholder SVG generado arriba. */}
             <img 
               alt="Mascota guía de SportMetric" 
               className="w-full h-auto object-contain drop-shadow-2xl z-10" 
-              src={mascotPlaceholder}
+              src={mascotSrc}
             />
           </div>
         </motion.div>

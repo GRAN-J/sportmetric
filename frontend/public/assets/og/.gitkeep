@@ -1,0 +1,9 @@
+Esta carpeta guarda los assets para Open Graph (preview al compartir
+en WhatsApp, Twitter, LinkedIn, etc.).
+
+Subir el archivo `og-image.png` (recomendado 1200x630 px) a esta
+carpeta para que se muestre como preview al compartir la URL de la
+app. Las dimensiones recomendadas son 1200x630 px en formato PNG o
+JPG.
+
+Para mas detalle consulta el README en la raiz de /assets.
