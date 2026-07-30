@@ -58,26 +58,46 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
+        // Estrategia de chunks:
+        // - vendor-router / vendor-motion / vendor-icons / vendor-react:
+        //   libs que se usan en el bundle principal. Se aislan para
+        //   aprovechar la cache de largo plazo del navegador.
+        // - vendor-jspdf / vendor-recharts: libs pesadas que SOLO se
+        //   usan dentro de chunks lazy (exportUtils, Statistics). Se
+        //   nombran explicitamente para evitar que el catch-all
+        //   vendor-utils las empaquete junto al bundle principal.
+        //   Vite anade <link rel="modulepreload"> en el HTML, lo que
+        //   descarga los bytes en paralelo pero el bundle principal
+        //   parsea mas rapido al no tener que ejecutar ese codigo.
+        // - vendor-utils: catch-all para modulos pequenos de
+        //   node_modules (clsx, tailwind-merge, etc.).
         manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('react-router-dom') || id.includes('@remix-run/router')) {
-              return 'vendor-router';
-            }
-            if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils')) {
-              return 'vendor-motion';
-            }
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons';
-            }
-            if (
-              id.includes('/react/') ||
-              id.includes('/react-dom/') ||
-              id.includes('/scheduler/')
-            ) {
-              return 'vendor-react';
-            }
-            return 'vendor-utils';
+          if (!id.includes('node_modules')) {
+            return undefined;
           }
+          if (id.includes('react-router-dom') || id.includes('@remix-run/router')) {
+            return 'vendor-router';
+          }
+          if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils')) {
+            return 'vendor-motion';
+          }
+          if (id.includes('lucide-react')) {
+            return 'vendor-icons';
+          }
+          if (
+            id.includes('/react/') ||
+            id.includes('/react-dom/') ||
+            id.includes('/scheduler/')
+          ) {
+            return 'vendor-react';
+          }
+          if (id.includes('jspdf') || id.includes('jspdf-autotable')) {
+            return 'vendor-jspdf';
+          }
+          if (id.includes('recharts') || id.includes('d3-') || id.includes('/d3/')) {
+            return 'vendor-recharts';
+          }
+          return 'vendor-utils';
         },
       },
     },

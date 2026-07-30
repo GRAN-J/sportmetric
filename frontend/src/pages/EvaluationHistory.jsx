@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 import { History, FileText, Download, Search, Filter, ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getStudentHistory } from '../services/formService';
-import { exportEvaluationToPDF, exportEvaluationsToCSV } from '../shared/utils/exportUtils';
+// OPTIMIZACION: jspdf y jspdf-autotable suman ~350 KB al bundle. Se cargan
+// de forma diferida SOLO cuando el usuario hace clic en "Descargar PDF" o
+// "Exportar CSV", evitando penalizar la primera carga de esta pagina y
+// de las paginas que la referencian. El CSV no requiere jspdf, pero vive
+// en el mismo modulo para mantener cohesion (un solo chunk de export).
 
 const EvaluationHistory = () => {
   const { studentId } = useParams();
@@ -38,9 +42,22 @@ const EvaluationHistory = () => {
     return { id, title: history.find(ev => ev.protocolId === id).protocol.title };
   });
 
+  // OPTIMIZACION: handlers async con dynamic import. Vite genera un chunk
+  // aparte para exportUtils (con jspdf y jspdf-autotable) que solo se
+  // descarga cuando el usuario hace clic en uno de los botones.
+  const handleExportCSV = async () => {
+    const { exportEvaluationsToCSV } = await import('../shared/utils/exportUtils');
+    exportEvaluationsToCSV(filteredHistory);
+  };
+
+  const handleExportPDF = async (evaluation) => {
+    const { exportEvaluationToPDF } = await import('../shared/utils/exportUtils');
+    exportEvaluationToPDF(evaluation);
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      <button 
+      <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors"
       >
@@ -53,10 +70,10 @@ const EvaluationHistory = () => {
           <History size={32} />
           <h1 className="text-3xl font-bold">Historial de Evaluaciones</h1>
         </div>
-        
+
         <div className="flex gap-2">
-          <button 
-            onClick={() => exportEvaluationsToCSV(filteredHistory)}
+          <button
+            onClick={handleExportCSV}
             className="flex items-center gap-2 bg-white border border-gray-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
           >
             <Download size={18} />
@@ -130,8 +147,8 @@ const EvaluationHistory = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <button 
-                      onClick={() => exportEvaluationToPDF(ev)}
+                    <button
+                      onClick={() => handleExportPDF(ev)}
                       className="text-teal-600 hover:text-teal-700 p-2 rounded-lg hover:bg-teal-100 transition-colors"
                       title="Descargar Ficha Técnica PDF"
                     >
