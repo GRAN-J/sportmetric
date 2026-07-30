@@ -60,9 +60,22 @@ export const logout = async () => {
 };
 
 /**
- * Intenta renovar el access token al arrancar la app
+ * Intenta renovar el access token al arrancar la app.
+ *
+ * OPTIMIZACION: si NO hay un usuario persistido en localStorage, no se hace
+ * ninguna request al backend (no hay sesion que renovar). Esto evita la
+ * demora del "Verificando sesion..." para visitantes que recien llegan
+ * o usuarios que recargan la pagina de Welcome / Login.
+ *
+ * Si la renovacion falla, se limpia la sesion local y se devuelve false
+ * (las rutas protegidas redirigen al login).
  */
 export const checkAuthStatus = async () => {
+  if (!getUser()) {
+    accessToken = null;
+    return false;
+  }
+
   try {
     const data = await apiPost('/api/auth/refresh');
     accessToken = data.accessToken;

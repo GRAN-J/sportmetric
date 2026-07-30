@@ -23,6 +23,7 @@ const authService = await import('../../services/authService');
 describe('authService', () => {
   beforeEach(() => {
     localStorage.clear();
+    vi.clearAllMocks();
   });
 
   describe('getUser', () => {
@@ -118,7 +119,23 @@ describe('authService', () => {
   });
 
   describe('checkAuthStatus', () => {
+    it('NO llama al backend si no hay usuario persistido (check optimista)', async () => {
+      // OPTIMIZACION: si no hay sesion local, no se gasta una request en
+      // el endpoint /api/auth/refresh. Esto evita la demora del
+      // "Verificando sesion..." para visitantes que recien llegan.
+      const result = await authService.checkAuthStatus();
+
+      expect(apiPost).not.toHaveBeenCalled();
+      expect(result).toBe(false);
+      expect(authService.getAccessToken()).toBeNull();
+    });
+
     it('renueva el access token al llamar al endpoint /api/auth/refresh', async () => {
+      // Solo se renueva si hay un usuario persistido (sesion previa).
+      localStorage.setItem(
+        'sportmetric_user',
+        JSON.stringify({ id: 'u-1', email: 'a@x.com', role: 'ADMIN' })
+      );
       apiPost.mockResolvedValue({ accessToken: 'new-access' });
 
       const result = await authService.checkAuthStatus();
@@ -129,12 +146,18 @@ describe('authService', () => {
     });
 
     it('retorna false y limpia el token si el refresh falla', async () => {
+      localStorage.setItem(
+        'sportmetric_user',
+        JSON.stringify({ id: 'u-1', email: 'a@x.com', role: 'ADMIN' })
+      );
       apiPost.mockRejectedValue(new Error('expired'));
 
       const result = await authService.checkAuthStatus();
 
+      expect(apiPost).toHaveBeenCalledWith('/api/auth/refresh');
       expect(result).toBe(false);
       expect(authService.getAccessToken()).toBeNull();
+      expect(localStorage.getItem('sportmetric_user')).toBeNull();
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -28,19 +28,17 @@ const AppLoading = () => (
 );
 
 function App() {
-  const [initializing, setInitializing] = useState(true);
-
+  // OPTIMIZACION: la app se renderiza inmediatamente sin esperar la
+  // verificacion de sesion. Si el usuario esta logueado, el token se
+  // renueva en background y las rutas protegidas (ProtectedRoute)
+  // redirigen a /login si la sesion caduco. Esto elimina la pantalla
+  // "Verificando sesion..." que demoraba la primera pintura de la app,
+  // especialmente en backends de plan free que tardan en despertar.
   useEffect(() => {
-    const initAuth = async () => {
-      await checkAuthStatus();
-      setInitializing(false);
-    };
-    initAuth();
+    checkAuthStatus().catch(() => {
+      // Silenciar errores: ya se manejan dentro de checkAuthStatus.
+    });
   }, []);
-
-  if (initializing) {
-    return <AppLoading />;
-  }
 
   return (
     <ErrorBoundary>
@@ -55,7 +53,7 @@ function App() {
             <Route path="/protocol/:protocolId/*" element={<ProtocolDetail />} />
           </Route>
 
-          {/* Rutas de Administración */}
+          {/* Rutas de Administracion */}
           <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
