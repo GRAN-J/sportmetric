@@ -67,6 +67,22 @@ export default [
       },
     },
   },
+  // Scripts de build/auxiliares que corren en Node (postbuild, etc.).
+  // Se ejecutan solo en la maquina del desarrollador o en el CI, nunca
+  // en el navegador. Por eso llevan los globals de Node completos.
+  {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    },
+  },
   // El proxy reverso vive en api/ (raiz del proyecto) porque Vercel lo
   // espera ahi. Lo cubrimos desde este config con los globals de Edge
   // Runtime (Web Standards + process) para que ESLint no reporte falsos
