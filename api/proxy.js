@@ -59,13 +59,18 @@ const splitCsv = (raw) =>
 
 /**
  * Construye la URL destino en el backend a partir de la request entrante.
- * - Quita el prefijo "/api" del pathname.
+ * - Mantiene el path completo, incluido el prefijo "/api". El backend
+ *   expone sus rutas con ese prefijo (ej. GET /api/categories), asi que
+ *   quitarlo provocaria 404 en el backend.
  * - Conserva la query string.
- * - Aplica validaciones de seguridad (path traversal, paths bloqueados).
+ * - Aplica validaciones de seguridad (path traversal, paths bloqueados)
+ *   sobre el path SIN el prefijo "/api", para que el operador configure
+ *   la lista de bloqueo con paths logicos (ej. "/admin/internal" en
+ *   lugar de "/api/admin/internal").
  *
  * @param {URL} incomingUrl  URL parseada de la request entrante.
  * @param {string} backendUrl URL base del backend (sin slash final).
- * @param {string[]} blockedPaths Sub-paths que no se permiten.
+ * @param {string[]} blockedPaths Sub-paths que no se permiten (sin /api).
  * @returns {{ ok: true, target: string } | { ok: false, status: number, message: string }}
  */
 export const buildTarget = (incomingUrl, backendUrl, blockedPaths = []) => {
@@ -73,18 +78,23 @@ export const buildTarget = (incomingUrl, backendUrl, blockedPaths = []) => {
     return { ok: false, status: 500, message: 'BACKEND_URL no esta configurada' };
   }
 
-  const cleanedPath = incomingUrl.pathname.replace(/^\/api/, '');
-  const safePath = cleanedPath.startsWith('/') ? cleanedPath : `/${cleanedPath}`;
+  const fullPath = incomingUrl.pathname;
+
+  // Path relativo (sin /api) usado para validar contra PROXY_BLOCKED_PATHS.
+  // Si el path es exactamente "/api", el replace lo deja vacio y lo
+  // normalizamos a "/" para que la validacion de startsWith funcione bien.
+  const relativePath = fullPath.replace(/^\/api/, '') || '/';
+  const safeRelativePath = relativePath.startsWith('/') ? relativePath : `/${relativePath}`;
 
   for (const blocked of blockedPaths) {
-    if (safePath === blocked || safePath.startsWith(`${blocked}/`)) {
+    if (safeRelativePath === blocked || safeRelativePath.startsWith(`${blocked}/`)) {
       return { ok: false, status: 403, message: 'Path bloqueado' };
     }
   }
 
   return {
     ok: true,
-    target: `${backendUrl.replace(/\/$/, '')}${safePath}${incomingUrl.search}`,
+    target: `${backendUrl.replace(/\/$/, '')}${fullPath}${incomingUrl.search}`,
   };
 };
 

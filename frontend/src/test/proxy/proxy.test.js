@@ -7,34 +7,40 @@ import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import handler, { buildTarget, config } from '../../../../api/proxy.js';
 
 describe('buildTarget (logica pura del proxy)', () => {
-  it('construye la URL destino reemplazando /api por la URL del backend', () => {
+  it('construye la URL destino conservando el prefijo /api del backend', () => {
+    // El backend expone sus rutas con el prefijo /api (ej. GET /api/categories).
+    // El proxy debe mantenerlo para que el backend pueda resolver la ruta.
     const incomingUrl = new URL('https://app.vercel.app/api/users?page=1');
     const result = buildTarget(incomingUrl, 'https://api.mi-dominio.com', []);
 
     expect(result.ok).toBe(true);
-    expect(result.target).toBe('https://api.mi-dominio.com/users?page=1');
+    expect(result.target).toBe('https://api.mi-dominio.com/api/users?page=1');
   });
 
   it('conserva la query string', () => {
     const incomingUrl = new URL('https://app.vercel.app/api/foo?a=1&b=2');
     const result = buildTarget(incomingUrl, 'https://api.com', []);
 
-    expect(result.target).toBe('https://api.com/foo?a=1&b=2');
+    expect(result.target).toBe('https://api.com/api/foo?a=1&b=2');
   });
 
   it('tolera que la URL del backend tenga slash final', () => {
     const incomingUrl = new URL('https://app.vercel.app/api/foo');
     const result = buildTarget(incomingUrl, 'https://api.com/', []);
 
-    expect(result.target).toBe('https://api.com/foo');
+    expect(result.target).toBe('https://api.com/api/foo');
   });
 
-  it('asegura que el path empieza con / despues de quitar /api', () => {
+  it('normaliza a "/" cuando el path entrante es exactamente /api', () => {
+    // El path relativo se usa para validar contra PROXY_BLOCKED_PATHS.
+    // Cuando llega solo "/api" el relativePath queda vacio y se normaliza
+    // a "/" para que las comparaciones de startsWith sean correctas.
     const incomingUrl = new URL('https://app.vercel.app/api');
     const result = buildTarget(incomingUrl, 'https://api.com', []);
 
     expect(result.ok).toBe(true);
-    expect(result.target).toBe('https://api.com/');
+    // El target mantiene la URL completa (con /api) hacia el backend.
+    expect(result.target).toBe('https://api.com/api');
   });
 
   it('rechaza cuando BACKEND_URL no esta configurada', () => {
@@ -46,6 +52,8 @@ describe('buildTarget (logica pura del proxy)', () => {
   });
 
   it('bloquea paths que coinciden con la lista de PROXY_BLOCKED_PATHS', () => {
+    // La lista de bloqueo se configura con paths logicos (sin /api) y
+    // el proxy los compara contra el path relativo.
     const incomingUrl = new URL('https://app.vercel.app/api/admin/internal');
     const result = buildTarget(incomingUrl, 'https://api.com', ['/admin/internal']);
 
@@ -66,7 +74,7 @@ describe('buildTarget (logica pura del proxy)', () => {
     const result = buildTarget(incomingUrl, 'https://api.com', ['/admin/internal']);
 
     expect(result.ok).toBe(true);
-    expect(result.target).toBe('https://api.com/public');
+    expect(result.target).toBe('https://api.com/api/public');
   });
 });
 
@@ -110,7 +118,8 @@ describe('handler (integracion con fetch mockeado)', () => {
 
     expect(fetchSpy).toHaveBeenCalledOnce();
     const [calledUrl, calledInit] = fetchSpy.mock.calls[0];
-    expect(calledUrl).toBe('https://api.mi-dominio.com/users?page=1');
+    // El proxy mantiene el prefijo /api para que el backend resuelva la ruta.
+    expect(calledUrl).toBe('https://api.mi-dominio.com/api/users?page=1');
     expect(calledInit.method).toBe('GET');
     const headers = calledInit.headers;
     expect(headers.get('X-Forwarded-By')).toBe('vercel-edge-proxy');
@@ -134,7 +143,7 @@ describe('handler (integracion con fetch mockeado)', () => {
 
     expect(fetchSpy).toHaveBeenCalledOnce();
     const [calledUrl, calledInit] = fetchSpy.mock.calls[0];
-    expect(calledUrl).toBe('https://api.mi-dominio.com/users');
+    expect(calledUrl).toBe('https://api.mi-dominio.com/api/users');
     expect(calledInit.method).toBe('POST');
     // new Request() convierte el body string en un ReadableStream. Lo
     // envolvemos en una Response para poder leerlo de vuelta como texto.
