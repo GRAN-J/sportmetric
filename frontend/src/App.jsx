@@ -7,6 +7,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 const Welcome = lazy(() => import('./pages/Welcome'));
 const Login = lazy(() => import('./pages/Login'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Categories = lazy(() => import('./pages/Categories'));
 const ProtocolList = lazy(() => import('./pages/ProtocolList'));
 const ProtocolDetail = lazy(() => import('./pages/ProtocolDetail'));
@@ -46,6 +48,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route element={<MainLayout />}>
             <Route path="/categories" element={<Categories />} />
             <Route path="/history/:studentId" element={<EvaluationHistory />} />

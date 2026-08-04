@@ -160,4 +160,45 @@ describe('authService', () => {
       expect(localStorage.getItem('sportmetric_user')).toBeNull();
     });
   });
+
+  describe('forgotPassword', () => {
+    it('envia el correo al endpoint /api/auth/forgot-password', async () => {
+      apiPost.mockResolvedValue({
+        message: 'Si el correo está registrado, recibirás instrucciones en breve',
+      });
+
+      await authService.forgotPassword('a@x.com');
+
+      expect(apiPost).toHaveBeenCalledWith('/api/auth/forgot-password', {
+        email: 'a@x.com',
+      });
+    });
+
+    it('propaga errores del backend', async () => {
+      apiPost.mockRejectedValue(new Error('network down'));
+
+      await expect(authService.forgotPassword('a@x.com')).rejects.toThrow('network down');
+    });
+  });
+
+  describe('resetPassword', () => {
+    it('envia el token y la nueva contrasena al endpoint /api/auth/reset-password', async () => {
+      apiPost.mockResolvedValue({ message: 'Contraseña restablecida correctamente' });
+
+      await authService.resetPassword('token-abc', 'newPass123');
+
+      expect(apiPost).toHaveBeenCalledWith('/api/auth/reset-password', {
+        token: 'token-abc',
+        newPassword: 'newPass123',
+      });
+    });
+
+    it('propaga errores cuando el token es invalido o expiro', async () => {
+      apiPost.mockRejectedValue(new Error('Token inválido o expirado'));
+
+      await expect(authService.resetPassword('bad', 'newPass123')).rejects.toThrow(
+        'Token inválido o expirado'
+      );
+    });
+  });
 });

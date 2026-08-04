@@ -86,3 +86,20 @@ export const checkAuthStatus = async () => {
     return false;
   }
 };
+
+/**
+ * Solicita el envio de instrucciones de recuperacion al correo indicado.
+ * Por seguridad, la API siempre responde 200 sin revelar si el correo
+ * existe. La UI muestra el mismo mensaje de exito en ambos casos.
+ */
+export const forgotPassword = async (email) => {
+  return apiPost('/api/auth/forgot-password', { email });
+};
+
+/**
+ * Restablece la contrasena usando el token recibido por correo.
+ * El token se valida en el backend junto con la nueva contrasena.
+ */
+export const resetPassword = async (token, newPassword) => {
+  return apiPost('/api/auth/reset-password', { token, newPassword });
+};

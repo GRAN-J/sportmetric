@@ -33,6 +33,13 @@ describe('Login', () => {
     expect(screen.getByRole('button', { name: /iniciar sesión/i })).toBeInTheDocument();
   });
 
+  it('muestra el enlace para recuperar contrasena', () => {
+    renderLogin();
+    const link = screen.getByRole('link', { name: /olvidaste tu contraseña/i });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/forgot-password');
+  });
+
   it('muestra mensaje de error cuando el login falla', async () => {
     login.mockRejectedValue(new Error('Credenciales inválidas'));
 
