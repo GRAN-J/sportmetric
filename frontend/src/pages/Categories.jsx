@@ -10,6 +10,10 @@ import {
   StretchHorizontal,
 } from 'lucide-react';
 import { getCategories } from '../services/categoryService';
+// OPTIMIZACION: importamos los datos locales para inicializar el state.
+// Asi evitamos el flash de "Cargando categorias..." cuando el usuario
+// no esta autenticado (los locales se muestran de inmediato, sin fetches).
+import { categories as localCategories } from '../data/categories';
 
 const CATEGORY_ICONS = {
   Activity,
@@ -58,8 +62,12 @@ const CategoryCard = ({ category, index, onClick }) => {
 // - Cada tarjeta dirige a la lista de protocolos de la categoría.
 const Categories = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // OPTIMIZACION: inicializamos con los datos locales para evitar el
+  // spinner de "Cargando...". Si el usuario esta autenticado, el useEffect
+  // hara un refetch al backend en background; si no, no se hace ningun
+  // fetch y la pagina se ve instantanea.
+  const [categories, setCategories] = useState(localCategories);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -67,9 +75,11 @@ const Categories = () => {
 
     const loadCategories = async () => {
       try {
-        setLoading(true);
         setError('');
         const data = await getCategories({ signal: controller.signal });
+        if (controller.signal.aborted) {
+          return;
+        }
         setCategories(data);
       } catch (loadError) {
         if (controller.signal.aborted) {

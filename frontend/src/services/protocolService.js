@@ -6,6 +6,7 @@
 // =============================================================================
 
 import { apiGet, isApiDataSource } from './apiClient';
+import { isAuthenticated } from './authService';
 
 // Carga todos los módulos de protocolos desde la carpeta data/protocols.
 const protocolModules = import.meta.glob('../data/protocols/*.json', { eager: true });
@@ -71,7 +72,9 @@ const getAllProtocolsMeta = async (options = {}) => {
     return protocolMetaCache;
   }
 
-  if (!isApiDataSource()) {
+  // OPTIMIZACION: si NO hay sesion activa, usar datos locales (instantaneo).
+  // Solo los admin autenticados consultan la API para ver cambios recientes.
+  if (!isApiDataSource() || !isAuthenticated()) {
     protocolMetaCache = protocolListSorted.map(localListToMeta);
     return protocolMetaCache;
   }
@@ -87,7 +90,8 @@ const getAllProtocolsMeta = async (options = {}) => {
  * Si la categoría es `all`, devuelve todos.
  */
 export const getProtocolsByCategory = async (categoryId, options = {}) => {
-  if (!isApiDataSource()) {
+  // OPTIMIZACION: si NO hay sesion, usar locales.
+  if (!isApiDataSource() || !isAuthenticated()) {
     const protocols = await getAllProtocolsMeta();
     if (categoryId === 'all') {
       return protocols;
@@ -128,7 +132,8 @@ export const getNextProtocolId = async (currentProtocolId, categoryId, options =
  * Obtiene el detalle completo de un protocolo por su ID.
  */
 export const getProtocolById = async (protocolId, options = {}) => {
-  if (!isApiDataSource()) {
+  // OPTIMIZACION: si NO hay sesion, usar local.
+  if (!isApiDataSource() || !isAuthenticated()) {
     return protocolById.get(protocolId) || null;
   }
 

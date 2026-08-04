@@ -1,5 +1,6 @@
 const loadProtocolService = async ({
   apiMode = false,
+  authenticated = false,
   listPayload = [],
   categoryPayload = [],
   detailPayload = null,
@@ -25,6 +26,9 @@ const loadProtocolService = async ({
   vi.doMock('../../services/apiClient', () => ({
     apiGet,
     isApiDataSource: () => apiMode,
+  }));
+  vi.doMock('../../services/authService', () => ({
+    isAuthenticated: () => authenticated,
   }));
 
   const service = await import('../../services/protocolService');
@@ -71,6 +75,7 @@ describe('protocolService', () => {
   it('mapea correctamente la respuesta del backend en modo API', async () => {
     const { getProtocolById, getProtocolsByCategory, getNextProtocolId, apiGet } = await loadProtocolService({
       apiMode: true,
+      authenticated: true,
       listPayload: [
         {
           id: 'medicion-del-peso',
@@ -151,6 +156,7 @@ describe('protocolService', () => {
   it('usa el listado global solo cuando la categoría es all en modo API', async () => {
     const { getProtocolsByCategory, apiGet } = await loadProtocolService({
       apiMode: true,
+      authenticated: true,
       listPayload: [
         {
           id: 'medicion-del-peso',
@@ -167,6 +173,30 @@ describe('protocolService', () => {
 
     expect(protocols).toHaveLength(1);
     expect(apiGet).toHaveBeenCalledWith('/api/protocols', {});
+  });
+
+  it('usa datos locales cuando la fuente es remota pero NO hay sesion', async () => {
+    // OPTIMIZACION: visitante publico no paga el cold start de Render.
+    const { getProtocolsByCategory, getProtocolById, apiGet } = await loadProtocolService({
+      apiMode: true,
+      authenticated: false,
+      listPayload: [
+        {
+          id: 'medicion-del-peso',
+          categoryId: 'composicion-corporal',
+          order: 1,
+          title: 'Medición del peso',
+        },
+      ],
+    });
+
+    const protocolsByCategory = await getProtocolsByCategory('composicion-corporal');
+    const protocolDetail = await getProtocolById('medicion-del-peso');
+
+    expect(apiGet).not.toHaveBeenCalled();
+    expect(protocolsByCategory.length).toBeGreaterThan(0);
+    expect(protocolDetail).not.toBeNull();
+    expect(protocolDetail.id).toBe('medicion-del-peso');
   });
 
   it('devuelve todos los protocolos locales cuando la categoría es all', async () => {

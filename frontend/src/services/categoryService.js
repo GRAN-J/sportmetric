@@ -6,14 +6,17 @@
 
 import { categories as localCategories } from '../data/categories';
 import { apiGet, isApiDataSource } from './apiClient';
+import { isAuthenticated } from './authService';
 
 /**
  * Obtiene las categorías disponibles.
  * - En modo local usa el archivo categories.js.
- * - En modo api consulta el backend.
+ * - En modo api consulta el backend, PERO solo si el usuario esta
+ *   autenticado. Los visitantes sin sesion reciben los datos locales
+ *   para evitar pagar el cold start de Render en cada visita publica.
  */
 export const getCategories = async (options = {}) => {
-  if (!isApiDataSource()) {
+  if (!isApiDataSource() || !isAuthenticated()) {
     return localCategories;
   }
 
