@@ -14,10 +14,10 @@
     "test:coverage": "vitest run --coverage",
     "db:generate": "prisma generate",
     "db:migrate:dev": "prisma migrate dev",
-    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:deploy": "node scripts/migrate-deploy.mjs",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "deploy:render": "npm run build && npm run db:migrate:deploy"
+    "deploy:render": "npm run build && npm run db:migrate:deploy && npm run db:seed"
   },
   "keywords": [
     "sportmetric",
