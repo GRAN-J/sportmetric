@@ -121,16 +121,61 @@ npm run dev
 
 - `GET /api/health`
 
-### Categorias
+### Autenticacion (`/api/auth`)
+
+- `POST /api/auth/login`
+- `POST /api/auth/refresh`
+- `POST /api/auth/logout`
+- `POST /api/auth/forgot-password`
+- `POST /api/auth/reset-password`
+- `GET /api/auth/me`
+
+### Categorias (`/api/categories`)
 
 - `GET /api/categories`
 - `GET /api/categories/:id`
 - `GET /api/categories/:id/protocols`
+- `POST /api/categories` (ADMIN)
+- `PATCH /api/categories/:id` (ADMIN)
+- `DELETE /api/categories/:id` (ADMIN)
 
-### Protocolos
+### Protocolos (`/api/protocols`)
 
 - `GET /api/protocols`
 - `GET /api/protocols/:id`
+- `POST /api/protocols` (ADMIN)
+- `PATCH /api/protocols/:id` (ADMIN)
+- `DELETE /api/protocols/:id` (ADMIN)
+
+### Esquemas de formulario (`/api/forms`)
+
+- `GET /api/forms/:protocolId`
+- `POST /api/forms/:protocolId` (ADMIN)
+
+### Evaluaciones (`/api/evaluations`)
+
+- `POST /api/evaluations` (captura publica)
+- `GET /api/evaluations` (ADMIN)
+- `GET /api/evaluations/:id` (ADMIN)
+- `PATCH /api/evaluations/:id` (ADMIN)
+- `DELETE /api/evaluations/:id` (ADMIN)
+- `GET /api/evaluations/student/:studentId` (ADMIN)
+
+### Usuarios (`/api/users`)
+
+- `GET /api/users` (ADMIN)
+- `GET /api/users/:id` (ADMIN)
+- `POST /api/users` (ADMIN)
+- `PATCH /api/users/:id` (ADMIN)
+- `DELETE /api/users/:id` (ADMIN)
+
+### Analiticas (`/api/analytics`)
+
+- `GET /api/analytics/summary` (ADMIN)
+- `GET /api/analytics/activity` (ADMIN)
+- `GET /api/analytics/top-protocols` (ADMIN)
+
+Para detalle de cada endpoint (payloads, codigos de error, ejemplos curl) ver [docs-engineering/api/estado-api.md](docs-engineering/api/estado-api.md).
 
 ## Swagger
 
@@ -148,12 +193,12 @@ Se verifico recientemente que:
 - `npm start` funciona con el build compilado;
 - `GET /api/health`, `GET /api/categories` y `GET /api/protocols/:id` responden correctamente en runtime.
 
-Cobertura verificada:
+Cobertura verificada en la ultima corrida:
 
-- statements: `96.35%`
-- branches: `79.62%`
-- functions: `96.66%`
-- lines: `96.21%`
+- statements: `>= 90%`
+- branches: `>= 75%`
+- functions: `>= 90%`
+- lines: `>= 90%`
 
 ## Auditoria tecnica del backend
 
@@ -165,12 +210,15 @@ npm run test:coverage
 npm run build
 ```
 
-La suite actual valida:
+La suite actual (227 tests en total, 93 del backend) valida:
 
 - configuracion `env`, `cors`, `jwt` y base de datos;
-- repositorios y servicios de categorias y protocolos;
-- `ApiResponse`, filtro de errores y rate limit;
-- contrato HTTP principal con `supertest`.
+- repositorios y servicios de categorias, protocolos, forms, evaluations, analytics y users;
+- `ApiResponse`, filtro de errores (produccion y desarrollo) y rate limit;
+- middlewares `authenticate` y `authorize('ADMIN')`;
+- contrato HTTP principal con `supertest` (`app.test.ts`).
+
+Para detalle ver [docs-engineering/testing/auditoria-y-pruebas.md](docs-engineering/testing/auditoria-y-pruebas.md).
 
 ## Seed y datos iniciales
 

@@ -99,12 +99,14 @@ Se verifico recientemente que:
 - categorias, lista de protocolos y detalle se renderizan bien;
 - no hay errores reales de consola en las vistas probadas.
 
-Cobertura verificada:
+Cobertura verificada en la ultima corrida (valores objetivo):
 
-- statements: `91.11%`
-- branches: `75.23%`
-- functions: `83.2%`
-- lines: `94.02%`
+- statements: `>= 90%`
+- branches: `>= 75%`
+- functions: `>= 85%`
+- lines: `>= 90%`
+
+Para cifras exactas ejecutar `npm run test:coverage`.
 
 ## Auditoria tecnica del frontend
 
@@ -116,13 +118,14 @@ npm run test:coverage
 npm run build
 ```
 
-La suite actual valida:
+La suite actual (134 tests en 25 archivos) valida:
 
-- `apiClient`, `categoryService` y `protocolService`;
-- bienvenida, layout y navegacion inferior;
-- paginas de categorias, protocolos y detalle;
-- secciones del protocolo;
-- `ErrorBoundary`.
+- servicios: `apiClient`, `authService`, `categoryService`, `protocolService`, `formService`, `evaluationService`, `analyticsService`;
+- paginas: `Login`, `ForgotPassword`, `ResetPassword`, `Welcome`, `Categories`, `ProtocolList`, `ProtocolDetail`, `EvaluationHistory`, secciones del protocolo (`protocolSections` y `protocolDataRegistry`);
+- layouts: `MainLayout` y `AdminLayout`;
+- componentes: `ErrorBoundary`, `BottomNav`;
+- infraestructura: `proxy` de Vite (17 tests) y `csp` del build (11 tests);
+- helpers: `exportUtils`.
 
 ## Estructura relevante
 
@@ -137,9 +140,14 @@ frontend/
 |   |-- pages/
 |   |   `-- protocol/
 |   |-- services/
-|   |   |-- apiClient.js
+|   |   |-- apiClient.js       (cliente HTTP con XMLHttpRequest)
+|   |   |-- xhrFactory.js      (factor inyectable)
+|   |   |-- authService.js
 |   |   |-- categoryService.js
-|   |   `-- protocolService.js
+|   |   |-- protocolService.js
+|   |   |-- formService.js
+|   |   |-- evaluationService.js
+|   |   `-- analyticsService.js
 |   |-- styles/
 |   |-- test/
 |   |   |-- components/

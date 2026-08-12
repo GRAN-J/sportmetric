@@ -16,47 +16,65 @@ Este documento describe la estrategia, herramientas y estado actual de las prueb
 - Los fixtures compartidos viven en `frontend/src/test/fixtures.js`.
 - Los helpers de mock de Prisma viven en `backend/src/test/shared/prismaMock.ts`.
 
-## Suites actuales (Fase 2 cerrada)
+## Suites actuales
 
-### Frontend (45 tests en 13 archivos)
+### Frontend (134 tests en 25 archivos)
 
 | Suite | Foco | Tests |
 | --- | --- | ---: |
 | `test/services/apiClient.test.js` | XMLHttpRequest factory, promesas, AbortSignal, parseo de `data` y `error`. | 7 |
-| `test/services/authService.test.js` | Login, refresh, logout, recuperacion, Bearer token. | 5 |
-| `test/services/formService.test.js` | Cache busting en `getFormSchema`. | 2 |
-| `test/services/evaluationService.test.js` | CRUD de evaluaciones, filtros. | 4 |
+| `test/services/authService.test.js` | Login, refresh, logout, recuperacion, Bearer token. | 14 |
+| `test/services/formService.test.js` | Cache busting en `getFormSchema`. | 5 |
+| `test/services/evaluationService.test.js` | CRUD de evaluaciones, filtros. | 7 |
+| `test/services/protocolService.test.js` | CRUD de protocolos y detalle con includes. | 9 |
+| `test/services/categoryService.test.js` | CRUD de categorias. | 5 |
+| `test/services/analyticsService.test.js` | Resumenes y top protocolos. | 4 |
+| `test/pages/Login.test.jsx` | Formulario de inicio de sesion. | 5 |
+| `test/pages/ForgotPassword.test.jsx` | Solicitud de recuperacion. | 4 |
+| `test/pages/ResetPassword.test.jsx` | Confirmacion de nueva contrasena. | 6 |
+| `test/pages/Welcome.test.jsx` | Pagina de bienvenida publica. | 2 |
+| `test/pages/Categories.test.jsx` | Listado publico de categorias. | 2 |
+| `test/pages/ProtocolList.test.jsx` | Listado de protocolos por categoria. | 3 |
+| `test/pages/ProtocolDetail.test.jsx` | Detalle publico del protocolo. | 3 |
+| `test/pages/EvaluationHistory.test.jsx` | Historial de evaluaciones por estudiante. | 4 |
 | `test/pages/protocol/protocolSections.test.jsx` | Render de las 7 secciones del detalle y DynamicForm con campos base. | 5 |
 | `test/pages/protocol/protocolDataRegistry.test.jsx` | Carga del esquema, render del DynamicForm, submit, manejo de errores. | 3 |
-| `test/pages/admin/adminLayout.test.jsx` | Navegacion, `<Outlet />`, logout, items del menu. | 3 |
-| `test/pages/admin/adminPages.test.jsx` | CRUDs de usuarios, categorias, protocolos. | 4 |
-| `test/pages/admin/evaluationManagement.test.jsx` | Listado, filtros, ver, editar, eliminar evaluaciones. | 3 |
-| `test/pages/admin/dashboard.test.jsx` | Tarjetas de resumen, KPIs. | 2 |
-| `test/pages/admin/analytics.test.jsx` | Graficos Recharts, exportacion CSV. | 3 |
-| `test/components/protectedRoute.test.jsx` | Redirect a login si no hay token. | 2 |
-| `test/components/dynamicForm.test.jsx` | Render de los 6 tipos de campo, validacion, submit. | 2 |
-| **Total** | | **45** |
+| `test/layout/MainLayout.test.jsx` | Layout publico con Header y BottomNav. | 2 |
+| `test/layout/AdminLayout.test.jsx` | Navegacion, `<Outlet />`, logout, items del menu. | 4 |
+| `test/components/ErrorBoundary.test.jsx` | Captura de errores React y render del fallback. | 1 |
+| `test/components/navigation/BottomNav.test.jsx` | Navegacion inferior, highlight del item activo. | 4 |
+| `test/App.test.jsx` | Smoke test de la aplicacion. | 1 |
+| `test/proxy/proxy.test.js` | Rewrite de Vite y bypass de prefijo `/api`. | 17 |
+| `test/vite/csp.test.js` | Content-Security-Policy del build de Vite. | 11 |
+| `test/shared/exportUtils.test.js` | Helpers de exportacion PDF/CSV. | 6 |
+| **Total** | | **134** |
 
-### Backend (37 tests en 13 archivos)
+### Backend (93 tests en 19 archivos)
 
 | Suite | Foco | Tests |
 | --- | --- | ---: |
-| `test/modules/auth/auth.service.test.ts` | Hash, verificacion, tokens, rotacion, recuperacion. | 6 |
-| `test/modules/auth/auth.controller.test.ts` | Handlers de login, refresh, logout, forgot/reset, me. | 5 |
-| `test/modules/users/user.service.test.ts` | CRUD, unicidad de email, Argon2. | 4 |
-| `test/modules/categories/category.service.test.ts` | CRUD, slug, color hex. | 3 |
-| `test/modules/protocols/protocol.service.test.ts` | Validacion de payload, slug, categoria existente. | 4 |
-| `test/modules/protocols/protocol.repository.test.ts` | Includes, orden, `formSchema`, transaccion. | 3 |
-| `test/modules/forms/form.service.test.ts` | Concatenacion Ficha Tecnica base + custom, `isGeneric`. | 3 |
-| `test/modules/forms/form.controller.test.ts` | Headers anti-cache, public GET, ADMIN POST. | 2 |
-| `test/modules/evaluations/evaluation.service.test.ts` | Registro, filtros, validacion de protocolo. | 3 |
-| `test/modules/evaluations/evaluation.repository.test.ts` | `findAll`, `findByStudent`, filtros. | 2 |
-| `test/modules/analytics/analytics.service.test.ts` | Resumen, actividad, top protocolos. | 3 |
+| `test/app.test.ts` | Contrato HTTP principal con `supertest` (rutas publicas + admin). | 6 |
+| `test/config/env.test.ts` | Validacion con Zod de variables de entorno. | 2 |
+| `test/config/database.test.ts` | Instancia singleton de Prisma Client. | 2 |
+| `test/config/jwt.test.ts` | Firmado y verificacion de tokens. | 1 |
+| `test/config/cors.test.ts` | Matching de origines exactos, wildcard dominio y wildcard total. | 16 |
+| `test/modules/categories/category.service.test.ts` | CRUD, slug, color hex. | 2 |
+| `test/modules/categories/category.repository.test.ts` | Queries Prisma de categorias. | 3 |
+| `test/modules/protocols/protocol.service.test.ts` | Validacion de payload, slug, categoria existente. | 3 |
+| `test/modules/protocols/protocol.repository.test.ts` | Includes, orden, `formSchema`, transaccion. | 5 |
+| `test/modules/forms/form.service.test.ts` | Concatenacion Ficha Tecnica base + custom, `isGeneric`. | 5 |
+| `test/modules/forms/form.repository.test.ts` | Upsert y lectura de esquemas. | 4 |
+| `test/modules/evaluations/evaluation.repository.test.ts` | `findAll`, `findByStudent`, filtros. | 11 |
+| `test/modules/analytics/analytics.service.test.ts` | Resumen, actividad, top protocolos. | 8 |
+| `test/modules/users/user.repository.test.ts` | CRUD, unicidad de email, hashing. | 8 |
+| `test/shared/ApiResponse.test.ts` | Envoltorio estandar de respuestas. | 2 |
+| `test/shared/auth.middleware.test.ts` | `authenticate` y `authorize('ADMIN')`. | 7 |
 | `test/shared/error.filter.test.ts` | ApiError, Prisma P2002, P2025, genericos. | 4 |
-| `test/shared/error.filter.development.test.ts` | Mismo en modo `development` con detalles. | 2 |
-| **Total** | | **37** |
+| `test/shared/error.filter.development.test.ts` | Mismo en modo `development` con detalles. | 3 |
+| `test/shared/rate-limiter.middleware.test.ts` | Limite por IP y headers. | 1 |
+| **Total** | | **93** |
 
-## Total general: 82 tests
+## Total general: 227 tests (134 frontend + 93 backend) en 44 archivos
 
 ## Comandos para correr la suite
 
@@ -82,25 +100,25 @@ npm run build         # Compilacion TypeScript
 
 ## Estado verificado
 
-En la ultima corrida de la Fase 2 (cierre):
+En la ultima corrida verificada:
 
 - Frontend `lint`: 0 errores.
-- Frontend `test --run`: 45/45 pasan.
+- Frontend `test --run`: 134/134 pasan.
 - Frontend `build`: compila correctamente.
 - Backend `tsc --noEmit`: 0 errores.
-- Backend `test --run`: 37/37 pasan.
+- Backend `test --run`: 93/93 pasan.
 
 ## Cobertura por capa
 
 ### Capa de servicios (backend)
 
-- Cada servicio tiene al menos 2-6 tests que cubren happy path, error de validacion y error de negocio.
+- Cada servicio tiene al menos 2-8 tests que cubren happy path, error de validacion y error de negocio.
 - Las transacciones Prisma (`prisma.$transaction`) se verifican en `protocol.repository.test.ts`.
 
 ### Capa de controladores (backend)
 
-- Cada controlador valida que el handler correcto se invoca con los parametros correctos.
-- Los codigos de error estandar se verifican en `error.filter.test.ts`.
+- El contrato HTTP principal se valida en `app.test.ts` con `supertest`.
+- Los codigos de error estandar se verifican en `error.filter.test.ts` y `error.filter.development.test.ts`.
 
 ### Capa de servicios frontend
 
@@ -115,6 +133,12 @@ En la ultima corrida de la Fase 2 (cierre):
   - reacciona a interacciones del usuario (clicks, cambios de input);
   - llama a los servicios esperados;
   - muestra mensajes de error cuando falla.
+
+### Capa de infraestructura
+
+- `proxy.test.js` valida el rewrite de Vite (17 tests).
+- `vite/csp.test.js` valida la Content-Security-Policy del build (11 tests).
+- `cors.test.ts` cubre el matching de origines exactos, wildcard dominio y wildcard total (16 tests).
 
 ## Auditoria tecnica realizada
 

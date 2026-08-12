@@ -76,7 +76,7 @@ SportMetric Academic centraliza todo eso en una plataforma web que:
 | Persistencia de evaluaciones | Listo |
 | Analiticas con Recharts | Listo |
 | Modo `local` (sin backend) y modo `api` | Listo |
-| Cobertura de pruebas 82/82 | Listo |
+| Cobertura de pruebas 227/227 | Listo |
 | CI con GitHub Actions | Listo |
 | Internacionalizacion | Pendiente |
 | Versionado del API | Pendiente |
@@ -384,7 +384,7 @@ SportMetric Academic/
 |   |   |-- data/                  (modo local: JSON/JS)
 |   |   |   |-- categories.js
 |   |   |   |-- categories.json
-|   |   |   `-- protocols/         (12 JSON de protocolos academicos)
+|   |   |   |   `-- protocols/         (11 JSON de protocolos academicos)
 |   |   `-- test/
 |   |       |-- setup.js           (configuracion de Vitest + jsdom)
 |   |       |-- fixtures.js        (datos de prueba compartidos)
@@ -867,9 +867,9 @@ Para decisiones detalladas ver [docs-engineering/adr/](docs-engineering/adr/).
 
 | Paquete | Suites | Tests |
 | --- | ---: | ---: |
-| Frontend | 13 | 45 |
-| Backend | 13 | 37 |
-| **Total** | **26** | **82** |
+| Frontend | 25 | 134 |
+| Backend | 19 | 93 |
+| **Total** | **44** | **227** |
 
 ### Comandos
 
@@ -989,7 +989,7 @@ Todos los videos y descripciones viven en `frontend/src/data/protocols/*.json` y
 - Variables de entorno faltantes en `backend/.env`.
 - PostgreSQL no esta corriendo o la `DATABASE_URL` es incorrecta.
 - Las migraciones no se aplicaron (`npm run db:migrate:dev`).
-- El cliente Prisma no esta generado (`npm run prisma:generate`).
+- El cliente Prisma no esta generado (`npm run db:generate`).
 
 **Solucion**: revisa el log del backend. La primera linea del error suele indicar la causa exacta.
 
@@ -1136,7 +1136,7 @@ Para preguntas tecnicas o reportar problemas, abrir un issue en el repositorio o
 - 19 secciones autocontenidas.
 - ~1130 lineas de documentacion oficial.
 - 5 ADR documentados.
-- 82 tests automatizados (45 frontend + 37 backend).
+- 227 tests automatizados (134 frontend + 93 backend).
 - 12 protocolos academicos preconfigurados.
 - 6 categorias semilla.
 - 100% de las APIs documentadas con ejemplos curl.
