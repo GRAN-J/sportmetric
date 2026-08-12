@@ -10,7 +10,8 @@ import {
   LogOut, 
   ChevronRight,
   Menu,
-  X
+  X,
+  Home
 } from 'lucide-react';
 import { useState } from 'react';
 import { logout } from '../services/authService';
@@ -74,7 +75,14 @@ const AdminLayout = () => {
           })}
         </nav>
 
-        <div className="p-4 border-t border-teal-800">
+        <div className="p-4 border-t border-teal-800 space-y-2">
+          <Link
+            to="/"
+            className="flex items-center gap-4 px-4 py-3 w-full text-teal-100 hover:bg-teal-700 hover:text-white rounded-lg transition-all"
+          >
+            <Home size={22} />
+            {isSidebarOpen && <span className="font-medium">Volver a la aplicacion</span>}
+          </Link>
           <button 
             onClick={handleLogout}
             className="flex items-center gap-4 px-4 py-3 w-full text-teal-100 hover:bg-red-600 hover:text-white rounded-lg transition-all"

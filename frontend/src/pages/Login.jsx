@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LogIn, Mail, Lock } from 'lucide-react';
+import { LogIn, Mail, Lock, Home } from 'lucide-react';
 import { login } from '../services/authService';
 
 const Login = () => {
@@ -28,6 +28,14 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:underline"
+        >
+          <Home size={16} />
+          Volver a la aplicacion
+        </Link>
+
         <header className="text-center space-y-2">
           <h1 className="text-3xl font-extrabold text-gray-900">SportMetric Academic</h1>
           <p className="text-sm text-gray-600">Ingresa tus credenciales para acceder</p>

@@ -8,7 +8,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail, Send } from 'lucide-react';
+import { ArrowLeft, Home, Mail, Send } from 'lucide-react';
 import { forgotPassword } from '../services/authService';
 
 const ForgotPassword = () => {
@@ -37,13 +37,22 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
-        <Link
-          to="/login"
-          className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:underline"
-        >
-          <ArrowLeft size={16} />
-          Volver al inicio de sesion
-        </Link>
+        <div className="flex items-center justify-between gap-2">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:underline"
+          >
+            <ArrowLeft size={16} />
+            Volver al inicio de sesion
+          </Link>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:underline"
+          >
+            <Home size={16} />
+            Volver a la aplicacion
+          </Link>
+        </div>
 
         <header className="space-y-2">
           <h1 className="text-2xl font-extrabold text-gray-900">¿Olvidaste tu contraseña?</h1>
